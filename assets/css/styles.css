@@ -1,0 +1,12 @@
+/* Begin images home Saad*/
+.banner-image{
+    background-image: url('../img/banner-image.jpg');
+    background-size: cover;
+}
+.travellers-img{
+    background-image: url('../img/travel.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position:right;
+}
+/* End images home Saad*/
