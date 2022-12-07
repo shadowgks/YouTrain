@@ -12,7 +12,7 @@ class DatabaseConnection{
             $pdo = new PDO($datasn, $this->username, $this->pw);
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
         }catch(PDOException $e){
-            return "Connection failed."
+            return "Connection failed.";
         }
         return $pdo;
     }
