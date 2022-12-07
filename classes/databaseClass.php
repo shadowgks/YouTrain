@@ -6,7 +6,7 @@ class DatabaseConnection
     private $pw = "";
     private $databaseName = "youtraindb";
 
-    protected function connect()
+    private function connect()
     {
         $datasn = "mysql:host=$this->host;dbname=$this->databaseName;";
         try {
@@ -16,5 +16,9 @@ class DatabaseConnection
             return "Connection failed.";
         }
         return $pdo;
+    }
+
+    public function getConnect(){
+        return $this->connect();
     }
 }
