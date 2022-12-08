@@ -10,6 +10,7 @@
     background-repeat: no-repeat;
     background-position:right;
 }
+
 /* End images home Saad*/
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap');
@@ -41,6 +42,10 @@ ul[class]{
 }
 
 /*=====================================Styling and General Layout===================*/
+.img-logo{
+    height: 50px;
+    width: 50px;
+}
 
 .grid{
     display: grid;
