@@ -2,17 +2,28 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/styles.css">
-    <title>Dashboard</title>
-</head>
+
 
 <body>
     <div class="container grid">
+        <div class="mobile-menu">
+            <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="" alt="">
+                    </a>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </div>
         <nav class="side-nav">
             <div class="logo-container">
+                <img src="./assets/img/Logo.png" alt="">
             </div>
             <ul class="nav-links">
                 <li class="link-wrapper">
@@ -64,7 +75,11 @@
         </nav>
         <main class="dashboard-body">
             <header class="body-header">
-                <div class="toFill"></div>
+                <div class="toFill">
+                    <div class="mlogo-container">
+                        <img src="./assets/img/Logo.png" alt="">
+                    </div>
+                </div>
                 <div class="profile-session">
                     <div class="profile">
                         <div class="profile-img">
@@ -80,7 +95,7 @@
                 </div>
             </header>
             <section class="statistics-section">
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
@@ -89,7 +104,7 @@
                             <p class="text">20</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
@@ -98,7 +113,7 @@
                             <p class="text">20</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
@@ -107,7 +122,7 @@
                             <p class="text">20</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
@@ -121,7 +136,228 @@
                 <div class="card"></div> -->
             </section>
         </main>
+
     </div>
+    <!-- Users -->
+    <section class="container mt-5">
+        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Users</h3>
+        </div>
+        <table id="users" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>saad moumou</td>
+                    <td>Edinburgh</td>
+                    <!-- btn change rool - delete -->
+                    <td class="d-flex align-items-center">
+                        <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                        <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Cara Stevens</td>
+                    <td>New York</td>
+                    <!-- btn change rool - delete -->
+                    <td class="d-flex align-items-center">
+                        <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                        <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Voyages -->
+    <section class="container mt-5">
+        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Voyages</h3>
+        </div>
+        <table id="voyages" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Date départ</th>
+                    <th>Date d'arrivée</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Trains -->
+    <section class="container mt-5">
+        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Trains</h3>
+        </div>
+        <table id="trains" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Date départ</th>
+                    <th>Date d'arrivée</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Gares -->
+    <section class="container mt-5">
+        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Gares</h3>
+        </div>
+        <table id="gares" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Date départ</th>
+                    <th>Date d'arrivée</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!--BEGIN DATATABLE -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
+    <!--BEGIN SWITCH -->
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!--END SWITCH -->
+    <script>
+        //users
+        $(document).ready(function() {
+            $("#users").DataTable();
+            $("#voyages").DataTable();
+            $("#trains").DataTable();
+            $("#gares").DataTable();
+        });
+
+        function Reset() {
+            document.getElementById("form1").reset();
+        }
+        // Please do not use inline event handlers, use this instead:
+        document.getElementById("resetBtn").onclick = function() {
+            Reset();
+        };
+    </script>
+    <!--BEGIN DATATABLE -->
 </body>
 
 </html>

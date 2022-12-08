@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap');
 /* ======================= */
 /* Begin images home Saad*/
 .banner-image{
@@ -10,9 +11,10 @@
     background-repeat: no-repeat;
     background-position:right;
 }
+
 /* End images home Saad*/
 
-@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;700&display=swap');
+
 
 /*======================================Preset=============================*/
 *,
@@ -23,6 +25,7 @@
 
 body{
     margin: 0;
+    background-image: url(./assets/traindashboard.svg);
 }
 
 img{
@@ -41,10 +44,18 @@ ul[class]{
 }
 
 /*=====================================Styling and General Layout===================*/
+.img-logo{
+    height: 50px;
+    width: 50px;
+}
 
 .grid{
     display: grid;
     position: relative;
+}
+
+.logo-container{
+    display:none;
 }
 
 .side-nav{
@@ -87,8 +98,16 @@ ul[class]{
 .dashboard-body{
     padding: 0 1rem;
     margin-top: 1rem;
+    
+}
+.body-header{
+    display: flex;
+    justify-content: space-between;
 }
 
+.body-header .mlogo-container img{
+    height: 60px;
+}
 .profile-img{
     width: 40px;
     height: 40px;

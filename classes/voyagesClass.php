@@ -5,6 +5,8 @@ class Voyages extends DatabaseConnection
     private $id;
     private $date_depart;
     private $date_darrivee;
+    private $gare_depart;
+    private $gare_darrivee;
     private $price;
 
     //set and get id
@@ -37,6 +39,27 @@ class Voyages extends DatabaseConnection
         return $this->date_darrivee;
     }
 
+
+    //set and get GareDepart
+    function setGareDepart($gare_depart)
+    {
+        $this->gare_depart = $gare_depart;
+    }
+    function getGareDepart()
+    {
+        return $this->gare_depart;
+    }
+
+    //set and get GareDarrivee
+    function setGareDarrivee($gare_darrivee)
+    {
+        $this->gare_darrivee = $gare_darrivee;
+    }
+    function getGareDarrivee()
+    {
+        return $this->gare_darrivee;
+    }
+
     //set and get price
     function setPrice($price)
     {
@@ -50,9 +73,9 @@ class Voyages extends DatabaseConnection
     //Create
     function createData()
     {
-        try{
-            $stm = $this->getConnect()->prepare("INSERT INTO `voyages`(`date_depart`, `date_darrivee`, `price`) VALUES (?,?,?)");
-            $stm->execute([$this->date_depart,$this->date_darrivee,$this->price]);
+        try {
+            $stm = $this->getConnect()->prepare("INSERT INTO `voyages`(`date_depart`, `date_darrivee`, `gare_depart`, `gare_darrivee`, `price`) VALUES (?,?,?)");
+            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -64,7 +87,7 @@ class Voyages extends DatabaseConnection
         try {
             $stm = $this->getConnect()->prepare("SELECT * FROM voyages");
             $stm->execute();
-            while($result = $stm->fetchAll()){
+            while ($result = $stm->fetchAll()) {
                 return $result;
             }
         } catch (Exception $e) {
@@ -76,8 +99,8 @@ class Voyages extends DatabaseConnection
     function updateData()
     {
         try {
-            $stm = $this->getConnect()->prepare("UPDATE voyages SET date_depart='?', date_darrivee='?', price='?' WHERE id = '?'");
-            $stm->execute([$this->date_depart, $this->date_darrivee, $this->price, $this->id]);
+            $stm = $this->getConnect()->prepare("UPDATE voyages SET date_depart=?, date_darrivee=?, `gare_depar=?t`, `gare_darrivee=?`, price=? WHERE id = ? ;");
+            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price, $this->id]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
