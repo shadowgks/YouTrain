@@ -2,8 +2,29 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Begin Bootstrap css -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+    <!-- End Bootstrap css -->
+    <!-- ============================= -->
+    <!-- Begin Bootstrap icon -->
+    <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css" />
+    <!-- End Bootstrap icon -->
+    <!-- ============================= -->
+    <!-- Begin datatable css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css" />
+    <!-- End datatable css -->
+    <!-- ============================= -->
+    <!-- Begin css switch toggle -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet" />
+    <!-- End css switch toggle -->
 
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <title>Dashboard</title>
 <body>
     <div class="container grid">
         <div class="mobile-menu">
