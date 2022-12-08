@@ -26,8 +26,8 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>Dashboard</title>
 <body>
-    <div class="container grid">
-        <div class="mobile-menu">
+    <div class=" grid">
+        <!-- <div class="mobile-menu">
             <div class="logo">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
             </div>
@@ -41,7 +41,7 @@
 
                 </li>
             </ul>
-        </div>
+        </div> -->
         <nav class="side-nav">
             <div class="logo-container">
                 <img src="./assets/img/Logo.png" alt="">
@@ -156,12 +156,8 @@
                 <div class="card"></div>
                 <div class="card"></div> -->
             </section>
-        </main>
-
-    </div>
-    <!-- Users -->
-    <section class="container mt-5">
-        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+            <section class=" mt-5">
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
             <h3 class="text-center text-white">Users</h3>
         </div>
         <table id="users" class="table table-striped">
@@ -198,8 +194,8 @@
         </table>
     </section>
     <!-- Voyages -->
-    <section class="container mt-5">
-        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+    <section class="mt-5">
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
             <h3 class="text-center text-white">Voyages</h3>
         </div>
         <table id="voyages" class="table table-striped">
@@ -250,8 +246,8 @@
         </table>
     </section>
     <!-- Trains -->
-    <section class="container mt-5">
-        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+    <section class="mt-5">
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
             <h3 class="text-center text-white">Trains</h3>
         </div>
         <table id="trains" class="table table-striped">
@@ -302,8 +298,8 @@
         </table>
     </section>
     <!-- Gares -->
-    <section class="container mt-5">
-        <div class="p-3 mb-2" style="background-color:#7c4dff;">
+    <section class="my-5">
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
             <h3 class="text-center text-white">Gares</h3>
         </div>
         <table id="gares" class="table table-striped">
@@ -353,6 +349,10 @@
             </tbody>
         </table>
     </section>
+        </main>
+    </div>
+    <!-- Users -->
+    
 
     <!--BEGIN DATATABLE -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
