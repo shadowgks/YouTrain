@@ -31,7 +31,10 @@ $data_voyages = new Voyages();
 
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>Dashboard</title>
+<<<<<<< HEAD
 
+=======
+>>>>>>> d230414937a4a2b71fecd2a024e73efdbcf73d76
 <body>
     <div class=" grid">
         <!-- <div class="mobile-menu">
@@ -164,6 +167,7 @@ $data_voyages = new Voyages();
                 <div class="card"></div> -->
             </section>
             <section class=" mt-5">
+<<<<<<< HEAD
                 <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
                     <h3 class="text-center text-white">Users</h3>
                 </div>
@@ -351,6 +355,204 @@ $data_voyages = new Voyages();
     </div>
     <!-- Users -->
 
+=======
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Users</h3>
+        </div>
+        <table id="users" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>saad moumou</td>
+                    <td>Edinburgh</td>
+                    <!-- btn change rool - delete -->
+                    <td class="d-flex align-items-center">
+                        <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                        <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Cara Stevens</td>
+                    <td>New York</td>
+                    <!-- btn change rool - delete -->
+                    <td class="d-flex align-items-center">
+                        <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                        <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Voyages -->
+    <section class="mt-5">
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Voyages</h3>
+        </div>
+        <table id="voyages" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Date départ</th>
+                    <th>Date d'arrivée</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Trains -->
+    <section class="mt-5">
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Trains</h3>
+        </div>
+        <table id="trains" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Date départ</th>
+                    <th>Date d'arrivée</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <!-- Gares -->
+    <section class="my-5">
+        <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
+            <h3 class="text-center text-white">Gares</h3>
+        </div>
+        <table id="gares" class="table table-striped">
+            <thead class="text-white" style="background-color: #1c2331">
+                <tr>
+                    <th>#</th>
+                    <th>Date départ</th>
+                    <th>Date d'arrivée</th>
+                    <th>Price</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Jennifer Acosta</td>
+                    <td>Edinburgh</td>
+                    <td>32.00DH</td>
+                    <!-- btn edite delete -->
+                    <td class="d-flex align-items-center">
+                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+        </main>
+    </div>
+    <!-- Users -->
+    
+>>>>>>> d230414937a4a2b71fecd2a024e73efdbcf73d76
 
     <!--BEGIN DATATABLE -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -379,4 +581,8 @@ $data_voyages = new Voyages();
     <!--BEGIN DATATABLE -->
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> d230414937a4a2b71fecd2a024e73efdbcf73d76
