@@ -4,13 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
     <title>Dashboard</title>
 </head>
 <body>
     <div class="container grid">
+        <div class="mobile-menu">
+            <div class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+            </div>
+            <ul>
+                <li>
+                    <a href="#">
+                        <img src="" alt="">
+                    </a>
+                </li>
+                <li>
+
+                </li>
+            </ul>
+        </div>
         <nav class="side-nav">
             <div class="logo-container">
+                <img src="./assets/img/Logo.png" alt="">
             </div>
             <ul class="nav-links">
                 <li class="link-wrapper">
@@ -35,7 +51,11 @@
         </nav>
         <main class="dashboard-body">
             <header class="body-header">
-                <div class="toFill"></div>
+                <div class="toFill">
+                    <div class="mlogo-container">
+                        <img src="./assets/img/Logo.png" alt="">
+                    </div>
+                </div>
                 <div class="profile-session">
                     <div class="profile">
                         <div class="profile-img">
@@ -49,7 +69,7 @@
                 </div>
             </header>
             <section class="statistics-section">
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
@@ -58,7 +78,7 @@
                         <p class="text">20</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
@@ -67,7 +87,7 @@
                         <p class="text">20</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
@@ -76,7 +96,7 @@
                         <p class="text">20</p>
                     </div>
                 </div>
-                <div class="card">
+                <div class="card-stat">
                     <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
