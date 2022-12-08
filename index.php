@@ -22,8 +22,8 @@
             <!-- navbar -->
             <nav class="navbar fixed-top navbar-expand-lg navbar-dark p-md-4">
                 <div class="container text-center">
-                    <div>
-                        <img src="assets/img/Logo.png" height="50" alt="Logo_Train" />
+                    <div class="d-flex">
+                        <img src="assets/img/Logo.png" class="img-logo" alt="Logo_Train" />
                         <a href="index.html" class="navbar-brand">YOUTRAIN</a>
                     </div>
 
@@ -55,7 +55,7 @@
             <!-- banner image -->
             <div class="banner-image w-100 vh-100 d-flex justify-content-center align-items-center">
                 <div class="content text-center p-5 rounded-2 mx-3">
-                    <h1 class="text-white display-1 fw-bold">WELECOM TO YOUTRAIN</h1>
+                    <h1 class="text-white display-1 fw-bold">WELCOME TO YOUTRAIN</h1>
                 </div>
             </div>
         </header>
