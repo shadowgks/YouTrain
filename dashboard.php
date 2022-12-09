@@ -108,6 +108,12 @@ $data_voyages = new Voyages();
                     <div class="mlogo-container">
                         <img src="./assets/img/Logo.png" alt="">
                     </div>
+                    <div class="buttons">
+                        <button>
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button>
+                            <img src="" alt="" class="icon"></button><button><img src="" alt="" class="icon"></button><button><img src="" alt="" class="icon"></button><button><img src="" alt="" class="icon"></button></div>
                 </div>
                 <div class="profile-session">
                     <div class="profile">
