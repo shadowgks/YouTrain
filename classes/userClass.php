@@ -22,7 +22,9 @@ class Users extends DatabaseConnection
         }
     
     public function signup()
-    {   $db =new DatabaseConnection;
+
+    { 
+        $db =new DatabaseConnection;
         $pdo = $db->connect();
         $sql ="INSERT INTO `users`(`nom`, `prenom`, `email`, `password`) VALUES (:nom,:prenom,:email,:password)";
         $stmt = $pdo->prepare($sql);
@@ -49,6 +51,50 @@ class Users extends DatabaseConnection
         $stmt->execute();
         $row= $stmt->fetch();
         if(!empty($row)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    public static function viewUser($option,$user_id){
+        $db =new DatabaseConnection;
+        $pdo = $db->connect();
+        
+        if($option=="this_user"){
+            $sql ="SELECT * FROM users where id=:user_id";
+          
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":user_id",$user_id);
+        }else{
+            $sql ="SELECT * FROM users";
+            $stmt = $pdo->prepare($sql);
+        }
+        $stmt->execute();
+        $rows= $stmt->fetchAll();
+        if(!empty($rows)){
+            return $rows;
+        }
+        else{
+            return false;
+        }
+        
+
+    }
+    public  function updateUser($user_id){
+        $db =new DatabaseConnection;
+        $pdo = $db->connect();
+        
+        $sql ="UPDATE users SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`password`=:password WHERE id=:user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":user_id",      $user_id);
+        $stmt->bindParam(":nom",          $this->lastname);
+        $stmt->bindParam(":prenom",       $this->firstname);
+        $stmt->bindParam(":email",        $this->email);
+        $stmt->bindParam(":password",     $this->password);
+      
+        if($stmt->execute()){
             return true;
         }
         else{
