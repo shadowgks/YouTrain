@@ -337,32 +337,34 @@ include('includes/scripts.php');
                 <thead class="text-white" style="background-color: #1c2331">
                     <tr>
                         <th>#</th>
-                        <th>Date départ</th>
-                        <th>Date d'arrivée</th>
-                        <th>Price</th>
+                        <th>Nom</th>
+                        <th>Train</th>
+                        <th>Voyage</th>
+                        <th>Ville</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
-                    // var_dump($data_stations->readStations());
-                    // die;
-                    // while ($row = $data_stations->readStations()) {
-
-                    //     echo '
-                    //     <tr>
-                    //     <td>1</td>
-                    //     <td>Jennifer Acosta</td>
-                    //     <td>Edinburgh</td>
-                    //     <td>32.00DH</td>
-                    //     <!-- btn edite delete -->
-                    //     <td class="d-flex align-items-center">
-                    //         <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                    //         <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                    //     </td>
-                    // </tr>
-                    //     ';
-                    // }
+                    $count = 0;
+                    foreach ($data_stations as $row) {
+                        $count++;
+                        echo '
+                        <tr>
+                        <td>'.$count.'</td>
+                        <td>'.$row['nom'].'</td>
+                        <td>'.$row['id-train'].'</td>
+                        <td>'.$row['id-voyage'].'</td>
+                        <td>'.$row['id-ville'].'</td>
+                        <!-- btn edite delete -->
+                        <td class="d-flex align-items-center">
+                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                        ';
+                        
+                    }
 
                     ?>
 

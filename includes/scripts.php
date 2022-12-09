@@ -19,7 +19,7 @@ $data_voyages = new Voyages();
 // ====================================================
 // Begin amine
 include 'classes/stationsClass.php';
-$data_stations = new Stations();
+$data_stations = Stations::readStations();
 // End amine
 
 
