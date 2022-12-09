@@ -25,7 +25,7 @@
 
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>Dashboard</title>
-<body>
+<body >
     <div class=" grid">
         <!-- <div class="mobile-menu">
             <div class="logo">

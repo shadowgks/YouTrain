@@ -25,7 +25,6 @@
 
 body{
     margin: 0;
-    background-image: url(./assets/traindashboard.svg);
 }
 
 img{
@@ -98,7 +97,9 @@ ul[class]{
 .dashboard-body{
     padding: 0 1rem;
     margin-top: 1rem;
-    
+    /* background-image: url('../traindashboard.svg');
+    background-repeat: no-repeat;
+    background-size: cover; */
 }
 .body-header{
     display: flex;
@@ -182,5 +183,5 @@ ul[class]{
     .datatable{
         overflow-x: scroll;
     }
-}
+} 
 
