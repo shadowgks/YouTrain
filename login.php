@@ -12,7 +12,9 @@
   <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css">
   <!-- End Bootstrap icon -->
   <link rel="stylesheet" href="assets/css/styles.css">
+
   <title>YouTrain</title>
+
 </head>
 
 <body>
@@ -21,9 +23,11 @@
     <!-- navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark p-md-4" style="background-color: #1c2331">
       <div class="container">
+
         <div class="d-flex">
           <img src="assets/img/Logo.png" class="img-logo" alt="Logo_Train" />
           <a href="index.html" class="navbar-brand">YOUTRAIN</a>
+
         </div>
 
         <button type="button" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navbar">
@@ -62,14 +66,17 @@
               <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
 
 
-              <form>
+
+              <form method="POST" action="includes/scripts.php">
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
 
                     <div class="form-outline">
                       <label class="form-label" for="firstName">First Name</label>
-                      <input type="text" id="firstName" class="form-control form-control-lg" id="firstnameu" />
+
+                      <input name="firstname" type="text" id="firstName" class="form-control form-control-lg" id="firstnameu" />
+
 
                     </div>
 
@@ -78,7 +85,9 @@
 
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Last Name</label>
-                      <input type="text" id="lastName" class="form-control form-control-lg" id="lastnameu" />
+
+                      <input name="lastname" type="text" id="lastName" class="form-control form-control-lg" id="lastnameu" />
+
 
                     </div>
 
@@ -90,7 +99,9 @@
                   <div class="col-md-6 mb-4">
                     <div class="form-outline">
                       <label class="form-label" for="emailAddress">Email</label>
-                      <input type="email" id="emailAddress" class="form-control form-control-lg" id="emailaddressu" />
+
+                      <input name="email" type="email" id="emailAddress" class="form-control form-control-lg" id="emailaddressu" />
+
 
                     </div>
 
@@ -105,7 +116,9 @@
 
                     <div class="form-outline">
                       <label class="form-label" for="firstName">Password</label>
-                      <input type="text" id="firstName" class="form-control form-control-lg" id="passwordu" />
+
+                      <input name="password" type="text" id="firstName" class="form-control form-control-lg" id="passwordu" />
+
 
                     </div>
 
@@ -114,13 +127,17 @@
 
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Retype Password</label>
-                      <input type="text" id="lastName" class="form-control form-control-lg" id="retypepasswordu" />
+
+                      <input name="password_confirm" type="text" id="lastName" class="form-control form-control-lg" id="retypepasswordu" />
+
 
                     </div>
 
                   </div>
                   <div class="mt-4 pt-2">
-                    <button type="button" class="btn text-white px-4 " style="background-color: #6351ce">Sign up <i class="bi bi-arrow-right-short"></i></button>
+
+                    <button type="submit" class="btn text-white px-4 " style="background-color: #6351ce" name="signup">Sign up <i class="bi bi-arrow-right-short"></i></button>
+
                   </div>
 
               </form>
@@ -143,21 +160,25 @@
             <div class="card-body p-5 text-center">
 
               <h3 class="mb-5">Sign in</h3>
-              <form>
+
+              <form method="POST" action="includes/scripts.php">
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="typeEmailX-2">Email</label>
-                  <input type="email" class="form-control form-control-lg" id="emailaddressi" />
+                  <input type="email" name="email" class="form-control form-control-lg" id="emailaddressi" />
+
 
                 </div>
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="typePasswordX-2">Password</label>
-                  <input type="password" class="form-control form-control-lg" id="passwordi" />
+
+                  <input type="password" name="password" class="form-control form-control-lg" id="passwordi" />
 
                 </div>
                 <div>
-                  <button type="button" class="btn text-white px-4 " style="background-color: #6351ce" id="btnbuttonin">Sign in <i class="bi bi-arrow-right-short"></i></button>
+                  <button type="submit" class="btn text-white px-4 " name="signin" style="background-color: #6351ce" id="btnbuttonin">Sign in <i class="bi bi-arrow-right-short"></i></button>
+
 
                 </div>
               </form>

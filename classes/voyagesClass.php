@@ -1,5 +1,5 @@
 <?php
-require_once 'databaseClass.php';
+require_once('databaseClass.php');
 class Voyages extends DatabaseConnection
 {
     private $id;

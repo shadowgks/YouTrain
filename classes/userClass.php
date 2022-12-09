@@ -1,91 +1,105 @@
 <?php
-
-class User
+require_once('databaseClass.php');
+class Users extends DatabaseConnection
 {
-    private $errors = array();
-    public function signup($POST)
-    {
-        //validation 
-        $DB = new Database();
-        $data = array();
-        $data['firstname'] = trim($POST['firstname']);
-        $data['lastname'] = trim($POST['lastname']);
-        $data['email'] = trim($POST['email']);
-        $data['password'] = trim($POST['password']);
-        $password_confirm = trim($POST['password_confirm']);
-        if (empty($data['email']) || !preg_match("/^[a-zA-Z]+@[a-zA-Z]+.[a-zA-Z]+$/", $data['email'])) {
-            $this->errors[] = "Please Enter A valid email";
-        }
-        if (empty($data['firstname']) || !preg_match("/^[a-zA-Z]+$/", $data['firstname'])) {
-            $this->errors[] = "Please Enter A Valid firstName";
-        }
-        if (empty($data['lastname']) || !preg_match("/^[a-zA-Z]+$/", $data['lastname'])) {
-            $this->errors[] = "Please Enter A Valid lastName";
-        }
-        if ($data['password'] !== $password_confirm) {
-            $this->errors[] = "Password not match";
-        }
-        if (strlen($data['password']) < 4) {
-            $this->errors[] = "Password must be at least 4 character";
-        }
-        #check email if exists
-        $arr = false;
-        $sql = "SELECT * FROM users WHERE email=:email LIMIT 1";
-        $arr['email'] = $data['email'];
-        //echo $arr['email'];
-        //die;
-        $check = $DB->read($sql, $arr);
-        if (is_array($check)) {
-
-            //die;
-            $this->errors[] = "That Email is already in use";
-        }
-
-        if (count($this->errors) == 0) {
-
-            //$data['date'] = date("Y-m-d H:i:s");
-            $data['password'] = hash('sha1', $data['password']);
-
-            $query = "INSERT INTO users (firstname,lastname,email,password) VALUES (:firstname,:lastname,:email,:password)";
-            $result = $DB->write($query, $data);
-            if ($result) {
-                header('Location:login.php');
-                die;
-            }
-        }
-        return $this->errors;
+    private $firstname;
+    private $lastname;
+    private $email;
+    private $password;
+    private $password_confirm;
+    public function __construct($firstname,$lastname,$email,$password,$password_confirm){
+        $this->firstname        =$firstname;
+        $this->lastname         = $lastname;
+        $this->email            =$email;
+        $this->password         =$password;
+        $this->password_confirm =$password_confirm;
     }
-    public function login($POST)
-    {
-        $DB = new Database();
-        $data = array();
-        #echo "one";
-        $data['email'] = trim($POST['email']);
-        $data['password'] = trim($POST['password']);
-        if (empty($data['email']) || !preg_match("/^[a-zA-Z]+@[a-zA-Z]+.[a-zA-Z]+$/", $data['email'])) {
-            $this->errors[] = "Please Enter a valid Email";
+        public function __set($var,$val){
+            $this->$var = $val;
         }
-        if (empty($data['password'])) {
-            $this->errors[] = "please Enter a valid password";
+        public function __get($var){
+            return $this->$var;
         }
-        if (count($this->errors) == 0) {
+    
+    public function signup()
 
-            $data['password'] = hash('sha1', $data['password']);
-            $query = "SELECT * FROM users WHERE email=:email AND password=:password";
-            $result = $DB->read($query, $data);
-            if (is_array($result)) {
-                $result = $result[0];
-                $_SESSION['firstname'] = $result['firstname'];
-                $_SESSION['lastname'] = $result['lastname'];
-                $_SESSION['email'] = $result['email'];
-                header('Location:index.php');
-                die;
-            }
-
-            $this->errors[] = "Wrong Email or Password";
+    { 
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
+        $sql ="INSERT INTO `users`(`nom`, `prenom`, `email`, `password`) VALUES (:nom,:prenom,:email,:password)";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":nom",$this->lastname);
+        $stmt->bindParam(":prenom",$this->firstname);
+        $stmt->bindParam(":email",$this->email);
+        $stmt->bindParam(":password",$this->password);
+        if( $stmt->execute()){
+            return true;
         }
-        return $this->errors;
+        else{
+            return false;
+        }
     }
+    public static function login($email,$password){
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
+        $sql ="SELECT * FROM users WHERE email=:email and password=:password";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":email",$email);
+        $stmt->bindParam(":password",$password);
+        $stmt->execute();
+        $row= $stmt->fetch();
+        if(!empty($row)){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    public static function viewUser($option,$user_id){
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
+        
+        if($option=="this_user"){
+            $sql ="SELECT * FROM users where id=:user_id";
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(":user_id",$user_id);
+        }else{
+            $sql ="SELECT * FROM users";
+            $stmt = $pdo->prepare($sql);
+        }
+        $stmt->execute();
+        $rows= $stmt->fetchAll();
+        if(!empty($rows)){
+            return $rows;
+        }
+        else{
+            return false;
+        }
+        
+
+    }
+    public  function updateUser($user_id){
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
+        
+        $sql ="UPDATE users SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`password`=:password WHERE id=:user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":user_id",      $user_id);
+        $stmt->bindParam(":nom",          $this->lastname);
+        $stmt->bindParam(":prenom",       $this->firstname);
+        $stmt->bindParam(":email",        $this->email);
+        $stmt->bindParam(":password",     $this->password);
+      
+        if($stmt->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+
     public function logout()
     {
         if (isset($_SESSION['name'])) {
@@ -95,4 +109,5 @@ class User
         header('Location:login.php');
         die;
     }
+    
 }

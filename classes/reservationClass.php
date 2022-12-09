@@ -1,5 +1,5 @@
 <?php
-include("databaseClass.php");
+require_once("databaseClass.php");
 $db_obj = new DatabaseConnection();
 
 class Reservation{
