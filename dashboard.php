@@ -221,7 +221,7 @@ $data_voyages = new Voyages();
             <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
                 <h3 class="text-center text-white">Voyages</h3>
             </div>
-            <table id="voyages" class="table table-striped display nowrap" width="100%">
+            <table id="voyages" class="table table-striped" width="100%">
                 <thead class="text-white" style="background-color: #1c2331">
                     <tr>
                         <th>#</th>
@@ -260,48 +260,48 @@ $data_voyages = new Voyages();
             </table>
         </section>
         <!-- Trains -->
-        <section class="mt-5">
-                <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
-                    <h3 class="text-center text-white">Trains</h3>
-                </div>
-                <table id="trains" class="table table-striped">
-                    <thead class="text-white" style="background-color: #1c2331">
-                        <?php
-                        if (isset($_SESSION['insert-train'])) {
-                            echo "<div class='alert alert-success' role='alert'>
+        <section class="mt-5 ms-md-5">
+            <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
+                <h3 class="text-center text-white">Trains</h3>
+            </div>
+            <table id="trains" class="table table-striped display nowrap" width="100%">
+                <thead class="text-white" style="background-color: #1c2331">
+                    <?php
+                    if (isset($_SESSION['insert-train'])) {
+                        echo "<div class='alert alert-success' role='alert'>
                                       <strong>" . $_SESSION['insert-train'] . "</strong>
                                   </div>";
-                            unset($_SESSION['insert-train']);
-                        }
-                        if (isset($_SESSION['update-train'])) {
-                            echo "<div class='alert alert-success' role='alert'>
+                        unset($_SESSION['insert-train']);
+                    }
+                    if (isset($_SESSION['update-train'])) {
+                        echo "<div class='alert alert-success' role='alert'>
                                       <strong>" . $_SESSION['update-train'] . "</strong>
                                   </div>";
-                            unset($_SESSION['update-train']);
-                        }
-                        if (isset($_SESSION['delete-train'])) {
-                            echo "<div class='alert alert-success' role='alert'>
+                        unset($_SESSION['update-train']);
+                    }
+                    if (isset($_SESSION['delete-train'])) {
+                        echo "<div class='alert alert-success' role='alert'>
                                       <strong>" . $_SESSION['delete-train'] . "</strong>
                                   </div>";
-                            unset($_SESSION['delete-train']);
-                        }
-                        ?>
-                        <tr>
-                            <th>#</th>
-                            <th>Nombre</th>
-                            <th>Nom</th>
-                            <th>capacité</th>
-                            <th>Action</th>
-                        </tr>
+                        unset($_SESSION['delete-train']);
+                    }
+                    ?>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Nom</th>
+                        <th>capacité</th>
+                        <th>Action</th>
+                    </tr>
 
-                    </thead>
-                    <tbody>
-                        <?php
-                        $train_object->displayTrains();
-                        $index = 1;
-                        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                            // $data[] = $row;
-                            echo "<tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $train_object->displayTrains();
+                    $index = 1;
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        // $data[] = $row;
+                        echo "<tr>
                                     <td>" . $index . "</td>
                                     <td>" . $row['num'] . "</td>
                                     <td>" . $row['nom'] . "</td>
@@ -312,32 +312,32 @@ $data_voyages = new Voyages();
                                         <button type='submit' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='bi bi-trash'></i></button>
                                     </td>
                                 </tr>";
-                            $index++;
-                            // return $data;
-                        }
-                        ?>
+                        $index++;
+                        // return $data;
+                    }
+                    ?>
 
-                        <!-- <tr>
+                    <!-- <tr>
                             <td>1</td>
                             <td>nombre</td>
                             <td>nom</td>
                             <td>8478</td> -->
-                        <!-- btn edite delete -->
-                        <!-- <td class="d-flex align-items-center">
+                    <!-- btn edite delete -->
+                    <!-- <td class="d-flex align-items-center">
                                 <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
                                 <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
                             </td>
                         </tr> -->
 
-                    </tbody>
-                </table>
-            </section>
+                </tbody>
+            </table>
+        </section>
         <!-- Gares -->
         <section class="my-5 ms-md-5">
             <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
                 <h3 class="text-center text-white">Gares</h3>
             </div>
-            <table id="gares" class="table table-striped display nowrap" width="100%"> 
+            <table id="gares" class="table table-striped display nowrap" width="100%">
                 <thead class="text-white" style="background-color: #1c2331">
                     <tr>
                         <th>#</th>
