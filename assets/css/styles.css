@@ -14,8 +14,6 @@
 
 /* End images home Saad*/
 
-
-
 /*======================================Preset=============================*/
 *,
 *::before,
@@ -180,8 +178,5 @@ ul[class]{
     ul[class].nav-links{
         margin-top:24px
     }
-    .datatable{
-        overflow-x: scroll;
-    }
-} 
+}
 
