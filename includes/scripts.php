@@ -1,6 +1,6 @@
 <?php
 // begin crud fouad
-include('classes/trainClass.php');
+include(__DIR__.'/../classes/trainClass.php');
 session_start();
 
 $train_object = new Train();
@@ -11,20 +11,20 @@ if (isset($_POST['delete']))  $train_object->delete($_POST);
 
 // ====================================================
 // Begin saad
-include 'classes/voyagesClass.php';
+include __DIR__.'/../classes/voyagesClass.php';
 $data_voyages = new Voyages();
 // End saad
 
 
 // ====================================================
 // Begin amine
-include 'classes/stationsClass.php';
+include __DIR__.'/../classes/stationsClass.php';
 $data_stations = new Stations();
 // End amine
 
 
 // Begin Amina
-require("./classes/userClass.php");
+require(__DIR__.'/../classes/userClass.php');
 if (isset($_POST["signup"])) signup();
 if (isset($_POST["signin"])) signin();
 if (isset($_POST["view_one_user"])) viewUser("this_user", $_POST["user_id"]);
@@ -46,7 +46,7 @@ function signin()
 {
 
     if (Users::login($_POST["email"], $_POST["password"])) {
-        echo "good";
+       header("location:../dashboard.php");
     } else {
         echo "bad";
     }
