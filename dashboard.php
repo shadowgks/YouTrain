@@ -1,7 +1,7 @@
 <?php
 include('includes/scripts.php');
 // Begin saad
-include_once 'classes/voyagesClass.php';
+include 'classes/voyagesClass.php';
 $data_voyages = new Voyages();
 // End saad
 ?>
@@ -167,14 +167,6 @@ $data_voyages = new Voyages();
             </section>
         </main>
     </div>
-    <!-- Users -->
-
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button> -->
-
-    <!-- Modal -->
 
     <!-- Tabless -->
     <div class="container">
@@ -288,7 +280,6 @@ $data_voyages = new Voyages();
                     ?>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
                         <th>Nom</th>
                         <th>capacité</th>
                         <th>Action</th>
@@ -303,7 +294,6 @@ $data_voyages = new Voyages();
                         // $data[] = $row;
                         echo "<tr>
                                     <td>" . $index . "</td>
-                                    <td>" . $row['num'] . "</td>
                                     <td>" . $row['nom'] . "</td>
                                     <td>" . $row['capacite'] . "</td>
                                     <!-- btn edite delete -->
@@ -385,6 +375,8 @@ $data_voyages = new Voyages();
             </table>
         </section>
     </div>
+
+    <!-- Modal -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -395,7 +387,7 @@ $data_voyages = new Voyages();
                 <div class="modal-body">
                     <div>
                         <!--this input is used to stock the id -->
-                        <input type="text" name="id">
+                        <input type="hidden" name="id">
                     </div>
                     <!-- <div> -->
                     <!--this input is used to stock the id_resirvation -->
