@@ -1,5 +1,5 @@
 <?php
-include("databaseClass.php");
+require_once("databaseClass.php");
 $db_obj = new DatabaseConnection();
 class Stations{
     public $data = array();
@@ -14,7 +14,7 @@ class Stations{
         $sql = "INSERT INTO gares (`nom`, `id_ville`) VALUES (:nom, :id_ville)";
         $pdo = $db_obj->getConnect(); 
         $statement= $pdo->prepare($sql);
-        $statement->execute($data);
+        $stm = $statement->execute($data);
         
         
     }
@@ -25,7 +25,7 @@ class Stations{
         $pdo = $db_obj->getConnect();
         $statement = $pdo->prepare($sql);
         $statement->execute();
-        $res = $statement->fetch();
+        $statement->fetch();
     }
 
     static public function updateStation($post){

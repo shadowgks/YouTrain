@@ -1,9 +1,5 @@
 <?php
 include('includes/scripts.php');
-// Begin saad
-include 'classes/voyagesClass.php';
-$data_voyages = new Voyages();
-// End saad
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -131,7 +127,7 @@ $data_voyages = new Voyages();
                     </div>
                     <div class="desc">
                         <h1<span>Total users</span></h1>
-                            <p class="text">20</p>
+                            <p class="text"><?= count(viewUser("all", true)) ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -185,26 +181,26 @@ $data_voyages = new Voyages();
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>saad moumou</td>
-                        <td>Edinburgh</td>
-                        <!-- btn change rool - delete -->
-                        <td class="d-flex align-items-center">
-                            <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
-                            <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Cara Stevens</td>
-                        <td>New York</td>
-                        <!-- btn change rool - delete -->
-                        <td class="d-flex align-items-center">
-                            <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
-                            <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
+                    <?php
+                    $rows = viewUser("all", true);
+                    $count = 1;
+                    foreach ($rows as $row) {
+
+
+                    ?>
+                        <tr>
+                            <td><?= $count; ?></td>
+                            <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
+                            <td><?= $row["email"] ?></td>
+                            <!-- btn change rool - delete -->
+                            <td class="d-flex align-items-center">
+                                <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                                <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr>
+                    <?php $count++;
+                    } ?>
+
                 </tbody>
             </table>
         </section>
@@ -338,45 +334,35 @@ $data_voyages = new Voyages();
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Jennifer Acosta</td>
-                        <td>Edinburgh</td>
-                        <td>32.00DH</td>
-                        <!-- btn edite delete -->
-                        <td class="d-flex align-items-center">
-                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jennifer Acosta</td>
-                        <td>Edinburgh</td>
-                        <td>32.00DH</td>
-                        <!-- btn edite delete -->
-                        <td class="d-flex align-items-center">
-                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Jennifer Acosta</td>
-                        <td>Edinburgh</td>
-                        <td>32.00DH</td>
-                        <!-- btn edite delete -->
-                        <td class="d-flex align-items-center">
-                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
+                    <?php
+                    // var_dump($data_stations->readStations());
+                    // die;
+                    // while ($row = $data_stations->readStations()) {
+
+                    //     echo '
+                    //     <tr>
+                    //     <td>1</td>
+                    //     <td>Jennifer Acosta</td>
+                    //     <td>Edinburgh</td>
+                    //     <td>32.00DH</td>
+                    //     <!-- btn edite delete -->
+                    //     <td class="d-flex align-items-center">
+                    //         <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                    //         <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                    //     </td>
+                    // </tr>
+                    //     ';
+                    // }
+
+                    ?>
+
                 </tbody>
             </table>
         </section>
     </div>
 
-    <!-- Modal -->
+
+    <!-- Modal crud -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">

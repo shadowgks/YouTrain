@@ -1,5 +1,5 @@
 <?php
-include('databaseClass.php');
+require_once('databaseClass.php');
 $obj = new DatabaseConnection();
 class Train
 {
