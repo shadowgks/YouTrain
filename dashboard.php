@@ -167,7 +167,7 @@ $data_voyages = new Voyages();
         </main>
     </div>
 
-    <!-- Tables -->
+    <!-- Tabless -->
     <div class="container">
         <!-- Users -->
         <section class="mt-5 ms-md-5">
