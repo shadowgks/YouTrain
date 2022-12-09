@@ -1,7 +1,6 @@
 <?php
 include('databaseClass.php');
 $obj = new DatabaseConnection();
-
 class Train
 {
     public function insert($_post)
@@ -9,23 +8,18 @@ class Train
         global $obj;
         $num = $_post['num'];
         $capacite = $_post['capacite'];
-        $date_departe = $_post['date_departe'];
-        $date_arrivee = $_post['date_arrivee'];
-        $id_reservation = $_post['id_reservation'];
-        $data = [$num, $capacite, $date_departe, $date_arrivee, $id_reservation];
-        $sql = "INSERT INTO train (num,capacite,date_departe,date_arrivee,id_reservation) VALUES (?,?,?,?,?)";
+        $nom = $_post['nom'];
+        $data = [$num, $capacite, $nom];
+        $sql = "INSERT INTO trains (num,capacite,nom) VALUES (?,?,?)";
         $stmt = $obj->getConnect()->prepare($sql)->execute($data);
+        $_SESSION['insert-train'] = "The train has been added successfully";
     }
-
     public function displayTrains()
     {
+        global $stmt;
         global $obj;
-        $sql = "SELECT * FROM train";
+        $sql = "SELECT * FROM trains";
         $stmt = $obj->getConnect()->query($sql);
-        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $data[] = $row;
-        }
-        return $data;
     }
     public function update($_post)
     {
@@ -33,19 +27,19 @@ class Train
         $id = $_post['id'];
         $num = $_post['num'];
         $capacite = $_post['capacite'];
-        $date_departe = $_post['date_departe'];
-        $date_arrivee = $_post['date_arrivee'];
-        $id_reservation = $_post['id_reservation'];
-        $data = [$num, $capacite, $date_departe, $date_arrivee, $id_reservation, $id];
-        $sql = "UPDATE train SET num=?, capacite=?, date_departe=?, date_arrivee=? , id_reservation=? WHERE id=?";
+        $nom = $_post['nom'];
+        $data = [$num, $capacite, $nom, $id];
+        $sql = "UPDATE trains SET num=?, capacite=?, nom=? WHERE id=?";
         $stmt = $obj->getConnect()->prepare($sql)->execute($data);
+        $_SESSION['update-train'] = "The train has been updated successfully";
     }
 
     public function delete($_post)
     {
         global $obj;
         $id = $_post['id'];
-        $sql = "DELETE FROM `train` WHERE id=?";
+        $sql = "DELETE FROM `trains` WHERE id=?";
         $stmt = $obj->getConnect()->prepare($sql)->execute([$id]);
+        $_SESSION['delete-train'] = "The train has been deleted successfully";
     }
 }

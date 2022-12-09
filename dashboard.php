@@ -1,4 +1,5 @@
 <?php
+include('includes/scripts.php');
 // Begin saad
 include_once 'classes/voyagesClass.php';
 $data_voyages = new Voyages();
@@ -166,6 +167,14 @@ $data_voyages = new Voyages();
             </section>
         </main>
     </div>
+    <!-- Users -->
+
+    <!-- Button trigger modal -->
+    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
 
     <!-- Tabless -->
     <div class="container">
@@ -212,7 +221,7 @@ $data_voyages = new Voyages();
             <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
                 <h3 class="text-center text-white">Voyages</h3>
             </div>
-            <table id="voyages" class="table table-striped display nowrap" width="100%">
+            <table id="voyages" class="table table-striped" width="100%">
                 <thead class="text-white" style="background-color: #1c2331">
                     <tr>
                         <th>#</th>
@@ -257,48 +266,69 @@ $data_voyages = new Voyages();
             </div>
             <table id="trains" class="table table-striped display nowrap" width="100%">
                 <thead class="text-white" style="background-color: #1c2331">
+                    <?php
+                    if (isset($_SESSION['insert-train'])) {
+                        echo "<div class='alert alert-success' role='alert'>
+                                      <strong>" . $_SESSION['insert-train'] . "</strong>
+                                  </div>";
+                        unset($_SESSION['insert-train']);
+                    }
+                    if (isset($_SESSION['update-train'])) {
+                        echo "<div class='alert alert-success' role='alert'>
+                                      <strong>" . $_SESSION['update-train'] . "</strong>
+                                  </div>";
+                        unset($_SESSION['update-train']);
+                    }
+                    if (isset($_SESSION['delete-train'])) {
+                        echo "<div class='alert alert-success' role='alert'>
+                                      <strong>" . $_SESSION['delete-train'] . "</strong>
+                                  </div>";
+                        unset($_SESSION['delete-train']);
+                    }
+                    ?>
                     <tr>
                         <th>#</th>
-                        <th>Date départ</th>
-                        <th>Date d'arrivée</th>
-                        <th>Price</th>
+                        <th>Nombre</th>
+                        <th>Nom</th>
+                        <th>capacité</th>
                         <th>Action</th>
                     </tr>
+
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Jennifer Acosta</td>
-                        <td>Edinburgh</td>
-                        <td>32.00DH</td>
-                        <!-- btn edite delete -->
-                        <td class="d-flex align-items-center">
-                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Jennifer Acosta</td>
-                        <td>Edinburgh</td>
-                        <td>32.00DH</td>
-                        <!-- btn edite delete -->
-                        <td class="d-flex align-items-center">
-                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Jennifer Acosta</td>
-                        <td>Edinburgh</td>
-                        <td>32.00DH</td>
-                        <!-- btn edite delete -->
-                        <td class="d-flex align-items-center">
-                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                        </td>
-                    </tr>
+                    <?php
+                    $train_object->displayTrains();
+                    $index = 1;
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        // $data[] = $row;
+                        echo "<tr>
+                                    <td>" . $index . "</td>
+                                    <td>" . $row['num'] . "</td>
+                                    <td>" . $row['nom'] . "</td>
+                                    <td>" . $row['capacite'] . "</td>
+                                    <!-- btn edite delete -->
+                                    <td class='d-flex align-items-center'>
+                                        <button type='submit' class='btn btn-primary me-2' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='bi bi-pencil-square'></i></button>
+                                        <button type='submit' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='bi bi-trash'></i></button>
+                                    </td>
+                                </tr>";
+                        $index++;
+                        // return $data;
+                    }
+                    ?>
+
+                    <!-- <tr>
+                            <td>1</td>
+                            <td>nombre</td>
+                            <td>nom</td>
+                            <td>8478</td> -->
+                    <!-- btn edite delete -->
+                    <!-- <td class="d-flex align-items-center">
+                                <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
+                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
+                            </td>
+                        </tr> -->
+
                 </tbody>
             </table>
         </section>
@@ -307,7 +337,7 @@ $data_voyages = new Voyages();
             <div class="rounded p-3 mb-2" style="background-color:#7c4dff;">
                 <h3 class="text-center text-white">Gares</h3>
             </div>
-            <table id="gares" class="table table-striped display nowrap" width="100%"> 
+            <table id="gares" class="table table-striped display nowrap" width="100%">
                 <thead class="text-white" style="background-color: #1c2331">
                     <tr>
                         <th>#</th>
@@ -355,7 +385,55 @@ $data_voyages = new Voyages();
             </table>
         </section>
     </div>
-
+    <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <!--this input is used to stock the id -->
+                        <input type="text" name="id">
+                    </div>
+                    <!-- <div> -->
+                    <!--this input is used to stock the id_resirvation -->
+                    <!-- <input type="hidden" name="id_reservation">
+                    </div> -->
+                    <div class="mb-3">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="num">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Nom</label>
+                        <input type="text" class="form-control" name="nom">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">capacité</label>
+                        <input type="text" class="form-control" name="capacite">
+                    </div>
+                    <!-- <div class="mb-3">
+                        <label class="form-label">departure date</label>
+                        <input type="datetime-local" class="form-control" name="date_departe">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">arrival date</label>
+                        <input type="datetime-local" class="form-control" name="date_arrivee">
+                    </div> -->
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="delete">delete</button>
+                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" name="update">update</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" name="save">Save</button>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <!--BEGIN DATATABLE -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -390,6 +468,11 @@ $data_voyages = new Voyages();
         };
     </script>
     <!--BEGIN DATATABLE -->
+
+    <!-- js links -->
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script class="assets/js/scripts.js"></script>
+    <!-- end js links -->
 </body>
 
 </html>
