@@ -163,14 +163,6 @@ include('includes/scripts.php');
             </section>
         </main>
     </div>
-    <!-- Users -->
-
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button> -->
-
-    <!-- Modal -->
 
     <!-- Tabless -->
     <div class="container">
@@ -284,7 +276,6 @@ include('includes/scripts.php');
                     ?>
                     <tr>
                         <th>#</th>
-                        <th>Nombre</th>
                         <th>Nom</th>
                         <th>capacité</th>
                         <th>Action</th>
@@ -299,7 +290,6 @@ include('includes/scripts.php');
                         // $data[] = $row;
                         echo "<tr>
                                     <td>" . $index . "</td>
-                                    <td>" . $row['num'] . "</td>
                                     <td>" . $row['nom'] . "</td>
                                     <td>" . $row['capacite'] . "</td>
                                     <!-- btn edite delete -->
@@ -370,6 +360,8 @@ include('includes/scripts.php');
             </table>
         </section>
     </div>
+
+
     <!-- Modal crud -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -381,7 +373,7 @@ include('includes/scripts.php');
                 <div class="modal-body">
                     <div>
                         <!--this input is used to stock the id -->
-                        <input type="text" name="id">
+                        <input type="hidden" name="id">
                     </div>
                     <!-- <div> -->
                     <!--this input is used to stock the id_resirvation -->

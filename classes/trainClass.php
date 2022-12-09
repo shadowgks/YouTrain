@@ -25,11 +25,10 @@ class Train
     {
         global $obj;
         $id = $_post['id'];
-        $num = $_post['num'];
         $capacite = $_post['capacite'];
         $nom = $_post['nom'];
-        $data = [$num, $capacite, $nom, $id];
-        $sql = "UPDATE trains SET num=?, capacite=?, nom=? WHERE id=?";
+        $data = [$capacite, $nom, $id];
+        $sql = "UPDATE trains SET capacite=?, nom=? WHERE id=?";
         $stmt = $obj->getConnect()->prepare($sql)->execute($data);
         $_SESSION['update-train'] = "The train has been updated successfully";
     }
