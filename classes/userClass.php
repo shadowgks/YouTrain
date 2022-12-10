@@ -1,6 +1,6 @@
 <?php
-require_once('databaseClass.php');
-class Users extends DatabaseConnection
+include('databaseClass.php');
+class Users 
 {
     private $firstname;
     private $lastname;
@@ -49,7 +49,7 @@ class Users extends DatabaseConnection
         $stmt->execute();
         $row= $stmt->fetch();
         if(!empty($row)){
-            return true;
+            return $row;
         }
         else{
             return false;
@@ -91,6 +91,21 @@ class Users extends DatabaseConnection
         $stmt->bindParam(":email",        $this->email);
         $stmt->bindParam(":password",     $this->password);
       
+        if($stmt->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
+    public static function delete_user($user_id){
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
+        
+        $sql ="DELETE FROM `users` WHERE id=:id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":id",      $user_id);
         if($stmt->execute()){
             return true;
         }

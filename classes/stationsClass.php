@@ -14,7 +14,7 @@ class Stations{
         $sql = "INSERT INTO gares (`nom`, `id_ville`) VALUES (:nom, :id_ville)";
         $pdo = $db_obj->getConnect(); 
         $statement= $pdo->prepare($sql);
-        $stm = $statement->execute($data);
+        $statement->execute($data);
         
         
     }
@@ -25,7 +25,8 @@ class Stations{
         $pdo = $db_obj->getConnect();
         $statement = $pdo->prepare($sql);
         $statement->execute();
-        $statement->fetch();
+        $stm = $statement->fetchAll();
+        return $stm;
     }
 
     static public function updateStation($post){
