@@ -1,5 +1,8 @@
 <?php
 include('includes/scripts.php');
+if(!isset($_SESSION["user_id"])){
+    header('Location:login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,19 +109,30 @@ include('includes/scripts.php');
                         <img src="./assets/img/Logo.png" alt="">
                     </div>
                 </div>
-                <div class="profile-session" data-bs-toggle="modal" data-bs-target="#edit_user">
-                    <div class="profile">
+                
+                <div class="profile-session" >
+                    <div class="btn-group dropstart">
+                    <div class="profile" data-bs-toggle="dropdown" aria-expanded="false" >
                         <div class="profile-img">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 29 29">
                                 <path d="M14.5 2A12.514 12.514 0 0 0 2 14.5 12.521 12.521 0 0 0 14.5 27a12.5 12.5 0 0 0 0-25Zm7.603 19.713a8.48 8.48 0 0 0-15.199.008A10.367 10.367 0 0 1 4 14.5a10.5 10.5 0 0 1 21 0 10.368 10.368 0 0 1-2.897 7.213ZM14.5 7a4.5 4.5 0 1 0 4.5 4.5A4.5 4.5 0 0 0 14.5 7Z" />
                             </svg>
                         </div>
                     </div>
+                     <ul class="dropdown-menu p-2">
+                    <li class="list-item"data-bs-toggle="modal" data-bs-target="#edit_user">edit profile</li>
+                    <li   class="list-item"data-bs-toggle="modal" data-bs-target="#edit_user"><a href="?logout=true">Logout</a></li> 
+                    </ul>
+                    </div>
+
                     <div class="profile-info">
-                        <span class="name">Saad</span>
-                        <span class="name">Moumou</span>
+                        <span class="name"><?= $_SESSION["user_first"] ?></span>
+                        <span class="name"><?= $_SESSION["user_last"] ?></span>
                     </div>
                 </div>
+                
+               
+               
             </header>
             <!-- modal amina -->
             <?php

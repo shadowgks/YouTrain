@@ -29,16 +29,24 @@ if (isset($_POST["signup"])) signup();
 if (isset($_POST["signin"])) signin();
 if (isset($_POST["profile_edit"])) updateUser($_SESSION["user_id"]);
 if(isset($_POST["profile_delete"]))  delete_user($_SESSION["user_id"]);
+if(isset($_GET["logout"]))           logout();
 
 
 function signup()
 {
-    $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["password"], $_POST["password_confirm"]);
-    if ($user1->signup()) {
-        echo "good";
-    } else {
-        echo "bad";
+    if($_POST["password"]== $_POST["password_confirm"]){
+        $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["password"], $_POST["password_confirm"]);
+        if ($user1->signup()) {
+            echo "good";
+        } else {
+            echo "bad";
+        }
+
     }
+    else{
+        header('Location:login.php');
+    }
+    
 }
 
 function signin()
@@ -51,7 +59,7 @@ function signin()
        header("location:../dashboard.php");
        
     } else {
-        echo "bad";
+       echo "fgvhhj";
     }
 }
 //pour utiliser cette fontion vous devez declarer dans la variable option (all_user or this_user) si this_user ajouter user_id
@@ -75,12 +83,16 @@ function updateUser($user_id)
     if($password!=$password_confirm){
         echo "password don't match";
     }
-    $user1 = new Users($firstname, $lastname, $email, $password, $password_confirm);
-    if ($user1->updateUser($user_id)) {
-        echo "good";
-    } else {
-        echo "bad";
+    else{
+        $user1 = new Users($firstname, $lastname, $email, $password, $password_confirm);
+        if ($user1->updateUser($user_id)) {
+            echo "good";
+        } else {
+            echo "bad";
+        }
+
     }
+    
 }
 function delete_user($user_id){
     if(Users::delete_user($user_id)){
@@ -91,5 +103,8 @@ function delete_user($user_id){
     else{
          echo "bad";
     }
+}
+function logout(){
+    Users::logout();
 }
 // End Amina
