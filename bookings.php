@@ -39,7 +39,7 @@
                             </li>
                             <li>
                                 <!-- basket -->
-                                <a href="paniers.html" class="nav-link text-white"><i class="bi bi-basket fs-3"></i></a>
+                                <a href="paniers.html" class="nav-link text-white"><i class="bi bi-bag-check-fill fs-4"></i></a>
                             </li>
                             <!-- begin User -->
                             <li class="nav-item dropdown">
