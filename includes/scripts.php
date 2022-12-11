@@ -30,6 +30,7 @@ if (isset($_POST["signin"])) signin();
 if (isset($_POST["profile_edit"])) updateUser($_SESSION["user_id"]);
 if(isset($_POST["profile_delete"]))  delete_user($_SESSION["user_id"]);
 if(isset($_GET["logout"]))           logout();
+if(isset($_POST["delete_user"]))  delete_user($_POST["user_id"]);
 
 
 function signup()
@@ -37,14 +38,15 @@ function signup()
     if($_POST["password"]== $_POST["password_confirm"]){
         $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["password"], $_POST["password_confirm"]);
         if ($user1->signup()) {
-            echo "good";
+           
         } else {
-            echo "bad";
+            header('Location:../login.php');
+            
         }
 
     }
     else{
-        header('Location:login.php');
+        header('Location:../login.php');
     }
     
 }
@@ -59,7 +61,7 @@ function signin()
        header("location:../dashboard.php");
        
     } else {
-       echo "fgvhhj";
+        header('Location:../login.php');
     }
 }
 //pour utiliser cette fontion vous devez declarer dans la variable option (all_user or this_user) si this_user ajouter user_id
@@ -86,9 +88,9 @@ function updateUser($user_id)
     else{
         $user1 = new Users($firstname, $lastname, $email, $password, $password_confirm);
         if ($user1->updateUser($user_id)) {
-            echo "good";
+          
         } else {
-            echo "bad";
+            
         }
 
     }
@@ -100,9 +102,7 @@ function delete_user($user_id){
         session_unset();
         header("location:login.php");
     }
-    else{
-         echo "bad";
-    }
+    
 }
 function logout(){
     Users::logout();

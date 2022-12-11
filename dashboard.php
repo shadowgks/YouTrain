@@ -203,7 +203,16 @@ if(!isset($_SESSION["user_id"])){
                     <?php
                     $rows = viewUser("all", true);
                     $count = 1;
-                    foreach ($rows as $row) {
+                    foreach ($rows as $row){
+                        if($row["role"]=="passager"){
+                        
+                            $data_on = "passager";
+                            $data_off = "admin";
+                        }
+                        else{
+                            $data_on = "admin";
+                            $data_off = "passager";
+                        }
 
 
                     ?>
@@ -211,10 +220,10 @@ if(!isset($_SESSION["user_id"])){
                             <td><?= $count; ?></td>
                             <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
                             <td><?= $row["email"] ?></td>
-                            <!-- btn change rool - delete -->
+                            
                             <td class="d-flex align-items-center">
-                                <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
-                                <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
+                                <input type="checkbox" data-toggle="toggle" data-off="<?= $data_on; ?>" data-on="<?= $data_off; ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                                <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>"name="user_id"><button type="submit" name="delete_user"class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
                             </td>
                         </tr>
                     <?php $count++;

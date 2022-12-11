@@ -26,6 +26,21 @@ class Users
     { 
         $db =new DatabaseConnection;
         $pdo = $db->getConnect();
+        $sql ="SELECT `email` FROM `users` WHERE email=:email";
+        $stmt = $pdo->prepare($sql);
+       
+        $stmt->bindParam(":email",$this->email);
+        $stmt->execute();
+        $row = $stmt->fetch();
+
+        if(!empty($row)){
+            return false;
+           
+        }
+        unset($stmt);
+        unset($pdo);
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
         $sql ="INSERT INTO `users`(`nom`, `prenom`, `email`, `password`) VALUES (:nom,:prenom,:email,:password)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nom",$this->lastname);
@@ -112,7 +127,6 @@ class Users
         else{
             return false;
         }
-
     }
 
     public static function logout()

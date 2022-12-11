@@ -15,7 +15,6 @@ class DatabaseConnection{
         }
         return $pdo;
     }
-
     public function getConnect(){
         return $this->connect();
     }
