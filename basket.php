@@ -39,7 +39,10 @@
                             </li>
                             <li>
                                 <!-- basket -->
-                                <a href="paniers.html" class="nav-link text-white"><i class="bi bi-bag-check-fill fs-4"></i></a>
+                                <a href="paniers.html" class="position-relative nav-link text-white ">
+                                    <i class="bi bi-bag-check-fill fs-4"></i>
+                                    <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
+                                </a>
                             </li>
                             <li>
                                 <!-- sign in -->
