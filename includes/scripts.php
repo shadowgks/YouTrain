@@ -15,12 +15,11 @@ session_start();
 // $data_voyages = new Voyages();
 // // End saad
 
-
-// // ====================================================
-// // Begin amine
-// include 'classes/stationsClass.php';
-// $data_stations = Stations::readStations();
-// // End amine
+// //==========================================================
+// Begin amine
+include 'classes/stationsClass.php';
+$data_stations = Stations::readStations();
+// End amine
 
 
 // Begin Amina
