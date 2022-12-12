@@ -3,7 +3,7 @@ class DatabaseConnection{
     private $host = "localhost";
     private $username = "root";
     private $pw = "";
-    private $databaseName = "youtrain";
+    private $databaseName = "youtraindb";
 
     private function connect(){
         $datasn = "mysql:host=$this->host;dbname=$this->databaseName;";
