@@ -1,5 +1,8 @@
 <?php
 include('includes/scripts.php');
+if(!isset($_SESSION["user_id"])){
+    header('Location:login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -106,20 +109,36 @@ include('includes/scripts.php');
                         <img src="./assets/img/Logo.png" alt="">
                     </div>
                 </div>
-                <div class="profile-session">
-                    <div class="profile">
+                
+                <div class="profile-session" >
+                    <div class="btn-group dropstart">
+                    <div class="profile" data-bs-toggle="dropdown" aria-expanded="false" >
                         <div class="profile-img">
                             <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 29 29">
                                 <path d="M14.5 2A12.514 12.514 0 0 0 2 14.5 12.521 12.521 0 0 0 14.5 27a12.5 12.5 0 0 0 0-25Zm7.603 19.713a8.48 8.48 0 0 0-15.199.008A10.367 10.367 0 0 1 4 14.5a10.5 10.5 0 0 1 21 0 10.368 10.368 0 0 1-2.897 7.213ZM14.5 7a4.5 4.5 0 1 0 4.5 4.5A4.5 4.5 0 0 0 14.5 7Z" />
                             </svg>
                         </div>
                     </div>
+                     <ul class="dropdown-menu p-2">
+                    <li class="list-item"data-bs-toggle="modal" data-bs-target="#edit_user">edit profile</li>
+                    <li   class="list-item"data-bs-toggle="modal" data-bs-target="#edit_user"><a href="?logout=true">Logout</a></li> 
+                    </ul>
+                    </div>
+
                     <div class="profile-info">
-                        <span class="name">Saad</span>
-                        <span class="name">Moumou</span>
+                        <span class="name"><?= $_SESSION["user_first"] ?></span>
+                        <span class="name"><?= $_SESSION["user_last"] ?></span>
                     </div>
                 </div>
+                
+               
+               
             </header>
+            <!-- modal amina -->
+            <?php
+            include('includes/modal_edit_user.php');
+            ?>
+            <!-- end modal amina -->
             <section class="statistics-section">
                 <div class="card-stat">
                     <div class="img-container">
@@ -184,7 +203,16 @@ include('includes/scripts.php');
                     <?php
                     $rows = viewUser("all", true);
                     $count = 1;
-                    foreach ($rows as $row) {
+                    foreach ($rows as $row){
+                        if($row["role"]=="passager"){
+                        
+                            $data_on = "passager";
+                            $data_off = "admin";
+                        }
+                        else{
+                            $data_on = "admin";
+                            $data_off = "passager";
+                        }
 
 
                     ?>
@@ -192,10 +220,10 @@ include('includes/scripts.php');
                             <td><?= $count; ?></td>
                             <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
                             <td><?= $row["email"] ?></td>
-                            <!-- btn change rool - delete -->
+                            
                             <td class="d-flex align-items-center">
-                                <input type="checkbox" data-toggle="toggle" data-on="Admin" data-off="User" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
-                                <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
+                                <input type="checkbox" data-toggle="toggle" data-off="<?= $data_on; ?>" data-on="<?= $data_off; ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                                <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>"name="user_id"><button type="submit" name="delete_user"class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
                             </td>
                         </tr>
                     <?php $count++;
@@ -222,27 +250,7 @@ include('includes/scripts.php');
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    $count = 0;
-                    foreach ($data_voyages->readData() as $item) {
-                        $count += 1;
-                        echo '
-                            <tr>
-                                <td>' . $count . '</td>
-                                <td>' . $item['date_depart'] . '</td>
-                                <td>' . $item['date_darrivee'] . '</td>
-                                <td>' . $item['gare_depart'] . '</td>
-                                <td>' . $item['gare_darrivee'] . '</td>
-                                <td>' . $item['price'] . '</td>
-                                <!-- btn edite delete -->
-                                <td class="d-flex align-items-center">
-                                    <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                                    <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
-                        ';
-                    }
-                    ?>
+                   
 
                 </tbody>
             </table>
@@ -254,26 +262,7 @@ include('includes/scripts.php');
             </div>
             <table id="trains" class="table table-striped display nowrap" width="100%">
                 <thead class="text-white" style="background-color: #1c2331">
-                    <?php
-                    if (isset($_SESSION['insert-train'])) {
-                        echo "<div class='alert alert-success' role='alert'>
-                                      <strong>" . $_SESSION['insert-train'] . "</strong>
-                                  </div>";
-                        unset($_SESSION['insert-train']);
-                    }
-                    if (isset($_SESSION['update-train'])) {
-                        echo "<div class='alert alert-success' role='alert'>
-                                      <strong>" . $_SESSION['update-train'] . "</strong>
-                                  </div>";
-                        unset($_SESSION['update-train']);
-                    }
-                    if (isset($_SESSION['delete-train'])) {
-                        echo "<div class='alert alert-success' role='alert'>
-                                      <strong>" . $_SESSION['delete-train'] . "</strong>
-                                  </div>";
-                        unset($_SESSION['delete-train']);
-                    }
-                    ?>
+                  
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
@@ -283,6 +272,7 @@ include('includes/scripts.php');
 
                 </thead>
                 <tbody>
+
                     <?php
                     $train_object->displayTrains();
                     $index = 1;
@@ -302,7 +292,6 @@ include('includes/scripts.php');
                         // return $data;
                     }
                     ?>
-
                     <!-- <tr>
                             <td>1</td>
                             <td>nombre</td>
@@ -335,6 +324,7 @@ include('includes/scripts.php');
                     </tr>
                 </thead>
                 <tbody>
+
                     <?php
                     $count = 0;
                     foreach ($data_stations as $row) {
@@ -343,8 +333,6 @@ include('includes/scripts.php');
                         <tr>
                         <td>'.$count.'</td>
                         <td>'.$row['nom'].'</td>
-                        <td>'.$row['id-train'].'</td>
-                        <td>'.$row['id-voyage'].'</td>
                         <td>'.$row['id-ville'].'</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">

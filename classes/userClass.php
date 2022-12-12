@@ -1,6 +1,6 @@
 <?php
-require_once('databaseClass.php');
-class Users extends DatabaseConnection
+include('databaseClass.php');
+class Users 
 {
     private $firstname;
     private $lastname;
@@ -26,6 +26,21 @@ class Users extends DatabaseConnection
     { 
         $db =new DatabaseConnection;
         $pdo = $db->getConnect();
+        $sql ="SELECT `email` FROM `users` WHERE email=:email";
+        $stmt = $pdo->prepare($sql);
+       
+        $stmt->bindParam(":email",$this->email);
+        $stmt->execute();
+        $row = $stmt->fetch();
+
+        if(!empty($row)){
+            return false;
+           
+        }
+        unset($stmt);
+        unset($pdo);
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
         $sql ="INSERT INTO `users`(`nom`, `prenom`, `email`, `password`) VALUES (:nom,:prenom,:email,:password)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nom",$this->lastname);
@@ -49,7 +64,7 @@ class Users extends DatabaseConnection
         $stmt->execute();
         $row= $stmt->fetch();
         if(!empty($row)){
-            return true;
+            return $row;
         }
         else{
             return false;
@@ -99,15 +114,29 @@ class Users extends DatabaseConnection
         }
 
     }
+    public static function delete_user($user_id){
+        $db =new DatabaseConnection;
+        $pdo = $db->getConnect();
+        
+        $sql ="DELETE FROM `users` WHERE id=:id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":id",      $user_id);
+        if($stmt->execute()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 
-    public function logout()
+    public static function logout()
     {
-        if (isset($_SESSION['name'])) {
+        if (isset($_SESSION["user_id"])) {
             session_unset();
             session_destroy();
         }
         header('Location:login.php');
-        die;
+        
     }
     
 }
