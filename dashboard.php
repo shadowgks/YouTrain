@@ -254,9 +254,28 @@ $train_object->displayTrains();
                     </tr>
                 </thead>
                 <tbody>
-
-
-                </tbody>
+                    <?php
+                            $count = 0;
+                            foreach ($data_voyages->readData() as $item) {
+                                $count += 1;
+                                echo '
+                                <tr>
+                                    <td>'.$count.'</td>
+                                    <td>'.$item['date_depart'].'</td>
+                                    <td>'.$item['date_darrivee'].'</td>
+                                    <td>'.$item['gare_depart'].'</td>
+                                    <td>'.$item['gare_darrivee'].'</td>
+                                    <td>'.$item['price'].'</td>
+                                    <!-- btn edite delete -->
+                                    <td class="d-flex align-items-center">
+                                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                    </td>
+                                </tr>
+                            ';
+                            }
+                            ?>
+                    </tbody>
             </table>
         </section>
         <!-- Trains -->
