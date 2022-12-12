@@ -24,7 +24,7 @@
                 <div class="container text-center">
                     <div class="d-flex">
                         <img src="assets/img/Logo.png" class="img-logo" alt="Logo_Train" />
-                        <a href="index.html" class="navbar-brand">YOUTRAIN</a>
+                        <a href="index.php" class="navbar-brand">YOUTRAIN</a>
                     </div>
 
                     <button type="button" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle Navbar">
@@ -35,16 +35,16 @@
                         <div class="mx-auto"></div>
                         <ul class="navbar-nav text-center d-flex align-items-center">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link text-white">Home</a>
+                                <a href="index.php" class="nav-link text-white">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a href="bookings.html" class="nav-link text-white">Bookings</a>
+                                <a href="bookings.php" class="nav-link text-white">Bookings</a>
                             </li>
                             <li>
                                 <!-- basket -->
-                                <a href="paniers.html" class="position-relative nav-link text-white ">
-                                <i class="bi bi-bag-check-fill fs-4"></i>
-                                <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
+                                <a href="basket.php" class="position-relative nav-link text-white ">
+                                    <i class="bi bi-bag-check-fill fs-4"></i>
+                                    <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
                                 </a>
                             </li>
                             <li>
