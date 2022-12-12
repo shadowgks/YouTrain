@@ -3,6 +3,9 @@ include(__DIR__.'/includes/scripts.php');
 if (!isset($_SESSION["user_id"])) {
     header('Location:login.php');
 }
+//fouad
+$train_object->displayTrains();
+//fouad
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -155,7 +158,8 @@ if (!isset($_SESSION["user_id"])) {
                     </div>
                     <div class="desc">
                         <h1<span>Trains</span></h1>
-                            <p class="text">20</p>
+                            <p class="text"><?php echo $train_object->displaytrains()->rowcount(); //rowCount() count the number of rows
+                                            ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -275,10 +279,9 @@ if (!isset($_SESSION["user_id"])) {
 
 
                     <?php
-                    $train_object->displayTrains();
                     $index = 1;
-                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-                        // $data[] = $row;
+                    $data = $train_object->displaytrains();
+                    while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>
                                     <td>" . $index . "</td>
                                     <td>" . $row['nom'] . "</td>
@@ -290,7 +293,6 @@ if (!isset($_SESSION["user_id"])) {
                                     </td>
                                 </tr>";
                         $index++;
-                        // return $data;
                     }
                     ?>
                     <!-- <tr>
@@ -326,8 +328,6 @@ if (!isset($_SESSION["user_id"])) {
                 </thead>
                 <tbody>
 
-<<<<<<< HEAD
-=======
                     <?php
                     $count = 0;
                     foreach ($data_stations as $row) {
@@ -348,7 +348,6 @@ if (!isset($_SESSION["user_id"])) {
                     }
 
                     ?>
->>>>>>> 2ed76645dad8bacf1221bec9bbbf2687a9d8eb67
 
                 </tbody>
             </table>
