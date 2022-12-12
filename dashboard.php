@@ -1,6 +1,6 @@
 <?php
 include('includes/scripts.php');
-if(!isset($_SESSION["user_id"])){
+if (!isset($_SESSION["user_id"])) {
     header('Location:login.php');
 }
 ?>
@@ -109,20 +109,20 @@ if(!isset($_SESSION["user_id"])){
                         <img src="./assets/img/Logo.png" alt="">
                     </div>
                 </div>
-                
-                <div class="profile-session" >
+
+                <div class="profile-session">
                     <div class="btn-group dropstart">
-                    <div class="profile" data-bs-toggle="dropdown" aria-expanded="false" >
-                        <div class="profile-img">
-                            <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 29 29">
-                                <path d="M14.5 2A12.514 12.514 0 0 0 2 14.5 12.521 12.521 0 0 0 14.5 27a12.5 12.5 0 0 0 0-25Zm7.603 19.713a8.48 8.48 0 0 0-15.199.008A10.367 10.367 0 0 1 4 14.5a10.5 10.5 0 0 1 21 0 10.368 10.368 0 0 1-2.897 7.213ZM14.5 7a4.5 4.5 0 1 0 4.5 4.5A4.5 4.5 0 0 0 14.5 7Z" />
-                            </svg>
+                        <div class="profile" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="profile-img">
+                                <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 29 29">
+                                    <path d="M14.5 2A12.514 12.514 0 0 0 2 14.5 12.521 12.521 0 0 0 14.5 27a12.5 12.5 0 0 0 0-25Zm7.603 19.713a8.48 8.48 0 0 0-15.199.008A10.367 10.367 0 0 1 4 14.5a10.5 10.5 0 0 1 21 0 10.368 10.368 0 0 1-2.897 7.213ZM14.5 7a4.5 4.5 0 1 0 4.5 4.5A4.5 4.5 0 0 0 14.5 7Z" />
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                     <ul class="dropdown-menu p-2">
-                    <li class="list-item"data-bs-toggle="modal" data-bs-target="#edit_user">edit profile</li>
-                    <li   class="list-item"data-bs-toggle="modal" data-bs-target="#edit_user"><a href="?logout=true">Logout</a></li> 
-                    </ul>
+                        <ul class="dropdown-menu p-2">
+                            <li class="list-item" data-bs-toggle="modal" data-bs-target="#edit_user">edit profile</li>
+                            <li class="list-item" data-bs-toggle="modal" data-bs-target="#edit_user"><a href="?logout=true">Logout</a></li>
+                        </ul>
                     </div>
 
                     <div class="profile-info">
@@ -130,9 +130,9 @@ if(!isset($_SESSION["user_id"])){
                         <span class="name"><?= $_SESSION["user_last"] ?></span>
                     </div>
                 </div>
-                
-               
-               
+
+
+
             </header>
             <!-- modal amina -->
             <?php
@@ -146,7 +146,7 @@ if(!isset($_SESSION["user_id"])){
                     </div>
                     <div class="desc">
                         <h1<span>Total users</span></h1>
-                            <p class="text"><?= count(viewUser("all", true)) ?></p>
+                            <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -203,13 +203,13 @@ if(!isset($_SESSION["user_id"])){
                     <?php
                     $rows = viewUser("all", true);
                     $count = 1;
-                    foreach ($rows as $row){
-                        if($row["role"]=="passager"){
-                        
+                    if(is_array($rows)){
+                    foreach ($rows as $row) {
+                        if ($row["role"] == "passager") {
+
                             $data_on = "passager";
                             $data_off = "admin";
-                        }
-                        else{
+                        } else {
                             $data_on = "admin";
                             $data_off = "passager";
                         }
@@ -220,14 +220,14 @@ if(!isset($_SESSION["user_id"])){
                             <td><?= $count; ?></td>
                             <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
                             <td><?= $row["email"] ?></td>
-                            
+
                             <td class="d-flex align-items-center">
                                 <input type="checkbox" data-toggle="toggle" data-off="<?= $data_on; ?>" data-on="<?= $data_off; ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
-                                <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>"name="user_id"><button type="submit" name="delete_user"class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
+                                <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>" name="user_id"><button type="submit" name="delete_user" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
                             </td>
                         </tr>
                     <?php $count++;
-                    } ?>
+                    }}else{ echo "no records;";} ?>
 
                 </tbody>
             </table>
@@ -250,7 +250,7 @@ if(!isset($_SESSION["user_id"])){
                     </tr>
                 </thead>
                 <tbody>
-                   
+
 
                 </tbody>
             </table>
@@ -262,7 +262,7 @@ if(!isset($_SESSION["user_id"])){
             </div>
             <table id="trains" class="table table-striped display nowrap" width="100%">
                 <thead class="text-white" style="background-color: #1c2331">
-                  
+
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
@@ -272,7 +272,7 @@ if(!isset($_SESSION["user_id"])){
 
                 </thead>
                 <tbody>
-                   
+
 
                     <!-- <tr>
                             <td>1</td>
@@ -306,7 +306,7 @@ if(!isset($_SESSION["user_id"])){
                     </tr>
                 </thead>
                 <tbody>
-                    
+
 
                 </tbody>
             </table>
