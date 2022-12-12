@@ -17,8 +17,8 @@
 					<input type="text" class="form-control mt-0" name="edit_first"    placeholder="First name" value="<?= $row["prenom"]?>">
                                                                                 <input type="text" class="form-control mt-3" name="edit_last"    placeholder="Last name" value="<?= $row["nom"]?>">
 					<input type="text" class="form-control mt-3" name="edit_email"   placeholder="E-mail" value="<?= $row["email"]?>">
-                                                                                <input type="text" class="form-control mt-3" name="edit_pass"   placeholder="Password" value="">
-                                                                                <input type="text" class="form-control mt-3" name="edit_confirm_pass"   placeholder="Confirm Password" value="">
+                                                                                <input type="password" class="form-control mt-3" name="edit_pass"   placeholder="Password" value="">
+                                                                                <input type="password" class="form-control mt-3" name="edit_confirm_pass"   placeholder="Confirm Password" value="">
 
 
                                                                                 <input type="hidden" class="form-control mt-3" name="edit_pass_confirm_real"   value="">
