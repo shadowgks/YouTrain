@@ -117,7 +117,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="firstName">Password</label>
 
-                      <input name="password" type="text" id="firstName" class="form-control form-control-lg" id="passwordu" />
+                      <input name="password" type="password" id="firstName" class="form-control form-control-lg" id="passwordu" />
 
 
                     </div>
@@ -128,7 +128,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Retype Password</label>
 
-                      <input name="password_confirm" type="text" id="lastName" class="form-control form-control-lg" id="retypepasswordu" />
+                      <input name="password_confirm" type="password" id="lastName" class="form-control form-control-lg" id="retypepasswordu" />
 
 
                     </div>
