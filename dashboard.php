@@ -1,5 +1,5 @@
 <?php
-include('includes/scripts.php');
+include(__DIR__.'/includes/scripts.php');
 if (!isset($_SESSION["user_id"])) {
     header('Location:login.php');
 }
@@ -274,6 +274,25 @@ if (!isset($_SESSION["user_id"])) {
                 <tbody>
 
 
+                    <?php
+                    $train_object->displayTrains();
+                    $index = 1;
+                    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                        // $data[] = $row;
+                        echo "<tr>
+                                    <td>" . $index . "</td>
+                                    <td>" . $row['nom'] . "</td>
+                                    <td>" . $row['capacite'] . "</td>
+                                    <!-- btn edite delete -->
+                                    <td class='d-flex align-items-center'>
+                                        <button type='submit' class='btn btn-primary me-2' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='bi bi-pencil-square'></i></button>
+                                        <button type='submit' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='bi bi-trash'></i></button>
+                                    </td>
+                                </tr>";
+                        $index++;
+                        // return $data;
+                    }
+                    ?>
                     <!-- <tr>
                             <td>1</td>
                             <td>nombre</td>
@@ -307,6 +326,29 @@ if (!isset($_SESSION["user_id"])) {
                 </thead>
                 <tbody>
 
+<<<<<<< HEAD
+=======
+                    <?php
+                    $count = 0;
+                    foreach ($data_stations as $row) {
+                        $count++;
+                        echo '
+                        <tr>
+                        <td>'.$count.'</td>
+                        <td>'.$row['nom'].'</td>
+                        <td>'.$row['id-ville'].'</td>
+                        <!-- btn edite delete -->
+                        <td class="d-flex align-items-center">
+                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                        </td>
+                    </tr>
+                        ';
+                        
+                    }
+
+                    ?>
+>>>>>>> 2ed76645dad8bacf1221bec9bbbf2687a9d8eb67
 
                 </tbody>
             </table>
