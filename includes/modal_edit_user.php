@@ -12,6 +12,7 @@
 					
                     </div>                                                      <?php
                     $rows = viewUser("this_user",$_SESSION["user_id"]);
+	    if(is_array($rows)){
                     foreach($rows as $row ){?>
 					<input type="text" class="form-control mt-0" name="edit_first"    placeholder="First name" value="<?= $row["prenom"]?>">
                                                                                 <input type="text" class="form-control mt-3" name="edit_last"    placeholder="Last name" value="<?= $row["nom"]?>">
@@ -22,7 +23,7 @@
 
                                                                                 <input type="hidden" class="form-control mt-3" name="edit_pass_confirm_real"   value="">
 					<input type="hidden" id="hdn_session_pass3" value="<?= $row["id"]?>">
-					 <?php }?>
+					 <?php }}else{ echo "no records;";}?>
                 
 				
 				<div class="modal-footer">
