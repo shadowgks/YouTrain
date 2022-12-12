@@ -89,6 +89,7 @@ class Voyages extends DatabaseConnection
             $stm->execute();
             while ($result = $stm->fetchAll()) {
                 return $result;
+                var_dump($result);
             }
         } catch (Exception $e) {
             return $e->getMessage();
