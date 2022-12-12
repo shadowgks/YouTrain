@@ -16,10 +16,11 @@ class Train
     }
     public function displayTrains()
     {
-        global $stmt;
+        // global $stmt;
         global $obj;
         $sql = "SELECT * FROM trains";
         $stmt = $obj->getConnect()->query($sql);
+        return $stmt;
     }
     public function update($_post)
     {
