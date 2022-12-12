@@ -37,20 +37,40 @@
                </button>
 
                <div class="collapse navbar-collapse" id="navbarNav">
-                  <div class="mx-auto"></div>
-                  <ul class="navbar-nav text-center pe-4">
-                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white">Home</a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white">Contact</a>
-                     </li>
-                     <li class="nav-item">
-                        <a href="#" class="nav-link text-white">About Us</a>
-                     </li>
-                  </ul>
-                  <button type="button" class="btn text-white px-4" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></button>
-               </div>
+                        <div class="mx-auto"></div>
+                        <ul class="navbar-nav text-center d-flex align-items-center">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link text-white">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="bookings.html" class="nav-link text-white">Bookings</a>
+                            </li>
+                            <li>
+                                <!-- basket -->
+                                <a href="paniers.html" class="position-relative nav-link text-white ">
+                                    <i class="bi bi-bag-check-fill fs-4"></i>
+                                    <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
+                                </a>
+                            </li>
+                            <!-- begin User -->
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="30" alt="Portrait of a Woman" loading="lazy" />
+                                    <span class="ps-2 text-white">Saad Moumou</span>
+                                </a>
+
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item" href="profile.html">My profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">Logout</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <!-- end User -->
+                        </ul>
+                    </div>
             </div>
          </nav>
       </header>
