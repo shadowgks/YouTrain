@@ -1,5 +1,5 @@
 <?php
-// begin crud fouad
+// begin crud fouad/
 include(__DIR__.'/../classes/trainClass.php');
 session_start();
 
@@ -81,6 +81,8 @@ function updateUser($user_id)
     } else {
         $user1 = new Users($firstname, $lastname, $email, $password, $password_confirm);
         if ($user1->updateUser($user_id)) {
+            $_SESSION["user_last"] = $lastname ; 
+            $_SESSION["user_first"] = $firstname;
         } else {
         }
     }
