@@ -1,5 +1,5 @@
 <?php
-include(__DIR__.'/includes/scripts.php');
+include(__DIR__ . '/includes/scripts.php');
 if (!isset($_SESSION["user_id"])) {
     header('Location:login.php');
 }
@@ -149,7 +149,11 @@ $train_object->displayTrains();
                     </div>
                     <div class="desc">
                         <h1<span>Total users</span></h1>
-                            <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
+                            <p class="text"><?php if (is_array(Users::viewUser("all", true))) {
+                                                echo count(Users::viewUser("all", true));
+                                            } else {
+                                                echo 0;
+                                            } ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -207,31 +211,34 @@ $train_object->displayTrains();
                     <?php
                     $rows = viewUser("all", true);
                     $count = 1;
-                    if(is_array($rows)){
-                    foreach ($rows as $row) {
-                        if ($row["role"] == "passager") {
+                    if (is_array($rows)) {
+                        foreach ($rows as $row) {
+                            if ($row["role"] == "passager") {
 
-                            $data_on = "passager";
-                            $data_off = "admin";
-                        } else {
-                            $data_on = "admin";
-                            $data_off = "passager";
-                        }
+                                $data_on = "passager";
+                                $data_off = "admin";
+                            } else {
+                                $data_on = "admin";
+                                $data_off = "passager";
+                            }
 
 
                     ?>
-                        <tr>
-                            <td><?= $count; ?></td>
-                            <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
-                            <td><?= $row["email"] ?></td>
+                            <tr>
+                                <td><?= $count; ?></td>
+                                <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
+                                <td><?= $row["email"] ?></td>
 
-                            <td class="d-flex align-items-center">
-                                <input type="checkbox" data-toggle="toggle" data-off="<?= $data_on; ?>" data-on="<?= $data_off; ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
-                                <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>" name="user_id"><button type="submit" name="delete_user" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
-                            </td>
-                        </tr>
+                                <td class="d-flex align-items-center">
+                                    <input type="checkbox" data-toggle="toggle" data-off="<?= $data_on; ?>" data-on="<?= $data_off; ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                                    <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>" name="user_id"><button type="submit" name="delete_user" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
+                                </td>
+                            </tr>
                     <?php $count++;
-                    }}else{ echo "no records;";} ?>
+                        }
+                    } else {
+                        echo "no records;";
+                    } ?>
 
                 </tbody>
             </table>
@@ -334,9 +341,9 @@ $train_object->displayTrains();
                         $count++;
                         echo '
                         <tr>
-                        <td>'.$count.'</td>
-                        <td>'.$row['nom'].'</td>
-                        <td>'.$row['id-ville'].'</td>
+                        <td>' . $count . '</td>
+                        <td>' . $row['nom'] . '</td>
+                        <td>' . $row['id-ville'] . '</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">
                             <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
@@ -344,7 +351,6 @@ $train_object->displayTrains();
                         </td>
                     </tr>
                         ';
-                        
                     }
 
                     ?>
