@@ -44,7 +44,7 @@ class Users
         unset($pdo);
         $db = new DatabaseConnection;
         $pdo = $db->getConnect();
-        $sql = "INSERT INTO `users`(`nom`, `prenom`, `email`, `password`) VALUES (:nom,:prenom,:email,:password)";
+        $sql = "INSERT INTO `users`(`nom`, `prenom`, `email`, `password`,`role`,`image`) VALUES (:nom,:prenom,:email,:password,0,'defualt.jpg')";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nom", $this->lastname);
         $stmt->bindParam(":prenom", $this->firstname);
@@ -126,7 +126,26 @@ class Users
             return false;
         }
     }
+    public static function change_role($input,$user_id){
+        $db = new DatabaseConnection;
+        $pdo = $db->getConnect();
+        if($input==0){
+            $input=1;
+        }
+        else{
+            $input=0;
+        }
+        $sql = "UPDATE users SET role=:role WHERE id=:user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":user_id",      $user_id);
+        $stmt->bindParam(":role",    $input);
 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static function logout()
     {
         if (isset($_SESSION["user_id"])) {
