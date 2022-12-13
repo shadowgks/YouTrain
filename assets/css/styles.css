@@ -107,6 +107,65 @@ ul[class]{
 .body-header .mlogo-container img{
     height: 60px;
 }
+
+/* mobile button*/
+.addBtn{
+    display: none;
+}
+
+.c-functions{
+    display: flex;
+    flex-direction: column-reverse;
+    position: fixed;
+    bottom: 100px;
+    right: 16px;
+    background-color:#fff;
+    border-radius: 25px;
+    width: 50px;
+    height: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    z-index: 99999;
+}
+.add-container{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #7c4dff;
+    display: grid;
+    place-items: center;
+    position: relative;
+    z-index: 999999;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-top: 0px;
+    /* transition: margin-top 0.9s ease-out; */
+}
+
+/* .expand.add-container{
+    margin-top: 7.5px;
+} */
+
+
+.add-functions {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    width: 50px;
+    position: relative;
+    max-height: 0;
+    padding: 0 0.5rem;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+}
+.expand ~ .add-functions{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 10px;
+    padding: 0.25rem 0.5rem 0rem;
+    width: 50px;
+    position: relative;
+    padding-top: 25px;
+    overflow: unset;
+}
 .profile-img{
     width: 40px;
     height: 40px;
@@ -177,6 +236,57 @@ ul[class]{
     }
     ul[class].nav-links{
         margin-top:24px
+    }
+
+    .addBtn{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        padding: 0.5rem 0.75rem;
+        border-radius: 12px;
+    }
+
+    .addBtn.train{
+        background-color: #fbba6e;
+
+    }
+    .addBtn.station{
+        background-color: #db7d39;
+    }
+
+    .addBtn.trip{
+        background-color: #A9EED1;
+    }
+
+    .addBtn.ticket{
+        background-color: #fb9bb9;
+    }
+    .add-container,
+    .icon{
+        display: none;
+    }
+
+    .c-functions{
+        position: static;
+        width: auto;
+        height: unset;
+        padding: 0.5rem 1rem;
+        box-shadow: none;
+    }
+
+    .add-functions {
+        max-height: none;
+        overflow: unset;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .expand ~ .add-functions{
+        max-height: none;
+        overflow: unset;
+        flex-direction: row;
+        width: 100%;
     }
 }
 
