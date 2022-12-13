@@ -34,7 +34,7 @@ $train_object->displayTrains();
 
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>Dashboard</title>
-</head>
+    </head>
 
 <body>
     <div class=" grid">
@@ -110,6 +110,23 @@ $train_object->displayTrains();
                 <div class="toFill">
                     <div class="mlogo-container">
                         <img src="./assets/img/Logo.png" alt="">
+                    </div>
+                    <div class="buttons">
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
                     </div>
                 </div>
 
