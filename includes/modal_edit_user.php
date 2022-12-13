@@ -13,12 +13,20 @@
                     </div>                                                      <?php
                     $rows = viewUser("this_user",$_SESSION["user_id"]);
 	    if(is_array($rows)){
-                    foreach($rows as $row ){?>
-					<input type="text" class="form-control mt-0" name="edit_first"    placeholder="First name" value="<?= $row["prenom"]?>">
-                                                                                <input type="text" class="form-control mt-3" name="edit_last"    placeholder="Last name" value="<?= $row["nom"]?>">
-					<input type="text" class="form-control mt-3" name="edit_email"   placeholder="E-mail" value="<?= $row["email"]?>">
-                                                                                <input type="text" class="form-control mt-3" name="edit_pass"   placeholder="Password" value="">
-                                                                                <input type="text" class="form-control mt-3" name="edit_confirm_pass"   placeholder="Confirm Password" value="">
+                    foreach($rows as $row ){?>			<div>
+	    				   <label class="ms-2">Prénom :</label>
+					   <input type="text" class="form-control mt-0" name="edit_first"    placeholder="First name" value="<?= $row["prenom"]?>">
+					</div>
+					<div>
+					  <label  class="ms-2">Nom :</label>
+                                                                                  <input type="text" class="form-control mt-3" name="edit_last"    placeholder="Last name" value="<?= $row["nom"]?>">
+					</div>
+					<div>
+					<label  class="ms-2">Email :</label>
+					  <input type="text" class="form-control mt-3" name="edit_email"   placeholder="E-mail" value="<?= $row["email"]?>">
+					</div>
+                                                                                <input type="password" class="form-control mt-3" name="edit_pass"   placeholder="Password" value="">
+                                                                                <input type="password" class="form-control mt-3" name="edit_confirm_pass"   placeholder="Confirm Password" value="">
 
 
                                                                                 <input type="hidden" class="form-control mt-3" name="edit_pass_confirm_real"   value="">

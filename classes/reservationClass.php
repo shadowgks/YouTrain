@@ -9,7 +9,11 @@ class Reservation
     {
         global $db_obj;
         $pdo = $db_obj->getConnect();
-        $statement = $pdo->prepare("SELECT * FROM `reservation` ");
+        $statement = $pdo->prepare("SELECT T.*,U.*,R.*,V.*
+        FROM reservation R JOIN users U JOIN voyages V JOIN trains T
+        WHERE R.id_client = U.id   
+        and   R.id_voyage = V.id
+        and   R.id_train  = T.id;");
         $statement->execute();
         $user_res = $statement->fetch();
         if (is_array($user_res)) {

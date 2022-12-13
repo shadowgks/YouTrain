@@ -1,6 +1,6 @@
 <?php
 // begin fouad
-include(__DIR__ . '/../classes/trainClass.php');
+include(__DIR__.'/../classes/trainClass.php');
 session_start();
 
 $train_object = new Train();
@@ -19,8 +19,10 @@ if (isset($_POST['book-now'])) {
 
 // ====================================================
 // Begin saad
-include __DIR__ . '/../classes/voyagesClass.php';
+include __DIR__.'/../classes/voyagesClass.php';
+include __DIR__.'/../classes/villeClass.php';
 $data_voyages = new Voyages();
+$data_villes = new Ville();
 // End saad
 
 // //==========================================================
@@ -89,6 +91,8 @@ function updateUser($user_id)
     } else {
         $user1 = new Users($firstname, $lastname, $email, $password, $password_confirm);
         if ($user1->updateUser($user_id)) {
+            $_SESSION["user_last"] = $lastname ; 
+            $_SESSION["user_first"] = $firstname;
         } else {
         }
     }

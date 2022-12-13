@@ -34,21 +34,21 @@
                     <div class="mx-auto"></div>
                     <ul class="navbar-nav text-center d-flex align-items-center">
                         <li class="nav-item">
-                            <a href="index.html" class="nav-link text-white">Home</a>
+                            <a href="index.php" class="nav-link text-white">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="bookings.html" class="nav-link text-white">Bookings</a>
+                            <a href="bookings.php" class="nav-link text-white">Bookings</a>
                         </li>
                         <li>
                             <!-- basket -->
-                            <a href="paniers.html" class="position-relative nav-link text-white ">
+                            <a href="basket.php" class="position-relative nav-link text-white ">
                                 <i class="bi bi-bag-check-fill fs-4"></i>
                                 <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
                             </a>
                         </li>
                         <li>
                             <!-- sign in -->
-                            <button type="button" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></button>
+                            <a href="login.php" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -70,7 +70,6 @@
                         <div class="col d-md-flex">
                             <!-- date -->
                             <div class="text-start">
-                                <p class="m-0">TURSDAY</p>
                                 <h4>22 SEP</h4>
                             </div>
                             <hr class="d-block d-md-none" />
@@ -112,19 +111,10 @@
                             </div>
                         </div>
                         <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- nd -->
-                        <div class="col-lg">2nd</div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
                         <!-- names -->
                         <div class="col-lg">
                             <p class="m-0">Saad Moumou</p>
                             <p class="m-0">Issam Moumou</p>
-                        </div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- adults and children -->
-                        <div class="col-lg">
-                            <span>Adult: </span><span>2</span><br />
-                            <span>Children: </span><span>0</span>
                         </div>
                         <!-- Refund and exchange -->
                         <hr class="w-25 m-auto d-block d-lg-none" />

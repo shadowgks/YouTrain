@@ -87,9 +87,7 @@ class Voyages extends DatabaseConnection
         try {
             $stm = $this->getConnect()->prepare("SELECT * FROM voyages");
             $stm->execute();
-            while ($result = $stm->fetchAll()) {
-                return $result;
-            }
+            return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -112,6 +110,19 @@ class Voyages extends DatabaseConnection
         try {
             $stm = $this->getConnect()->prepare("DELETE FROM voyages WHERE id = ?");
             $stm->execute([$this->id]);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    //Search Data
+    function searchData(){
+        try {
+            $stm = $this->getConnect()->prepare("SELECT *
+            FROM voyages V, gares G, trains T
+            WHERE V.gare_depart   = G.id
+            and   V.id_train      = T.id;");
+            $stm->execute();
         } catch (Exception $e) {
             return $e->getMessage();
         }
