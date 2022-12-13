@@ -12,7 +12,9 @@ if (isset($_POST['delete']))  $train_object->delete($_POST);
 // ====================================================
 // Begin saad
 include __DIR__.'/../classes/voyagesClass.php';
+include __DIR__.'/../classes/villeClass.php';
 $data_voyages = new Voyages();
+$data_villes = new Ville();
 // End saad
 
 // //==========================================================

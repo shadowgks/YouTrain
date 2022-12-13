@@ -478,7 +478,7 @@ $train_object->displayTrains();
 
     <!-- js links -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script class="assets/js/scripts.js"></script>
+    <script src="assets/js/scripts.js"></script>
     <!-- end js links -->
 </body>
 
