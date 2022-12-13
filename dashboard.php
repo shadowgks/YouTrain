@@ -110,11 +110,22 @@ $data_voyages = new Voyages();
                         <img src="./assets/img/Logo.png" alt="">
                     </div>
                     <div class="buttons">
-                        <button>
+                        <button class="add">
                             <img src="" alt="" class="icon">
                         </button>
-                        <button>
-                            <img src="" alt="" class="icon"></button><button><img src="" alt="" class="icon"></button><button><img src="" alt="" class="icon"></button><button><img src="" alt="" class="icon"></button></div>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                        <button class="add">
+                            <img src="" alt="" class="icon">
+                        </button>
+                    </div>
                 </div>
                 <div class="profile-session">
                     <div class="profile">
