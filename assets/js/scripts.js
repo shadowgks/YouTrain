@@ -44,6 +44,8 @@ function show_Sign_in(e){
 }
 
 
+
+
 function showTripModal(){
     capacityInput.style.display = 'none';
     numInput.style.display = 'none';
