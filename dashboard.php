@@ -6,6 +6,21 @@ if (!isset($_SESSION["user_id"])) {
 //fouad
 $train_object->displayTrains();
 //fouad
+
+
+
+$pdo = $obj->getConnect();
+
+$query = "SELECT * FROM users WHERE id=:id";
+$arr['id'] = $_SESSION["user_id"];
+$stmt = $pdo->prepare($query);
+$result = $stmt->execute($arr);
+$result = $stmt->fetch();
+
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,13 +128,17 @@ $train_object->displayTrains();
                     </div>
                     <div class="c-functions">
                         <div class="add-container" id="addMobile">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                            </svg>
                         </div>
                         <div class="add-functions">
                             <div class="icon-container">
                                 <img src="./assets/train.png" alt="" class="icon" style="margin-bottom:7.5px;">
                                 <button type="button" class="addBtn train" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Train
                                     </p>
@@ -128,7 +147,9 @@ $train_object->displayTrains();
                             <div class="icon-container">
                                 <img src="./assets/railway-station.png" alt="" class="icon">
                                 <button type="button" class="addBtn station" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Station
                                     </p>
@@ -137,7 +158,9 @@ $train_object->displayTrains();
                             <div class="icon-container">
                                 <img src="./assets/map.png" alt="" class="icon">
                                 <button type="button" class="addBtn trip" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Trip
                                     </p>
@@ -146,7 +169,9 @@ $train_object->displayTrains();
                             <div class="icon-container">
                                 <img src="./assets/booking.png" alt="" class="icon">
                                 <button type="button" class="addBtn ticketBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Ticket
                                     </p>
@@ -161,7 +186,8 @@ $train_object->displayTrains();
                     <div class="btn-group dropstart">
                         <div class="profile" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="profile-img">
-                                <img src="./assets/img/<?php echo $_SESSION["user_image"]; ?>" alt="" class="rounded" width="50px">
+
+                                <img src="<?= $result['image'] ?>" alt="" class="rounded" width="50px">
                                 <!-- <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 29 29">
                                     <path d="M14.5 2A12.514 12.514 0 0 0 2 14.5 12.521 12.521 0 0 0 14.5 27a12.5 12.5 0 0 0 0-25Zm7.603 19.713a8.48 8.48 0 0 0-15.199.008A10.367 10.367 0 0 1 4 14.5a10.5 10.5 0 0 1 21 0 10.368 10.368 0 0 1-2.897 7.213ZM14.5 7a4.5 4.5 0 1 0 4.5 4.5A4.5 4.5 0 0 0 14.5 7Z" />
                                 </svg> -->
@@ -269,22 +295,22 @@ $train_object->displayTrains();
 
 
                     ?>
-                                <tr>
-                                    <td><?= $count; ?></td>
-                                    <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
-                                    <td><?= $row["email"] ?></td>
+                            <tr>
+                                <td><?= $count; ?></td>
+                                <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
+                                <td><?= $row["email"] ?></td>
 
                                 <td class="d-flex align-items-center">
                                     <form action="" method="post">
-                                    <input type="hidden" value="<?= $row["id"]; ?>" name="id_user">
-                                    <input type="hidden" value="<?= $row["role"]; ?>" name="check_user">
-                                    <button id="btn_submit_change_user" type="submit" name="change_user_role" class="d-none"></button>
+                                        <input type="hidden" value="<?= $row["id"]; ?>" name="id_user">
+                                        <input type="hidden" value="<?= $row["role"]; ?>" name="check_user">
+                                        <button id="btn_submit_change_user<?=$row['id'];?>" type="submit" name="change_user_role" class="d-none"></button>
                                     </form>
-                                   <input onchange="change_user_role()" type="checkbox" data-toggle="toggle" data-off="<?=$data_on?>" data-on="<?=$data_off?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                                    <input onchange="change_user_role(this.id)" id="<?= $row['id'];?>" type="checkbox" data-toggle="toggle" data-off="<?= $data_on ?>" data-on="<?= $data_off ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
                                     <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>" name="user_id"><button type="submit" name="delete_user" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
                                 </td>
                             </tr>
-                           
+
                     <?php $count++;
                         }
                     } else {
@@ -293,10 +319,10 @@ $train_object->displayTrains();
                 </tbody>
             </table>
             <script>
-             function change_user_role(){
-                document.getElementById("btn_submit_change_user").click();
-            }
-         </script>
+                function change_user_role(id) {
+                    document.getElementById("btn_submit_change_user"+id).click();
+                }
+            </script>
         </section>
         <!-- Voyages -->
         <section class="mt-5 ms-md-5">
@@ -442,7 +468,7 @@ $train_object->displayTrains();
 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
-        </button>
+    </button>
     <!-- Modal crud -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -482,7 +508,7 @@ $train_object->displayTrains();
                         <input type="datetime-local" class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <div class="mb-3 dstation-select">
-                        <label class="form-label">Departure Station</label> 
+                        <label class="form-label">Departure Station</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -491,7 +517,7 @@ $train_object->displayTrains();
                         </select>
                     </div>
                     <div class="mb-3 aStation-select">
-                        <label class="form-label">Arrival Station</label> 
+                        <label class="form-label">Arrival Station</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -501,7 +527,7 @@ $train_object->displayTrains();
                     </div>
 
                     <div class="mb-3 users-select">
-                        <label class="form-label">Users</label> 
+                        <label class="form-label">Users</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -510,7 +536,7 @@ $train_object->displayTrains();
                         </select>
                     </div>
                     <div class="mb-3 trip-select">
-                        <label class="form-label">Trip</label> 
+                        <label class="form-label">Trip</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -521,7 +547,7 @@ $train_object->displayTrains();
 
                     <div class="mb-3 price-input">
                         <label class="form-label">Price</label>
-                        <input type="number" step="0.1"class="form-control" name="arrivalDate" id="arrivalInput">
+                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">departure date</label>
@@ -573,7 +599,6 @@ $train_object->displayTrains();
             document.getElementById("form1").reset();
         }
         // Please do not use inline event handlers, use this instead:
-      
     </script>
     <!--BEGIN DATATABLE -->
 

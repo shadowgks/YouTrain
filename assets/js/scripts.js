@@ -116,4 +116,4 @@ if(addMobile.classList.contains("expand")){
 tripBtn.addEventListener('click', showTripModal);
 trainBtn.addEventListener('click', showTrainModal);
 stationBtn.addEventListener('click', showStationModal);
-ticketBtn.addEventListener('click',showTicketModal)
+ticketBtn.addEventListener('click',showTicketModal);

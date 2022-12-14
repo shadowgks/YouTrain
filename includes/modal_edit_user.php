@@ -7,26 +7,30 @@
 			</div>
 			<div class="modal-body">
 				<!-- need documentation  -->
-				<form class="" action="" method="post">
+				<form class="" action="" method="post"  enctype="multipart/form-data">
 					<!-- need documentation  -->
 
 			</div> <?php
 				$rows = viewUser("this_user", $_SESSION["user_id"]);
 				if (is_array($rows)) {
 					foreach ($rows as $row) { ?> <div>
-						<label class="ms-2">Prénom :</label>
+						<label class="ms-2 text-secondary">Prénom :</label>
 						<input type="text" class="form-control mt-0" name="edit_first" placeholder="First name" value="<?= $row["prenom"] ?>">
 					</div>
 					<div>
-						<label class="ms-2">Nom :</label>
-						<input type="text" class="form-control mt-3" name="edit_last" placeholder="Last name" value="<?= $row["nom"] ?>">
+						<label class="ms-2  text-secondary">Nom :</label>
+						<input type="text" class="form-control mt-0" name="edit_last" placeholder="Last name" value="<?= $row["nom"] ?>">
 					</div>
 					<div>
-						<label class="ms-2">Email :</label>
-						<input type="text" class="form-control mt-3" name="edit_email" placeholder="E-mail" value="<?= $row["email"] ?>">
+						<label class="ms-2 text-secondary">Email :</label>
+						<input type="text" class="form-control mt-0 " name="edit_email" placeholder="E-mail" value="<?= $row["email"] ?>">
 					</div>
-					<input type="password" class="form-control mt-3" name="edit_pass" placeholder="Password" value="">
-					<input type="password" class="form-control mt-3" name="edit_confirm_pass" placeholder="Confirm Password" value="">
+					<div>
+					               <label class="ms-2 text-secondary">Image :</label>
+					               <input type="file"  accept="image/png ,image/jpg, image/jpeg" class="form-control mt-0" name="edit_image"  value="<?= $row["image"] ?>">
+					</div>
+					              <input type="password" class="form-control mt-3" name="edit_pass" placeholder="Password" value="">
+					              <input type="password" class="form-control mt-3" name="edit_confirm_pass" placeholder="Confirm Password" value="">
 
 
 					<input type="hidden" class="form-control mt-3" name="edit_pass_confirm_real" value="">
