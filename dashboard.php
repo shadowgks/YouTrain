@@ -111,23 +111,50 @@ $train_object->displayTrains();
                     <div class="mlogo-container">
                         <img src="./assets/img/Logo.png" alt="">
                     </div>
-                    <div class="buttons">
-                        <button class="add">
-                            <img src="" alt="" class="icon">
-                        </button>
-                        <button class="add">
-                            <img src="" alt="" class="icon">
-                        </button>
-                        <button class="add">
-                            <img src="" alt="" class="icon">
-                        </button>
-                        <button class="add">
-                            <img src="" alt="" class="icon">
-                        </button>
-                        <button class="add">
-                            <img src="" alt="" class="icon">
-                        </button>
+                    <div class="c-functions">
+                        <div class="add-container" id="addMobile">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                        </div>
+                        <div class="add-functions">
+                            <div class="icon-container">
+                                <img src="./assets/train.png" alt="" class="icon" style="margin-bottom:7.5px;">
+                                <button type="button" class="addBtn train" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <p class="add">
+                                        Train
+                                    </p>
+                                </button>
+                            </div>
+                            <div class="icon-container">
+                                <img src="./assets/railway-station.png" alt="" class="icon">
+                                <button type="button" class="addBtn station" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <p class="add">
+                                        Station
+                                    </p>
+                                </button>
+                            </div>
+                            <div class="icon-container">
+                                <img src="./assets/map.png" alt="" class="icon">
+                                <button type="button" class="addBtn trip" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <p class="add">
+                                        Trip
+                                    </p>
+                                </button>
+                            </div>
+                            <div class="icon-container">
+                                <img src="./assets/booking.png" alt="" class="icon">
+                                <button type="button" class="addBtn ticketBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <p class="add">
+                                        Ticket
+                                    </p>
+                                </button>
+                            </div>
+                        </div>
                     </div>
+                    <!-- Homework-->
                 </div>
 
                 <div class="profile-session">
@@ -242,10 +269,10 @@ $train_object->displayTrains();
 
 
                     ?>
-                            <tr>
-                                <td><?= $count; ?></td>
-                                <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
-                                <td><?= $row["email"] ?></td>
+                                <tr>
+                                    <td><?= $count; ?></td>
+                                    <td><?= $row["prenom"] . " " . $row["nom"] ?></td>
+                                    <td><?= $row["email"] ?></td>
 
                                 <td class="d-flex align-items-center">
                                     <form action="" method="post">
@@ -302,9 +329,11 @@ $train_object->displayTrains();
                                     <td>' . $item['gare_darrivee'] . '</td>
                                     <td>' . $item['price'] . '</td>
                                     <!-- btn edite delete -->
-                                    <td class="d-flex align-items-center">
-                                        <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                                        <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                    <td>
+                                        <div class="d-flex align-items-center">
+                                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                        </div>
                                     </td>
                                 </tr>
                             ';
@@ -342,8 +371,10 @@ $train_object->displayTrains();
                                     <td>" . $row['capacite'] . "</td>
                                     <!-- btn edite delete -->
                                     <td class='d-flex align-items-center'>
-                                        <button type='submit' class='btn btn-primary me-2' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='bi bi-pencil-square'></i></button>
-                                        <button type='submit' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#exampleModal'><i class='bi bi-trash'></i></button>
+                                    <div>
+                                        <button type='submit' class='btn btn-primary me-2'><i class='bi bi-pencil-square'></i></button>
+                                        <button type='submit' class='btn btn-danger'><i class='bi bi-trash'></i></button>
+                                    </div>
                                     </td>
                                 </tr>";
                         $index++;
@@ -388,13 +419,15 @@ $train_object->displayTrains();
                         $count++;
                         echo '
                         <tr>
-                        <td>' . $count . '</td>
-                        <td>' . $row['nom'] . '</td>
-                        <td>' . $row['id-ville'] . '</td>
+                        <td>'  .  $count  .  '</td>
+                        <td>'  .  $row['nom']  .  '</td>
+                        <td>'  .  $row['id-ville']  .  '</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">
-                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            <div>
+                                <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
+                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            </div>
                         </td>
                     </tr>
                         ';
@@ -407,13 +440,15 @@ $train_object->displayTrains();
         </section>
     </div>
 
-
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Launch demo modal
+        </button>
     <!-- Modal crud -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5 pop-title" id="exampleModalLabel">Modal title</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -425,17 +460,68 @@ $train_object->displayTrains();
                     <!--this input is used to stock the id_resirvation -->
                     <!-- <input type="hidden" name="id_reservation">
                     </div> -->
-                    <div class="mb-3">
+                    <div class="mb-3" id="numInput">
                         <label class="form-label">Nombre</label>
                         <input type="text" class="form-control" name="num">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" id="nameInput">
                         <label class="form-label">Nom</label>
                         <input type="text" class="form-control" name="nom">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3" id="capacityInput">
                         <label class="form-label">capacité</label>
                         <input type="text" class="form-control" name="capacite">
+                    </div>
+
+                    <div class="mb-3 d-input">
+                        <label class="form-label">Departure Date</label>
+                        <input type="datetime-local" class="form-control" name="departureDate" id="departureInput">
+                    </div>
+                    <div class="mb-3 a-input">
+                        <label class="form-label">Arrival Date</label>
+                        <input type="datetime-local" class="form-control" name="arrivalDate" id="arrivalInput">
+                    </div>
+                    <div class="mb-3 dstation-select">
+                        <label class="form-label">Departure Station</label> 
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 aStation-select">
+                        <label class="form-label">Arrival Station</label> 
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 users-select">
+                        <label class="form-label">Users</label> 
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 trip-select">
+                        <label class="form-label">Trip</label> 
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 price-input">
+                        <label class="form-label">Price</label>
+                        <input type="number" step="0.1"class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">departure date</label>
@@ -445,7 +531,7 @@ $train_object->displayTrains();
                         <label class="form-label">arrival date</label>
                         <input type="datetime-local" class="form-control" name="date_arrivee">
                     </div> -->
-                    <div class="mb-3 form-check">
+                    <div class="mb-3 form-check" id="checkInput">
                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
                         <label class="form-check-label" for="exampleCheck1">Check me out</label>
                     </div>
@@ -493,7 +579,7 @@ $train_object->displayTrains();
 
     <!-- js links -->
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script class="assets/js/scripts.js"></script>
+    <script src="assets/js/scripts.js"></script>
     <!-- end js links -->
 </body>
 

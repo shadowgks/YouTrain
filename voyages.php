@@ -48,7 +48,7 @@
                         </li>
                         <li>
                             <!-- sign in -->
-                            <button type="button" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></button>
+                            <a href="login.php" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></a>
                         </li>
                     </ul>
                 </div>
@@ -70,7 +70,6 @@
                         <div class="col d-md-flex">
                             <!-- date -->
                             <div class="text-start">
-                                <p class="m-0">TURSDAY</p>
                                 <h4>22 SEP</h4>
                             </div>
                             <hr class="d-block d-md-none" />
@@ -90,7 +89,9 @@
                         <div class="col text-end">
                             <h4 class="text-end">100.00DH</h4>
                             <!-- Réserver -->
-                            <button class="btn text-white" style="background-color: #6351ce">Book Now</button>
+                            <form action="includes/scripts.php" method="Post">
+                                <button type="submit" name="book-now" value="2" class="btn text-white" style="background-color: #6351ce">Book Now</button>
+                            </form>
                         </div>
                     </div>
                     <!-- Ticket -->
@@ -110,19 +111,10 @@
                             </div>
                         </div>
                         <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- nd -->
-                        <div class="col-lg">2nd</div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
                         <!-- names -->
                         <div class="col-lg">
                             <p class="m-0">Saad Moumou</p>
                             <p class="m-0">Issam Moumou</p>
-                        </div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- adults and children -->
-                        <div class="col-lg">
-                            <span>Adult: </span><span>2</span><br />
-                            <span>Children: </span><span>0</span>
                         </div>
                         <!-- Refund and exchange -->
                         <hr class="w-25 m-auto d-block d-lg-none" />
@@ -132,75 +124,6 @@
                     </div>
                 </div>
 
-                <div>
-                    <hr class="p-0 m-0" />
-                    <!-- price and date -->
-                    <div class="row px-5 py-3">
-                        <h5 class="text-start fw-bold" style="color: #6351ce">#2</h5>
-                        <div class="col d-md-flex">
-                            <!-- date -->
-                            <div class="text-start">
-                                <p class="m-0">TURSDAY</p>
-                                <h4>22 SEP</h4>
-                            </div>
-                            <hr class="d-block d-md-none" />
-                            <!-- time -->
-                            <div class="ms-md-5">
-                                <div class="text-start">
-                                    <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                    <span>Youssoufia</span>
-                                </div>
-                                <div class="text-start">
-                                    <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                    <span>Casablanca</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- price -->
-                        <div class="col text-end">
-                            <h4 class="text-end">100.00DH</h4>
-                            <!-- Réserver -->
-                            <button class="btn text-white" style="background-color: #6351ce">Book Now</button>
-                        </div>
-                    </div>
-                    <!-- Ticket -->
-                    <div class="row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded" style="background-color: #1c2331">
-                        <!-- time -->
-                        <div class="col-lg">
-                            <!-- time -->
-                            <div class="">
-                                <div class="">
-                                    <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                    <span>Youssoufia</span>
-                                </div>
-                                <div class="">
-                                    <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                    <span>Casablanca</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- nd -->
-                        <div class="col-lg">2nd</div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- names -->
-                        <div class="col-lg">
-                            <p class="m-0">Saad Moumou</p>
-                            <p class="m-0">Issam Moumou</p>
-                        </div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- adults and children -->
-                        <div class="col-lg">
-                            <span>Adult: </span><span>2</span><br />
-                            <span>Children: </span><span>0</span>
-                        </div>
-                        <!-- Refund and exchange -->
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <div class="col-lg">
-                            <p class="fw-bold" style="color: #6351ce">Refund and exchange: STANDARD</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
