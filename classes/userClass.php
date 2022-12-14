@@ -7,14 +7,16 @@ class Users
     private $email;
     private $password;
     private $password_confirm;
+    private $image;
 
-    public function __construct($firstname, $lastname, $email, $password, $password_confirm)
+    public function __construct($firstname, $lastname, $email, $password, $password_confirm, $image)
     {
         $this->firstname        = $firstname;
         $this->lastname         = $lastname;
         $this->email            = $email;
         $this->password         = $password;
         $this->password_confirm = $password_confirm;
+        $this->image = $image;
     }
     public function __set($var, $val)
     {
@@ -44,12 +46,13 @@ class Users
         unset($pdo);
         $db = new DatabaseConnection;
         $pdo = $db->getConnect();
-        $sql = "INSERT INTO `users`(`nom`, `prenom`, `email`, `password`) VALUES (:nom,:prenom,:email,:password)";
+        $sql = "INSERT INTO `users`(`nom`, `prenom`, `email`, `password`,`role`,`image`) VALUES (:nom,:prenom,:email,:password,0,'image.png')";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nom", $this->lastname);
         $stmt->bindParam(":prenom", $this->firstname);
         $stmt->bindParam(":email", $this->email);
         $stmt->bindParam(":password", $this->password);
+
         if ($stmt->execute()) {
             return true;
         } else {
@@ -65,13 +68,30 @@ class Users
         $stmt->bindParam(":email", $email);
         $stmt->bindParam(":password", md5($password));
         $stmt->execute();
+
         $row = $stmt->fetch();
+        $_SESSION['my-id'] = $row['id'];
         if (!empty($row)) {
             return $row;
         } else {
             return false;
         }
     }
+
+    public function get_user($varrr)
+    {
+        $varrr = $_SESSION['my-id'];
+        $db = new DatabaseConnection;
+        $pdo = $db->getConnect();
+        $query = "SELECT * from users WHERE id=:id";
+        $arr['id'] = $varrr;
+        $stmt = $pdo->prepare($query);
+        $stmt->execute($arr);
+        $row = $stmt->fetch();
+        var_dump($row);
+        die;
+    }
+
     public static function viewUser($option, $user_id)
     {
         $db = new DatabaseConnection;
@@ -95,18 +115,31 @@ class Users
     }
     public  function updateUser($user_id)
     {
+
         $db = new DatabaseConnection;
         $pdo = $db->getConnect();
+        if (!empty($_FILES['edit_image']['name'])) {
+            $folder = "uploads/";
+            if (!file_exists($folder)) {
+                mkdir($folder, 0777, true);
+            }
+            $path = $folder . time() . $_FILES['edit_image']['name'];
 
-        $sql = "UPDATE users SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`password`=:password WHERE id=:user_id";
+            move_uploaded_file($_FILES['edit_image']['tmp_name'], $path);
+
+            $this->image = $path;
+        }
+        $sql = "UPDATE users SET `nom`=:nom,`prenom`=:prenom,`email`=:email,`password`=:password ,`image`=:image WHERE id=:user_id";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":user_id",      $user_id);
         $stmt->bindParam(":nom",          $this->lastname);
         $stmt->bindParam(":prenom",       $this->firstname);
         $stmt->bindParam(":email",        $this->email);
         $stmt->bindParam(":password",     $this->password);
+        $stmt->bindParam(":image",        $this->image);
 
         if ($stmt->execute()) {
+           
             return true;
         } else {
             return false;
@@ -126,7 +159,26 @@ class Users
             return false;
         }
     }
+    public static function change_role($input, $user_id)
+    {
+        $db = new DatabaseConnection;
+        $pdo = $db->getConnect();
+        if ($input == 0) {
+            $input = 1;
+        } else {
+            $input = 0;
+        }
+        $sql = "UPDATE users SET role=:role WHERE id=:user_id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(":user_id",      $user_id);
+        $stmt->bindParam(":role",    $input);
 
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     public static function logout()
     {
         if (isset($_SESSION["user_id"])) {
