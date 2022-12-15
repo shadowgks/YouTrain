@@ -15,8 +15,6 @@ class Stations{
         $pdo = $db_obj->getConnect(); 
         $statement= $pdo->prepare($sql);
         $statement->execute($data);
-        
-        
     }
 
     static public function readStations(){

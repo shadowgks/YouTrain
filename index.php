@@ -14,6 +14,10 @@ include(__DIR__ . '/includes/scripts.php');
     <!-- Begin Bootstrap icon -->
     <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css" />
     <!-- End Bootstrap icon -->
+    <!-- BEGIN parsley css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
+    <!-- END parsley css-->
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>YouTrain</title>
 </head>
@@ -233,6 +237,11 @@ include(__DIR__ . '/includes/scripts.php');
     <!-- END footer -->
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <!-- BEGIN parsley js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- BEGIN parsley js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- END parsley js-->
     <script>
         // navBar
         var nav = document.querySelector("nav");
