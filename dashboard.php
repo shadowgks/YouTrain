@@ -34,7 +34,7 @@ $train_object->displayTrains();
 
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>Dashboard</title>
-    </head>
+</head>
 
 <body>
     <div class=" grid">
@@ -113,13 +113,17 @@ $train_object->displayTrains();
                     </div>
                     <div class="c-functions">
                         <div class="add-container" id="addMobile">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                            </svg>
                         </div>
                         <div class="add-functions">
                             <div class="icon-container">
                                 <img src="./assets/train.png" alt="" class="icon" style="margin-bottom:7.5px;">
                                 <button type="button" class="addBtn train" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Train
                                     </p>
@@ -128,7 +132,9 @@ $train_object->displayTrains();
                             <div class="icon-container">
                                 <img src="./assets/railway-station.png" alt="" class="icon">
                                 <button type="button" class="addBtn station" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Station
                                     </p>
@@ -137,7 +143,9 @@ $train_object->displayTrains();
                             <div class="icon-container">
                                 <img src="./assets/map.png" alt="" class="icon">
                                 <button type="button" class="addBtn trip" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Trip
                                     </p>
@@ -146,7 +154,9 @@ $train_object->displayTrains();
                             <div class="icon-container">
                                 <img src="./assets/booking.png" alt="" class="icon">
                                 <button type="button" class="addBtn ticketBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Ticket
                                     </p>
@@ -306,17 +316,17 @@ $train_object->displayTrains();
                 </thead>
                 <tbody>
                     <?php
-                            $count = 0;
-                            foreach ($data_voyages->readData() as $item) {
-                                $count += 1;
-                                echo '
+                    $count = 0;
+                    foreach ($data_voyages->readData() as $item) {
+                        $count += 1;
+                        echo '
                                 <tr>
-                                    <td>'.$count.'</td>
-                                    <td>'.$item['date_depart'].'</td>
-                                    <td>'.$item['date_darrivee'].'</td>
-                                    <td>'.$item['gare_depart'].'</td>
-                                    <td>'.$item['gare_darrivee'].'</td>
-                                    <td>'.$item['price'].'</td>
+                                    <td>' . $count . '</td>
+                                    <td>' . $item['date_depart'] . '</td>
+                                    <td>' . $item['date_darrivee'] . '</td>
+                                    <td>' . $item['gare_depart'] . '</td>
+                                    <td>' . $item['gare_darrivee'] . '</td>
+                                    <td>' . $item['price'] . '</td>
                                     <!-- btn edite delete -->
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -326,9 +336,9 @@ $train_object->displayTrains();
                                     </td>
                                 </tr>
                             ';
-                            }
-                            ?>
-                    </tbody>
+                    }
+                    ?>
+                </tbody>
             </table>
         </section>
         <!-- Trains -->
@@ -431,7 +441,7 @@ $train_object->displayTrains();
 
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
         Launch demo modal
-        </button>
+    </button>
     <!-- Modal crud -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -471,7 +481,7 @@ $train_object->displayTrains();
                         <input type="datetime-local" class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <div class="mb-3 dstation-select">
-                        <label class="form-label">Departure Station</label> 
+                        <label class="form-label">Departure Station</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -480,7 +490,7 @@ $train_object->displayTrains();
                         </select>
                     </div>
                     <div class="mb-3 aStation-select">
-                        <label class="form-label">Arrival Station</label> 
+                        <label class="form-label">Arrival Station</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -490,7 +500,7 @@ $train_object->displayTrains();
                     </div>
 
                     <div class="mb-3 users-select">
-                        <label class="form-label">Users</label> 
+                        <label class="form-label">Users</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -499,7 +509,7 @@ $train_object->displayTrains();
                         </select>
                     </div>
                     <div class="mb-3 trip-select">
-                        <label class="form-label">Trip</label> 
+                        <label class="form-label">Trip</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <option value="1">One</option>
@@ -510,7 +520,7 @@ $train_object->displayTrains();
 
                     <div class="mb-3 price-input">
                         <label class="form-label">Price</label>
-                        <input type="number" step="0.1"class="form-control" name="arrivalDate" id="arrivalInput">
+                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">departure date</label>

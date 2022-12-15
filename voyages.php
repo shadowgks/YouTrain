@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION["user_id"])) {
+    header('Location:login.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -90,7 +96,7 @@
                             <h4 class="text-end">100.00DH</h4>
                             <!-- Réserver -->
                             <form action="includes/scripts.php" method="Post">
-                                <button type="submit" name="book-now" value="2" class="btn text-white" style="background-color: #6351ce">Book Now</button>
+                                <button type="submit" name="book-now" value="4" class="btn text-white" style="background-color: #6351ce">Book Now</button>
                             </form>
                         </div>
                     </div>
