@@ -46,7 +46,7 @@ function signup()
 {
     if ($_POST["password"] == $_POST["password_confirm"]) {
         $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["password"]
-        , $_POST["password_confirm"], $_FILES['edit_image']['name']);
+        , $_POST["password_confirm"]);
         if ($user1->signup()) {
             header('Location:../dashboard.php');
         } else {
