@@ -522,18 +522,28 @@ $result = $stmt->fetch();
                         <label class="form-label">Departure Station</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php 
+                            $data = Stations::readStations();
+                                foreach($data AS $item){
+                                    echo '
+                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                                    ';
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php 
+                            $data = Stations::readStations();
+                                foreach($data AS $item){
+                                    echo '
+                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                                    ';
+                                }
+                            ?>
                         </select>
                     </div>
 

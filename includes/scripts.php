@@ -21,6 +21,7 @@ include __DIR__ . '/../classes/voyagesClass.php';
 include __DIR__ . '/../classes/villeClass.php';
 $data_villes = new Ville();
 $data_voyages = new Voyages();
+$data_voyages = new Voyages();
 // End saad
 
 // //==========================================================
