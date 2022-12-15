@@ -71,7 +71,7 @@
 
 
 
-              <form method="POST" action="includes/scripts.php">
+              <form method="POST" action="includes/scripts.php" data-parsley-validate>
 
                 <div class="row">
                   <div class="col-md-6 mb-4">
@@ -79,7 +79,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="firstName">First Name</label>
 
-                      <input name="firstname" type="text" id="firstName" class="form-control form-control-lg" id="firstnameu" />
+                      <input name="firstname" type="text" id="firstName" class="form-control form-control-lg" id="firstnameu" required/>
 
 
                     </div>
@@ -90,7 +90,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Last Name</label>
 
-                      <input name="lastname" type="text" id="lastName" class="form-control form-control-lg" id="lastnameu" />
+                      <input name="lastname" type="text" id="lastName" class="form-control form-control-lg" id="lastnameu" required/>
 
 
                     </div>
@@ -104,7 +104,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="emailAddress">Email</label>
 
-                      <input name="email" type="email" id="emailAddress" class="form-control form-control-lg" id="emailaddressu" />
+                      <input name="email" type="email" id="emailAddress" class="form-control form-control-lg" id="emailaddressu" required/>
 
 
                     </div>
@@ -121,7 +121,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="firstName">Password</label>
 
-                      <input name="password" type="password" id="firstName" class="form-control form-control-lg" id="passwordu" />
+                      <input name="password" type="password" id="firstName" class="form-control form-control-lg" id="passwordu" required/>
 
 
                     </div>
@@ -132,7 +132,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Retype Password</label>
 
-                      <input name="password_confirm" type="password" id="lastName" class="form-control form-control-lg" id="retypepasswordu" />
+                      <input name="password_confirm" type="password" id="lastName" class="form-control form-control-lg" id="retypepasswordu" required/>
 
 
                     </div>
@@ -165,11 +165,11 @@
 
               <h3 class="mb-5">Sign in</h3>
 
-              <form method="POST" action="includes/scripts.php">
+              <form method="POST" action="includes/scripts.php" data-parsley-validate>
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="typeEmailX-2">Email</label>
-                  <input type="email" name="email" class="form-control form-control-lg" id="emailaddressi" />
+                  <input type="email" name="email" class="form-control form-control-lg" id="emailaddressi" required/>
 
 
                 </div>
@@ -177,7 +177,7 @@
                 <div class="form-outline mb-4">
                   <label class="form-label" for="typePasswordX-2">Password</label>
 
-                  <input type="password" name="password" class="form-control form-control-lg" id="passwordi" />
+                  <input type="password" name="password" class="form-control form-control-lg" id="passwordi" required/>
 
                 </div>
                 <div>
