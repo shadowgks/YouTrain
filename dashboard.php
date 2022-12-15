@@ -6,6 +6,7 @@ if (!isset($_SESSION["user_id"]) || ($_SESSION["role"]) == 0) {
 }
 
 //fouad
+$train_object = new Train();
 $train_object->displayTrains();
 //fouad
 

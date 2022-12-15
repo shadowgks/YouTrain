@@ -137,12 +137,14 @@ function change_role($input, $user_id)
 
 function save(){
     global $data_voyages;
+    
     if($_POST["functionToUse"] == 'train'){
         $train_object = new Train();
         $train_object->insert($_POST);
     }else if($_POST["functionToUse"] == 'station'){
         Stations::insertStation($_POST);
     }else if($_POST["functionToUse"] == 'trip'){
+        
         $data_voyages->setDateDeparte($_POST["departureDate"]);
         $data_voyages->setDateDarrivee($_POST["arrivalDate"]);
         $data_voyages->setGareDepart($_POST["depStation"]);
