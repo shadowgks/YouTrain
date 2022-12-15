@@ -8,6 +8,7 @@ class Voyages extends DatabaseConnection
     private $gare_depart;
     private $gare_darrivee;
     private $price;
+    private $id_train;
 
     //set and get id
     function setID($id)
@@ -20,11 +21,11 @@ class Voyages extends DatabaseConnection
     }
 
     //set and get DateDepart
-    function setDateDepart($date_depart)
+    function setDateDeparte($date_depart)
     {
         $this->date_depart = $date_depart;
     }
-    function getDateDepart()
+    function GetDateDeparte()
     {
         return $this->date_depart;
     }
@@ -87,10 +88,7 @@ class Voyages extends DatabaseConnection
         try {
             $stm = $this->getConnect()->prepare("SELECT * FROM voyages");
             $stm->execute();
-            while ($result = $stm->fetchAll()) {
-                return $result;
-                var_dump($result);
-            }
+            return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -100,7 +98,7 @@ class Voyages extends DatabaseConnection
     function updateData()
     {
         try {
-            $stm = $this->getConnect()->prepare("UPDATE voyages SET date_depart=?, date_darrivee=?, `gare_depar=?t`, `gare_darrivee=?`, price=? WHERE id = ? ;");
+            $stm = $this->getConnect()->prepare("UPDATE voyages SET date_depart=?, date_darrivee=?, `gare_depart=?`, `gare_darrivee=?`, price=? WHERE id = ? ;");
             $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price, $this->id]);
         } catch (Exception $e) {
             return $e->getMessage();
@@ -113,6 +111,28 @@ class Voyages extends DatabaseConnection
         try {
             $stm = $this->getConnect()->prepare("DELETE FROM voyages WHERE id = ?");
             $stm->execute([$this->id]);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    //Search Data
+    function searchData(){
+        try {
+            $stm = $this->getConnect()->prepare("SELECT v.id,v.date_depart,v.date_darrivee,v.price,v.id_train,trains.capacite,
+            g1.nom AS 'gare_depart',g2.nom AS 'gare_darrivee'
+            From voyages v
+            join gares g1 on g1.id=v.gare_depart 
+            join gares g2 on g2.id=v.gare_darrivee
+            join trains on v.id_train
+            where v.date_depart >= ?
+            and   v.date_darrivee <= ?
+            and   v.gare_depart = ? and v.gare_darrivee = ?;");
+            
+            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee]);
+            var_dump($stm->fetchAll());
+            die;
+            return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
         }

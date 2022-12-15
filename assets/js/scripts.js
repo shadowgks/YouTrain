@@ -44,6 +44,8 @@ function show_Sign_in(e){
 }
 
 
+
+
 function showTripModal(){
     depDateInput.style.display = 'block'
     arrDateInput.style.display = 'block';
@@ -135,4 +137,4 @@ for(i=0;i<trainBtn.length;i++){
 
 // trainBtn.addEventListener('click', showTrainModal);
 // stationBtn.addEventListener('click', showStationModal);
-// ticketBtn.addEventListener('click',showTicketModal)
+// ticketBtn.addEventListener('click',showTicketModal);
