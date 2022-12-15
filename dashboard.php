@@ -1,9 +1,10 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
 
-if (!isset($_SESSION["user_id"])) {
-    header('Location:login.php');
+if (!isset($_SESSION["user_id"]) || ($_SESSION["role"]) == 0) {
+    header('Location:index.php');
 }
+
 //fouad
 $train_object->displayTrains();
 //fouad
