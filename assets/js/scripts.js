@@ -21,8 +21,7 @@ let arrSelectBox = document.querySelector('.aStation-select');
 let usersList = document.querySelector('.users-select');
 let tripsList = document.querySelector('.trip-select');
 let updateTravels = document.querySelectorAll('.updateTravels');
-let departureInput = document.querySelector('#departureInput')
-console.log(updateTravels);
+let departureInput = document.querySelector('#departureInput');
 let idInput = document.querySelector('#idInput');
 let inputName = document.querySelector('#namesInput');
 let trainNumInput = document.querySelector('#trainNumberInput');
@@ -36,7 +35,8 @@ let saveBtn = document.querySelector('#saveBtn');
 let upBtn = document.querySelector('#updateBtn');
 let deleteBtn = document.querySelector('#deleteBtn');
 let crudform = document.querySelector('#exampleModal');
-console.log(arrivalStation)
+let funcInput = document.querySelector("#funcId");
+console.log(funcInput)
 
 
 //function show sign_up
@@ -78,6 +78,7 @@ function showTripModal(){
     saveBtn.style.display = 'block';
     deleteBtn.style.display = 'none';
     updateBtn.style.display = 'none';
+    funcInput.value = 'trip';
 }
 
 function showTrainModal(){
@@ -96,6 +97,7 @@ function showTrainModal(){
     deleteBtn.style.display = 'none';
     updateBtn.style.display = 'none';
     saveBtn.style.display = 'block';
+    funcInput.value = 'train';
 }
 
 function showStationModal(){
@@ -115,10 +117,10 @@ function showStationModal(){
     deleteBtn.style.display = 'none';
     updateBtn.style.display = 'none';
     saveBtn.style.display = 'block';
+    funcInput.value = 'station'
 }
 
 function showTicketModal(){
-    console.log('FRRRRRRRRRRRR');
     usersList.style.display = 'block';
     tripsList.style.display = 'block';
     capacityInput.style.display = 'none';
@@ -133,6 +135,7 @@ function showTicketModal(){
     deleteBtn.style.display = 'none';
     updateBtn.style.display = 'none';
     saveBtn.style.display = 'block';
+    funcInput.value = 'ticket'
 }
 
 addMobile.addEventListener('click', function () {

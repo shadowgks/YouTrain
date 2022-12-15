@@ -493,6 +493,10 @@ $result = $stmt->fetch();
                         <!--this input is used to stock the id -->
                         <input type="hidden" name="id" id="idInput">
                     </div>
+                    <div>
+                        <!--this input is used to stock the id -->
+                        <input type="hidden" name="functionToUse" id="funcId">
+                    </div>
                     <!-- <div> -->
                     <!--this input is used to stock the id_resirvation -->
                     <!-- <input type="hidden" name="id_reservation">
@@ -520,7 +524,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3 dstation-select">
                         <label class="form-label">Departure Station</label>
-                        <select class="form-select" aria-label="Default select example" id="depStation">
+                        <select class="form-select" aria-label="Default select example" name="depStation"id="depStation">
                             <option selected>Open this select menu</option>
                             <?php 
                             $data = Stations::readStations();
@@ -534,7 +538,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
-                        <select class="form-select" aria-label="Default select example" id="arrStation">
+                        <select class="form-select" aria-label="Default select example" name="arrStation"id="arrStation">
                             <option selected>Open this select menu</option>
 
                             <?php 
@@ -592,7 +596,7 @@ $result = $stmt->fetch();
 
                     <div class="mb-3 price-input">
                         <label class="form-label">Price</label>
-                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="priceInput">
+                        <input type="number" step="0.1" class="form-control" name="price" id="priceInput">
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">departure date</label>
