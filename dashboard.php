@@ -364,6 +364,7 @@ $result = $stmt->fetch();
                         <th>Gare départ</th>
                         <th>Gare d'arrivée</th>
                         <th>Price</th>
+                        <th>Train</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -380,6 +381,7 @@ $result = $stmt->fetch();
                                     <td class="tripDepStation" data-tripDepStation = ' . $item['gare_depart'] . '>' . $item['gare_depart'] . '</td>
                                     <td class="tripArrStation" data-tripArrStation = ' . $item['gare_darrivee'] . '>' . $item['gare_darrivee'] . '</td>
                                     <td class="tripPrice" data-tripPrice = ' . $item['price'] . '>' . $item['price'] . '</td>
+                                    <td class="tripTrain" data-tripTrain = ' . $item['id_train'] . '>' . $item['nom_train'] . '</td>
                                     <!-- btn edite delete -->
                                     <td>
                                         <div class="d-flex align-items-center">
@@ -535,7 +537,8 @@ $result = $stmt->fetch();
                                     ';
                                 }
                             ?>
-                        </select>
+                    </select>
+                    
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
@@ -550,7 +553,22 @@ $result = $stmt->fetch();
                                     ';
                                 }
                             ?>
-
+                        </select>
+                    </div>
+                    <!-- train -->
+                    <div class="mb-3 users-select">
+                        <label class="form-label">Train</label>
+                        <select class="form-select" aria-label="Default select example">
+                        <option selected>Open this select menu</option>
+                            <?php
+                            $data_Train = $train_object->displaytrains();
+                            while ($row = $data_Train->fetch(PDO::FETCH_ASSOC)) {
+                                echo'
+                                    <option value="'.$row['id'].'">'.$row['nom'].'</option>
+                                ';
+                            }
+                                
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3 cities">

@@ -24,11 +24,18 @@ if (isset($_POST['book-now'])) {
 //end crud fouad
 // ====================================================
 // Begin saad
-include __DIR__ . '/../classes/voyagesClass.php';
-include __DIR__ . '/../classes/villeClass.php';
+require_once __DIR__ . '/../classes/voyagesClass.php';
+require_once __DIR__ . '/../classes/villeClass.php';
 $data_villes  = new Ville();
 $data_voyages = new Voyages();
 
+//Search voyages
+if (isset($_POST['search_voyage'])) {
+    $data_voyages->setDateDeparte($_POST['date_depart']);
+    $data_voyages->setDateDarrivee($_POST['date_darrivee']);
+    $data_voyages->setGareDepart($_POST['gare_depart']);
+    $data_voyages->setGareDarrivee($_POST['gare_darrivee']);
+};
 // End saad
 
 // //==========================================================
@@ -136,51 +143,55 @@ function change_role($input, $user_id)
 }
 
 function save(){
-    global $data_voyages;
-    
     if($_POST["functionToUse"] == 'train'){
         $train_object = new Train();
         $train_object->insert($_POST);
     }else if($_POST["functionToUse"] == 'station'){
         Stations::insertStation($_POST);
-    }else if($_POST["functionToUse"] == 'trip'){
-        
-        $data_voyages->setDateDeparte($_POST["departureDate"]);
-        $data_voyages->setDateDarrivee($_POST["arrivalDate"]);
-        $data_voyages->setGareDepart($_POST["depStation"]);
-        $data_voyages->setGareDarrivee($_POST["arrStation"]);
-        $data_voyages->setPrice($_POST["price"]);
-        $data_voyages->createData();
+    }else if(isset($_POST["functionToUse"]) == 'trip'){
+        require_once __DIR__ . '/../classes/voyagesClass.php';
+        $save_voyages = new Voyages();
+        $save_voyages->setDateDeparte($_POST["departureDate"]);
+        $save_voyages->setDateDarrivee($_POST["arrivalDate"]);
+        $save_voyages->setGareDepart($_POST["depStation"]);
+        $save_voyages->setGareDarrivee($_POST["arrStation"]);
+        $save_voyages->setPrice($_POST["price"]);
+        // $save_voyages->setTrain($_POST["Train"]);
+        $save_voyages->createData();
     }
 }
 
 function update(){
-    global $data_voyages;
     if($_POST["functionToUse"] == 'train'){
         $train_object = new Train();
         $train_object->update($_POST);
     }else if($_POST["functionToUse"] == 'station'){
         Stations::updateStation($_POST);
-    }else if($_POST["functionToUse"] == 'trip'){
-        $data_voyages->setID($_POST["id"]);
-        $data_voyages->setDateDeparte($_POST["departureDate"]);
-        $data_voyages->setDateDarrivee($_POST["arrivalDate"]);
-        $data_voyages->setGareDepart($_POST["depStation"]);
-        $data_voyages->setGareDarrivee($_POST["arrStation"]);
-        $data_voyages->setPrice($_POST["price"]);
-        $data_voyages->updateData();
+    }else if(isset($_POST["functionToUse"]) == 'trip'){
+        require_once __DIR__ . '/../classes/voyagesClass.php';
+        $update_voyages = new Voyages();
+        $update_voyages->setID($_POST["id"]);
+        $update_voyages->setDateDeparte($_POST["departureDate"]);
+        $update_voyages->setDateDarrivee($_POST["arrivalDate"]);
+        $update_voyages->setGareDepart($_POST["depStation"]);
+        $update_voyages->setGareDarrivee($_POST["arrStation"]);
+        $update_voyages->setPrice($_POST["price"]);
+        // $update_voyages->setTrain($_POST["Train"]);
+        $update_voyages->updateData();
+        
     }
 }
 
 function delete(){
-    global $data_voyages;
     if($_POST["functionToUse"] == 'train'){
         $train_object = new Train();
         $train_object->delete($_POST);
     }else if($_POST["functionToUse"] == 'station'){
         Stations::deleteStation($_POST);
     }else if($_POST["functionToUse"] == 'trip'){
-        $data_voyages->setID($_POST["id"]);
-        $data_voyages->deleteData();
+        require_once __DIR__ . '/../classes/voyagesClass.php';
+        $delete_voyages = new Voyages();
+        $delete_voyages->setID($_POST["id"]);
+        $delete_voyages->deleteData();
     }
 }

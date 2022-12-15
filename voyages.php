@@ -107,13 +107,6 @@ if (!isset($_SESSION["user_id"])) {
             <div class="card text-center">
                 <h3 class="m-0 p-4 text-white" style="background-color: #6351ce">MY TRIP</h3>
                 <?php
-                if (isset($_POST['search_voyage'])) {
-                    $data_voyages->setDateDeparte($_POST['date_depart']);
-                    $data_voyages->setDateDarrivee($_POST['date_darrivee']);
-                    $data_voyages->setGareDepart($_POST['gare_depart']);
-                    $data_voyages->setGareDarrivee($_POST['gare_darrivee']);
-                    $data_voyages->searchData();
-                };
                 $data = $data_voyages->searchData();
                 $count = 0;
                 if (!$data) {
