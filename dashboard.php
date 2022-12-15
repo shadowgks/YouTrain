@@ -6,6 +6,10 @@ if (!isset($_SESSION["user_id"])) {
 //fouad
 $train_object->displayTrains();
 //fouad
+
+// $users = Users::viewUser("all", true);
+// var_dump($users);
+// die();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,40 +117,48 @@ $train_object->displayTrains();
                     </div>
                     <div class="c-functions">
                         <div class="add-container" id="addMobile">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                         </div>
                         <div class="add-functions">
                             <div class="icon-container">
-                                <img src="./assets/train.png" alt="" class="icon" style="margin-bottom:7.5px;">
+                                <button type="button" class="addMBtn train" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <img src="./assets/train.png" alt="" class="icon" style="margin-bottom:7.5px;">
+                                </button>
                                 <button type="button" class="addBtn train" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                                     <p class="add">
                                         Train
                                     </p>
                                 </button>
                             </div>
                             <div class="icon-container">
-                                <img src="./assets/railway-station.png" alt="" class="icon">
+                                <button type="button" class="addMBtn station" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <img src="./assets/railway-station.png" alt="" class="icon">
+                                </button>
                                 <button type="button" class="addBtn station" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                                     <p class="add">
                                         Station
                                     </p>
                                 </button>
                             </div>
                             <div class="icon-container">
-                                <img src="./assets/map.png" alt="" class="icon">
+                                <button type="button" class="addMBtn trip" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <img src="./assets/map.png" alt="" class="icon">
+                                </button>
                                 <button type="button" class="addBtn trip" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                                     <p class="add">
                                         Trip
                                     </p>
                                 </button>
                             </div>
                             <div class="icon-container">
-                                <img src="./assets/booking.png" alt="" class="icon">
+                                <button type="button" class="addMBtn ticketBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <img src="./assets/booking.png" alt="" class="icon">
+                                </button>
                                 <button type="button" class="addBtn ticketBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);transform: ;msFilter:;"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
                                     <p class="add">
                                         Ticket
                                     </p>
@@ -167,7 +179,7 @@ $train_object->displayTrains();
                             </div>
                         </div>
                         <ul class="dropdown-menu p-2">
-                            <li class="list-item" data-bs-toggle="modal" data-bs-target="#edit_user">edit profile</li>
+                            <li class="list-item profile-link" data-bs-toggle="modal" data-bs-target="#edit_user">edit profile</li>
                             <li class="list-item" data-bs-toggle="modal" data-bs-target="#edit_user"><a href="?logout=true">Logout</a></li>
                         </ul>
                     </div>
@@ -189,10 +201,28 @@ $train_object->displayTrains();
             <section class="statistics-section">
                 <div class="card-stat">
                     <div class="img-container">
+                        <img src="assets/train-station.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <h1 class="card-title"><span>Stations</span></h1>
+                        <p class="text"><?php echo Stations::availableStations();?></p>
+                    </div>
+                </div>
+                <div class="card-stat">
+                    <div class="img-container">
                         <img src="assets/group.png" alt="">
                     </div>
                     <div class="desc">
-                        <h1<span>Total users</span></h1>
+                        <h1 class="card-title"><span>Total users</span></h1>
+                        <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
+                    </div>
+                </div>
+                <div class="card-stat">
+                    <div class="img-container">
+                        <img src="assets/group.png" alt="">
+                    </div>
+                    <div class="desc">
+                        <h1 class="card-title"><span>Total users</span></h1>
                             <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
                     </div>
                 </div>
@@ -201,8 +231,8 @@ $train_object->displayTrains();
                         <img src="assets/group.png" alt="">
                     </div>
                     <div class="desc">
-                        <h1<span>Trains</span></h1>
-                            <p class="text"><?php echo $train_object->displaytrains()->rowcount(); //rowCount() count the number of rows
+                        <h1 class="card-title"><span>Trains</span></h1>
+                        <p class="text"><?php echo $train_object->displaytrains()->rowcount(); //rowCount() count the number of rows
                                             ?></p>
                     </div>
                 </div>
@@ -211,7 +241,7 @@ $train_object->displayTrains();
                         <img src="assets/group.png" alt="">
                     </div>
                     <div class="desc">
-                        <h1<span>Stations</span></h1>
+                        <h1 class="card-title"><span>Stations</span></h1>
                             <p class="text">20</p>
                     </div>
                 </div>
@@ -220,8 +250,8 @@ $train_object->displayTrains();
                         <img src="assets/group.png" alt="">
                     </div>
                     <div class="desc">
-                        <h1<span>Travels</span></h1>
-                            <p class="text">20</p>
+                        <h1 class="card-title"><span>Travels</span></h1>
+                        <p class="text">20</p>
                     </div>
                 </div>
                 <!-- <div class="card"></div>
@@ -484,21 +514,31 @@ $train_object->displayTrains();
                     </div>
 
                     <div class="mb-3 users-select">
-                        <label class="form-label">Users</label> 
+                        <label class="form-label">Trip</label> 
                         <select class="form-select" aria-label="Default select example">
-                            <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <option selected>Open this select menu</option>
+                            <?php
+                                foreach ($data_voyages->readData() as $item):?>
+                                    <option value="<?=$item['id']?>"><?=$item['gare_depart']?> - <?=$item['gare_darrivee']?></option>
+                                <?php
+                                endforeach
+                                ?>
                         </select>
                     </div>
                     <div class="mb-3 trip-select">
-                        <label class="form-label">Trip</label> 
+                        <label class="form-label">Users</label> 
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php
+                                $users = Users::viewUser("all", true);
+                                // var_dump($users);
+                                // die();
+                                foreach ($users as $user):?>
+                                    <option value="<?=$user['id']?>"><?=$user['nom']?> <?=$user['prenom']?></option>
+                                <?php
+                                endforeach
+                                ?>
+                    
                         </select>
                     </div>
 

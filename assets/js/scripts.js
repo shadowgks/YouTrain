@@ -4,10 +4,10 @@ let btnsignup         = document.getElementById("btnup") ;
 let btnsignin         = document.getElementById("btnin");
 let addMobile = document.getElementById("addMobile");
 let addMenu = document.querySelector('.add-functions');
-let tripBtn = document.querySelector('.trip');
-let trainBtn = document.querySelector('.train');
-let stationBtn = document.querySelector('.station');
-let ticketBtn = document.querySelector('.ticketBtn');
+let tripBtn = document.querySelectorAll('.trip');
+let trainBtn = document.querySelectorAll('.train');
+let stationBtn = document.querySelectorAll('.station');
+let ticketBtn = document.querySelectorAll('.ticketBtn');
 let nameInput = document.getElementById('nameInput');
 let numInput = document.querySelector('#numInput');
 let capacityInput = document.getElementById('capacityInput');
@@ -45,6 +45,11 @@ function show_Sign_in(e){
 
 
 function showTripModal(){
+    depDateInput.style.display = 'block'
+    arrDateInput.style.display = 'block';
+    priceInput.style.display = 'block';
+    depSelectBox.style.display = 'block';
+    arrSelectBox.style.display = 'block';
     capacityInput.style.display = 'none';
     numInput.style.display = 'none';
     nameInput.style.display = 'none';
@@ -100,18 +105,34 @@ function showTicketModal(){
     priceInput.style.display = 'none';
     depSelectBox.style.display = 'none';
     arrSelectBox.style.display = 'none';
+    modalTitle.innerText = "Add Ticket";
 }
 
 addMobile.addEventListener('click', function () {
 addMobile.classList.toggle('expand');
 if(addMobile.classList.contains("expand")){
-    addMenu.style.maxHeight = 200 + "px";
+    addMenu.style.maxHeight = 225 + "px";
 }else{
     addMenu.style.maxHeight = 0 + "px";
 }
 })
 
-tripBtn.addEventListener('click', showTripModal);
-trainBtn.addEventListener('click', showTrainModal);
-stationBtn.addEventListener('click', showStationModal);
-ticketBtn.addEventListener('click',showTicketModal)
+
+// tripBtn.addEventListener('click', showTripModal);
+for(i=0;i<tripBtn.length;i++){
+    tripBtn[i].addEventListener('click', showTripModal)
+}
+for(i=0;i<ticketBtn.length;i++){
+    ticketBtn[i].addEventListener('click', showTicketModal)
+}
+for(i=0;i<stationBtn.length;i++){
+    stationBtn[i].addEventListener('click', showStationModal)
+}
+
+for(i=0;i<trainBtn.length;i++){
+    trainBtn[i].addEventListener('click', showTrainModal)
+}
+
+// trainBtn.addEventListener('click', showTrainModal);
+// stationBtn.addEventListener('click', showStationModal);
+// ticketBtn.addEventListener('click',showTicketModal)
