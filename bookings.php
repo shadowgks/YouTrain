@@ -1,5 +1,9 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
+
+if (!isset($_SESSION["user_id"])) {
+    header('Location: login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">

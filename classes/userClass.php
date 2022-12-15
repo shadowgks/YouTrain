@@ -162,8 +162,10 @@ class Users
         $pdo = $db->getConnect();
         if ($input == 0) {
             $input = 1;
+            header('Location: dashboard.php');
         } else {
             $input = 0;
+            header('Location: index.php');
         }
         $sql = "UPDATE users SET role=:role WHERE id=:user_id";
         $stmt = $pdo->prepare($sql);

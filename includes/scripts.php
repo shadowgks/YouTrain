@@ -12,7 +12,8 @@ include(__DIR__ . '/../classes/reservationClass.php');
 $reservation_object = new Reservation;
 if (isset($_POST['book-now'])) {
     $reservation_object->insertReservetion($_POST, $_SESSION);
-    echo "<script>window.location.replace('../voyages.php')</script>";
+    // echo "<script>window.location.replace('../voyages.php')</script>";
+    header("location: ../bookings.php");
 }
 
 //end crud fouad
@@ -20,8 +21,7 @@ if (isset($_POST['book-now'])) {
 // Begin saad
 include __DIR__ . '/../classes/voyagesClass.php';
 include __DIR__ . '/../classes/villeClass.php';
-$data_villes = new Ville();
-$data_voyages = new Voyages();
+$data_villes  = new Ville();
 $data_voyages = new Voyages();
 // End saad
 
