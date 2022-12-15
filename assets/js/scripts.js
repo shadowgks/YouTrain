@@ -11,7 +11,7 @@ let ticketBtn = document.querySelectorAll('.ticketBtn');
 let nameInput = document.getElementById('nameInput');
 let numInput = document.querySelector('#numInput');
 let capacityInput = document.getElementById('capacityInput');
-let checkInput = document.getElementById('checkInput');
+let citiesBox = document.querySelector('.cities');
 let modalTitle = document.querySelector('.pop-title');
 let depDateInput = document.querySelector('.d-input');
 let arrDateInput = document.querySelector('.a-input');
@@ -24,13 +24,18 @@ let updateTravels = document.querySelectorAll('.updateTravels');
 let departureInput = document.querySelector('#departureInput')
 console.log(updateTravels);
 let idInput = document.querySelector('#idInput');
+let inputName = document.querySelector('#namesInput');
+let trainNumInput = document.querySelector('#trainNumberInput');
 let arrivalDateInput = document.querySelector('#arrivalInput');
 let departureStation = document.querySelector('#depStation');
 let arrivalStation = document.querySelector('#arrStation');
 let trippriceInput = document.querySelector('#priceInput');
+let inputCapacity = document.querySelector('#capacity');
+let selectCity = document.querySelector('#citiesBox')
 let saveBtn = document.querySelector('#saveBtn');
 let upBtn = document.querySelector('#updateBtn');
-let deleteBtn = document.querySelector('#deleteBtn')
+let deleteBtn = document.querySelector('#deleteBtn');
+let crudform = document.querySelector('#exampleModal');
 console.log(arrivalStation)
 
 
@@ -66,17 +71,19 @@ function showTripModal(){
     capacityInput.style.display = 'none';
     numInput.style.display = 'none';
     nameInput.style.display = 'none';
-    checkInput.style.display = 'none';
     usersList.style.display = 'none';
     tripsList.style.display = 'none';
+    citiesBox.style.display = 'none'
     modalTitle.innerText = "Add Trip";
+    saveBtn.style.display = 'block';
+    deleteBtn.style.display = 'none';
+    updateBtn.style.display = 'none';
 }
 
 function showTrainModal(){
     capacityInput.style.display = 'block';
     numInput.style.display = 'block';
     nameInput.style.display = 'block';
-    checkInput.style.display = 'block';
     depDateInput.style.display = 'none';
     arrDateInput.style.display = 'none';
     priceInput.style.display = 'none';
@@ -84,15 +91,16 @@ function showTrainModal(){
     arrSelectBox.style.display = 'none';
     usersList.style.display = 'none';
     tripsList.style.display = 'none';
-    
+    citiesBox.style.display = 'none'
     modalTitle.innerText = "Add Train";
-    
+    deleteBtn.style.display = 'none';
+    updateBtn.style.display = 'none';
+    saveBtn.style.display = 'block';
 }
 
 function showStationModal(){
     capacityInput.style.display = 'none';
     numInput.style.display = 'none';
-    checkInput.style.display = 'none';
     depDateInput.style.display = 'none';
     arrDateInput.style.display = 'none';
     priceInput.style.display = 'none';
@@ -101,8 +109,12 @@ function showStationModal(){
     usersList.style.display = 'none';
     tripsList.style.display = 'none';
     nameInput.style.display = 'block';
+    citiesBox.style.display = 'block'
 
     modalTitle.innerText = "Add Station";
+    deleteBtn.style.display = 'none';
+    updateBtn.style.display = 'none';
+    saveBtn.style.display = 'block';
 }
 
 function showTicketModal(){
@@ -112,13 +124,15 @@ function showTicketModal(){
     capacityInput.style.display = 'none';
     nameInput.style.display = 'none';
     numInput.style.display = 'none';
-    checkInput.style.display = 'none';
     depDateInput.style.display = 'none';
     arrDateInput.style.display = 'none';
     priceInput.style.display = 'none';
     depSelectBox.style.display = 'none';
     arrSelectBox.style.display = 'none';
     modalTitle.innerText = "Add Ticket";
+    deleteBtn.style.display = 'none';
+    updateBtn.style.display = 'none';
+    saveBtn.style.display = 'block';
 }
 
 addMobile.addEventListener('click', function () {
@@ -146,7 +160,37 @@ function updateTrip(id){
     arrivalStation.value = tripArrStation;
     trippriceInput.value = tripPrice;
     saveBtn.style.display = 'none';
-    deleteBtn.style.display = 'none';
+    deleteBtn.style.display = 'block';
+    updateBtn.style.display = 'block';
+}
+
+function updateTrain(id){
+    const trainId = document.querySelector(`#train-${id}`);
+    const idTrain = trainId.querySelector('#trainId').getAttribute('data-gareId');
+    const trainNum = trainId.querySelector('#trainId').getAttribute('data-gareNum');
+    const trainName = trainId.querySelector('#trainName').getAttribute('data-gareNom');
+    const trainCapacity = trainId.querySelector('#trainCapacity').getAttribute('data-gareCapacite');
+    showTrainModal();
+    inputCapacity.value = trainCapacity;
+    inputName.value = trainName;
+    trainNumInput.value = trainNum;
+    idInput.value = idTrain;
+    saveBtn.style.display = 'none';
+    deleteBtn.style.display = 'block';
+    updateBtn.style.display = 'block';
+}
+
+function updateStations(id){
+    const stationId = document.querySelector(`#station-${id}`);
+    const stationName = stationId.querySelector('#stationName').getAttribute('data-stationName');
+    const stationCityId = stationId.querySelector('#cityName').getAttribute('data-stationCityId');
+    inputName.value = stationName;
+    selectCity.value = stationCityId;
+    idInput.value = id;
+    showStationModal();
+    saveBtn.style.display = 'none';
+    deleteBtn.style.display = 'block';
+    updateBtn.style.display = 'block';
 }
 // function showUpdateTripModal() {
 //     // showUpdateTripModal();
@@ -170,6 +214,12 @@ for(i=0;i<trainBtn.length;i++){
     trainBtn[i].addEventListener('click', showTrainModal)
 }
 
+deleteBtn.addEventListener('click', ()=>{
+    crudform.reset();
+})
+updateBtn.addEventListener('click', ()=>{
+    crudform.reset();
+})
 // for(i=0;i<updateTravels.length;i++){
 //     updateTravels[i].addEventListener('click', showUpdateTripModal)
 // }
