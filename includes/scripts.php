@@ -12,15 +12,16 @@ include(__DIR__ . '/../classes/reservationClass.php');
 $reservation_object = new Reservation;
 if (isset($_POST['book-now'])) {
     $reservation_object->insertReservetion($_POST, $_SESSION);
-    echo "<script>window.location.replace('../voyages.php')</script>";
+    // echo "<script>window.location.replace('../voyages.php')</script>";
+    header("location: ../bookings.php");
 }
+
 //end crud fouad
 // ====================================================
 // Begin saad
 include __DIR__ . '/../classes/voyagesClass.php';
 include __DIR__ . '/../classes/villeClass.php';
-$data_villes = new Ville();
-$data_voyages = new Voyages();
+$data_villes  = new Ville();
 $data_voyages = new Voyages();
 // End saad
 
@@ -45,8 +46,14 @@ if (isset($_POST["change_user_role"]))             change_role($_POST["check_use
 function signup()
 {
     if ($_POST["password"] == $_POST["password_confirm"]) {
-        $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["password"]
-        , $_POST["password_confirm"], $_FILES['edit_image']['name']);
+        $user1 = new Users(
+            $_POST["firstname"],
+            $_POST["lastname"],
+            $_POST["email"],
+            $_POST["password"],
+            $_POST["password_confirm"],
+            $_FILES['edit_image']['name']
+        );
         if ($user1->signup()) {
             header('Location:../dashboard.php');
         } else {
