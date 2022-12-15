@@ -267,8 +267,8 @@ $result = $stmt->fetch();
                         <img src="assets/group.png" alt="">
                     </div>
                     <div class="desc">
-                        <h1 class="card-title"><span>Stations</span></h1>
-                            <p class="text">20</p>
+                        <h1 class="card-title"><span>Voyages</span></h1>
+                            <p class="text"><?php echo $data_voyages->countVoyageAvailable()['countVoyages'] ?></p>
                     </div>
                 </div>
                 <div class="card-stat">

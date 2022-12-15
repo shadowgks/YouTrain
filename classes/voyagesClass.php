@@ -132,7 +132,7 @@ class Voyages extends DatabaseConnection
             join gares g2 on g2.id=v.gare_darrivee
             join trains on v.id_train
             where v.date_depart >= ?
-            and    v.date_darrivee <= ?
+            and   v.date_darrivee <= ?
             and   v.gare_depart = ? and v.gare_darrivee = ?;");
             $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee]);
             return $stm->fetchAll();
@@ -141,15 +141,29 @@ class Voyages extends DatabaseConnection
         }
     }
 
-    static public function splitDateTime($time)
+    function splitDateTime($time)
     {
         $hour = new DateTime($time);
         return $hour->format('H:i');
     }
 
-    static public function splitDate($date)
+    function splitDate($date)
     {
         $day = new DateTime($date);
         return $day->format('d M');
     }
+
+    //Count voyages
+    function countVoyageAvailable(){
+        try{
+            $stm = $this->getConnect()->prepare("SELECT count(*) AS countVoyages FROM voyages ");
+            $stm->execute();
+            return $stm->fetch();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+        
+    }
+
+
 }

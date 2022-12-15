@@ -101,7 +101,7 @@ include(__DIR__ . '/includes/scripts.php');
     <section class="container-fluid travellers-img p-md-5 p-0 vh-100 align-items-center d-flex">
         <div class="container d-grid gap-5 bg-dark bg-opacity-50 rounded p-md-5 py-4 shadow">
             <h1 class="text-center text-white">Hello Travellers</h1>
-            <form class="row g-3 needs-validation text-white" method="POST" action="voyages.php">
+            <form class="row g-3 needs-validation text-white" method="POST" action="voyages.php" data-parsley-validate>
                 <div class="col-md-6">
                     <label for="validationCustom01" class="form-label fw-bold">Departure City</label>
                     <select class="form-select" name="gare_depart" id="validationCustom04" required>
