@@ -7,22 +7,14 @@ $train_object = new Train();
 if (isset($_POST['save']))   $train_object->insert($_POST);
 if (isset($_POST['update']))   $train_object->update($_POST);
 if (isset($_POST['delete']))  $train_object->delete($_POST);
-
-include(__DIR__ . '/../classes/reservationClass.php');
-$reservation_object = new Reservation();
-if (isset($_POST['book-now'])) {
-    // var_dump($_POST['book-now']);
-    $reservation_object->insertReservetion($_POST, $_SESSION);
-    echo "<script>window.location.replace('../voyages.php')</script>";
-}
-//end fouad
+//end crud fouad
 
 // ====================================================
 // Begin saad
 include __DIR__ . '/../classes/voyagesClass.php';
 include __DIR__ . '/../classes/villeClass.php';
-$data_voyages = new Voyages();
 $data_villes = new Ville();
+$data_voyages = new Voyages();
 // End saad
 
 // //==========================================================
@@ -40,12 +32,13 @@ if (isset($_POST["profile_edit"])) updateUser($_SESSION["user_id"]);
 if (isset($_POST["profile_delete"]))  delete_user($_SESSION["user_id"]);
 if (isset($_GET["logout"]))                      logout();
 if (isset($_POST["delete_user"]))  delete_user($_POST["user_id"]);
+if (isset($_POST["change_user_role"]))             change_role($_POST["check_user"], $_POST["id_user"]);
 
 
 function signup()
 {
     if ($_POST["password"] == $_POST["password_confirm"]) {
-        $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], md5($_POST["password"]), $_POST["password_confirm"]);
+        $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], md5($_POST["password"]), $_POST["password_confirm"], $_FILES['edit_image']['name']);
         if ($user1->signup()) {
             header('Location:../dashboard.php');
         } else {
@@ -61,8 +54,10 @@ function signin()
     $row = Users::login($_POST["email"], $_POST["password"]);
     if (!empty($row)) {
         $_SESSION["user_id"] = $row["id"];
+
         $_SESSION["user_last"] = $row["nom"];
         $_SESSION["user_first"] = $row["prenom"];
+        $_SESSION["user_image"] = $row["image"];
         header("location:../dashboard.php");
     } else {
         header('Location:../login.php');
@@ -86,10 +81,12 @@ function updateUser($user_id)
     $email          = $_POST["edit_email"];
     $password       = $_POST["edit_pass"];
     $password_confirm = $_POST["edit_confirm_pass"];
+    $image = $_FILES['edit_image']['name'];
+
     if ($password != $password_confirm) {
         echo "password don't match";
     } else {
-        $user1 = new Users($firstname, $lastname, $email, $password, $password_confirm);
+        $user1 = new Users($firstname, $lastname, $email, $password, $password_confirm, $image);
         if ($user1->updateUser($user_id)) {
             $_SESSION["user_last"] = $lastname;
             $_SESSION["user_first"] = $firstname;
@@ -109,4 +106,10 @@ function logout()
 {
     Users::logout();
 }
-// End Amina
+function change_role($input, $user_id)
+{
+    if (Users::change_role($input, $user_id)) {
+    } else {
+        echo "didn't change";
+    }
+}

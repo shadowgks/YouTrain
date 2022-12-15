@@ -1,5 +1,5 @@
 <?php
-include(__DIR__.'/includes/scripts.php');
+include(__DIR__ . '/includes/scripts.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,49 +70,49 @@ include(__DIR__.'/includes/scripts.php');
     <section class="container-fluid travellers-img p-md-5 p-0 vh-100 align-items-center d-flex">
         <div class="container d-grid gap-5 bg-dark bg-opacity-50 rounded p-md-5 py-4 shadow">
             <h1 class="text-center text-white">Hello Travellers</h1>
-            <form class="row g-3 needs-validation text-white" >
+            <form class="row g-3 needs-validation text-white" method="POST" action="voyages.php">
                 <div class="col-md-6">
                     <label for="validationCustom01" class="form-label fw-bold">Departure City</label>
-                    <select class="form-select" id="validationCustom04" required>
+                    <select class="form-select" name="gare_depart" id="validationCustom04" required>
                         <option selected disabled value="">Choose...</option>
                         <!-- Affichage Villes -->
-                        <?php 
-                            foreach($data_villes->readData() as $ville){
-                                echo'
-                                <option value="'.$ville['id'].'">'.$ville['ville'].'</option>
+                        <?php
+                        foreach ($data_villes->readData() as $ville) {
+                            echo '
+                                <option value="' . $ville['id'] . '">' . $ville['ville'] . '</option>
                             ';
-                            }
+                        }
                         ?>
                     </select>
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-6">
                     <label for="validationCustom02" class="form-label fw-bold">Departure</label>
-                    <input type="datetime-local" class="form-control" id="validationCustom02" placeholder="Ma date de départ" required />
+                    <input type="datetime-local" name="date_depart" class="form-control" id="validationCustom02" placeholder="Ma date de départ" required />
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-6">
                     <label for="validationCustom01" class="form-label fw-bold">Arrival City</label>
-                    <select class="form-select" id="validationCustom04" required>
+                    <select class="form-select" name="gare_darrivee" id="validationCustom04" required>
                         <option selected disabled value="">Choose...</option>
                         <!-- Affichage Villes -->
-                        <?php 
-                            foreach($data_villes->readData() as $ville){
-                                echo'
-                                <option value="'.$ville['id'].'">'.$ville['ville'].'</option>
+                        <?php
+                        foreach ($data_villes->readData() as $ville) {
+                            echo '
+                                <option value="' . $ville['id'] . '">' . $ville['ville'] . '</option>
                             ';
-                            }
+                        }
                         ?>
                     </select>
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-6">
                     <label for="validationCustom03" class="form-label fw-bold">Return (optionel)</label>
-                    <input type="datetime-local" class="form-control" id="validationCustom03" placeholder="Ma date de retour" required />
+                    <input type="datetime-local" name="date_darrivee" class="form-control" id="validationCustom03" placeholder="Ma date de retour" />
                     <div class="invalid-feedback">Please provide a valid Return.</div>
                 </div>
                 <div class="col-12 text-center pt-4">
-                    <button class="btn text-white" type="submit" style="background-color: #6351ce">Book Now <i class="bi bi-arrow-right-short"></i></button>
+                    <button class="btn text-white" type="submit" name="search_voyage" style="background-color: #6351ce">Book Now <i class="bi bi-arrow-right-short"></i></button>
                 </div>
             </form>
         </div>

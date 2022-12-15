@@ -249,10 +249,10 @@ include(__DIR__ . '/includes/scripts.php');
                     <!-- End bookings old -->
 
                     <!-- if vide bookings -->
-                    <!-- <div class="card-body p-5">
+                    <div class="card-body p-5">
                         <h5 class="card-title">You have no more upcoming journeys</h5>
                         <a href="#" class="btn text-white" style="background-color: #6351ce">Go somewhere</a>
-                    </div> -->
+                    </div>
                 </div>
                 <!--End booking -->
             </div>
