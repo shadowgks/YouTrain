@@ -21,7 +21,7 @@ class Stations{
 
     static public function readStations(){
         global $db_obj;
-        $sql = "SELECT * FROM `gares`";
+        $sql = "SELECT gares.*, villes.ville AS city FROM gares INNER JOIN villes ON gares.id_ville = villes.id;";
         $pdo = $db_obj->getConnect();
         $statement = $pdo->prepare($sql);
         $statement->execute();
