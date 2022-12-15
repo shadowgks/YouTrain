@@ -438,8 +438,6 @@ $result = $stmt->fetch();
                         <th>#</th>
                         <th>Nom</th>
                         <th>Train</th>
-                        <th>Voyage</th>
-                        <th>Ville</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -453,7 +451,7 @@ $result = $stmt->fetch();
                         <tr>
                         <td>'  .  $count  .  '</td>
                         <td>'  .  $row['nom']  .  '</td>
-                        <td>'  .  $row['id-ville']  .  '</td>
+                        <td>'  .  $row['id_ville']  .  '</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">
                             <div>
