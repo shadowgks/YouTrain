@@ -1,6 +1,5 @@
 <?php
-
-// begin crud fouad/
+// begin fouad
 include(__DIR__ . '/../classes/trainClass.php');
 session_start();
 

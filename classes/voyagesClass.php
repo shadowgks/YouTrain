@@ -86,7 +86,11 @@ class Voyages extends DatabaseConnection
     function readData()
     {
         try {
-            $stm = $this->getConnect()->prepare("SELECT * FROM voyages");
+            $stm = $this->getConnect()->prepare("SELECT voyages.id,voyages.date_depart,voyages.date_darrivee,voyages.price,voyages.id_train
+            ,v1.ville AS 'gare_depart',v2.ville AS 'gare_darrivee'
+            FROM voyages
+            join villes v1 on v1.id = voyages.gare_depart
+            join villes v2 on v2.id = voyages.gare_darrivee;");
             $stm->execute();
             return $stm->fetchAll();
         } catch (Exception $e) {

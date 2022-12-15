@@ -55,6 +55,7 @@ $result = $stmt->fetch();
     <title>Dashboard</title>
 </head>
 
+
 <body>
     <div class=" grid">
         <!-- <div class="mobile-menu">
@@ -410,9 +411,9 @@ $result = $stmt->fetch();
                     $data = $train_object->displaytrains();
                     while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>
-                                    <td>" . $index . "</td>
-                                    <td>" . $row['nom'] . "</td>
-                                    <td>" . $row['capacite'] . "</td>
+                                    <td data-gareId = ".$row['id'].">" . $index . "</td>
+                                    <td data-gareNom = ".$row['nom'].">" . $row['nom'] . "</td>
+                                    <td data-gareCapacite = ".$row['capacite'].">" . $row['capacite'] . "</td>
                                     <!-- btn edite delete -->
                                     <td class='d-flex align-items-center'>
                                     <div>
@@ -424,18 +425,6 @@ $result = $stmt->fetch();
                         $index++;
                     }
                     ?>
-                    <!-- <tr>
-                            <td>1</td>
-                            <td>nombre</td>
-                            <td>nom</td>
-                            <td>8478</td> -->
-                    <!-- btn edite delete -->
-                    <!-- <td class="d-flex align-items-center">
-                                <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
-                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr> -->
-
                 </tbody>
             </table>
         </section>
