@@ -1,9 +1,10 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
 
-if (!isset($_SESSION["user_id"])) {
-    header('Location:login.php');
+if (!isset($_SESSION["user_id"]) || ($_SESSION["role"]) == 0) {
+    header('Location:index.php');
 }
+
 //fouad
 $train_object->displayTrains();
 //fouad
@@ -532,20 +533,32 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3 dstation-select">
                         <label class="form-label">Departure Station</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="depStation">
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php 
+                            $data = Stations::readStations();
+                                foreach($data AS $item){
+                                    echo '
+                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                                    ';
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="arrStation">
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+
+                            <?php 
+                            $data = Stations::readStations();
+                                foreach($data AS $item){
+                                    echo '
+                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                                    ';
+                                }
+                            ?>
+
                         </select>
                     </div>
 
@@ -580,7 +593,7 @@ $result = $stmt->fetch();
 
                     <div class="mb-3 price-input">
                         <label class="form-label">Price</label>
-                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="arrivalInput">
+                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="priceInput">
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">departure date</label>
@@ -596,9 +609,9 @@ $result = $stmt->fetch();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="delete">delete</button>
-                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" name="update">update</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" name="save">Save</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="delete" id="deleteBtn">delete</button>
+                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" name="update" id="updateBtn">update</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" name="save" id="saveBtn">Save</button>
                 </div>
             </div>
         </div>

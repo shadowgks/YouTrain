@@ -21,6 +21,7 @@ include __DIR__ . '/../classes/voyagesClass.php';
 include __DIR__ . '/../classes/villeClass.php';
 $data_villes = new Ville();
 $data_voyages = new Voyages();
+$data_voyages = new Voyages();
 // End saad
 
 // //==========================================================
@@ -61,7 +62,6 @@ function signin()
     $row = Users::login($_POST["email"], $_POST["password"]);
     if (!empty($row)) {
         $_SESSION["user_id"] = $row["id"];
-
         $_SESSION["user_last"] = $row["nom"];
         $_SESSION["user_first"] = $row["prenom"];
         $_SESSION["user_image"] = $row["image"];
