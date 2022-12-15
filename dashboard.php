@@ -1,8 +1,10 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
-if (!isset($_SESSION["user_id"])) {
-    header('Location:login.php');
+
+if (!isset($_SESSION["user_id"]) || ($_SESSION["role"]) == 0) {
+    header('Location:index.php');
 }
+
 //fouad
 $train_object->displayTrains();
 //fouad
@@ -196,7 +198,7 @@ $result = $stmt->fetch();
                         <div class="profile" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="profile-img">
 
-                                <img src="<?= $result['image'] ?>" alt="" class="rounded" width="50px">
+                                <img toggle="modal" data-bs-target="#edit_user" src="<?= $result['image'] ?>" alt="" class="rounded" width="50px">
                                 <!-- <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 29 29">
                                     <path d="M14.5 2A12.514 12.514 0 0 0 2 14.5 12.521 12.521 0 0 0 14.5 27a12.5 12.5 0 0 0 0-25Zm7.603 19.713a8.48 8.48 0 0 0-15.199.008A10.367 10.367 0 0 1 4 14.5a10.5 10.5 0 0 1 21 0 10.368 10.368 0 0 1-2.897 7.213ZM14.5 7a4.5 4.5 0 1 0 4.5 4.5A4.5 4.5 0 0 0 14.5 7Z" />
                                 </svg> -->
@@ -327,9 +329,9 @@ $result = $stmt->fetch();
                                     <form action="" method="post">
                                         <input type="hidden" value="<?= $row["id"]; ?>" name="id_user">
                                         <input type="hidden" value="<?= $row["role"]; ?>" name="check_user">
-                                        <button id="btn_submit_change_user<?=$row['id'];?>" type="submit" name="change_user_role" class="d-none"></button>
+                                        <button id="btn_submit_change_user<?= $row['id']; ?>" type="submit" name="change_user_role" class="d-none"></button>
                                     </form>
-                                    <input onchange="change_user_role(this.id)" id="<?= $row['id'];?>" type="checkbox" data-toggle="toggle" data-off="<?= $data_on ?>" data-on="<?= $data_off ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                                    <input onchange="change_user_role(this.id)" id="<?= $row['id']; ?>" type="checkbox" data-toggle="toggle" data-off="<?= $data_on ?>" data-on="<?= $data_off ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
                                     <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>" name="user_id"><button type="submit" name="delete_user" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
                                 </td>
                             </tr>
@@ -343,7 +345,7 @@ $result = $stmt->fetch();
             </table>
             <script>
                 function change_user_role(id) {
-                    document.getElementById("btn_submit_change_user"+id).click();
+                    document.getElementById("btn_submit_change_user" + id).click();
                 }
             </script>
         </section>
@@ -520,19 +522,30 @@ $result = $stmt->fetch();
                         <label class="form-label">Departure Station</label>
                         <select class="form-select" aria-label="Default select example" id="depStation">
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            <?php 
+                            $data = Stations::readStations();
+                                foreach($data AS $item){
+                                    echo '
+                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                                    ';
+                                }
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
                         <select class="form-select" aria-label="Default select example" id="arrStation">
                             <option selected>Open this select menu</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
-                            <option value="4">Four</option>
+
+                            <?php 
+                            $data = Stations::readStations();
+                                foreach($data AS $item){
+                                    echo '
+                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                                    ';
+                                }
+                            ?>
+
                         </select>
                     </div>
                     <div class="mb-3 cities">

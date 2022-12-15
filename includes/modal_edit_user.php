@@ -27,7 +27,7 @@
 					</div>
 					<div>
 					               <label class="ms-2 text-secondary">Image :</label>
-					               <input type="file"  accept="image/png ,image/jpg, image/jpeg" class="form-control mt-0" name="edit_image"  value="<?= $row["image"] ?>">
+					               <input type="file"  accept="image/png ,image/jpg, image/jpeg" name="edit_image" class="form-control mt-0" name="edit_image"  value="<?= $row["image"] ?>">
 					</div>
 					              <input type="password" class="form-control mt-3" name="edit_pass" placeholder="Password" value="">
 					              <input type="password" class="form-control mt-3" name="edit_confirm_pass" placeholder="Confirm Password" value="">

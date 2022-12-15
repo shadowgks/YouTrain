@@ -23,9 +23,9 @@ class Reservation
         $id_voyage = $_post['book-now'];
         $time = time();
         $current_date = date('Y-m-d h:i:s', $time);
-        $data = [$id_client, $id_voyage, $current_date];
+        $data = [$current_date, $id_client, $id_voyage];
         $pdo = $db_obj->getConnect();
-        $statement = $pdo->prepare("INSERT INTO reservation (id_client,id_voyage,date_reservation) VALUES (?,?,?)")->execute($data);
+        $statement = $pdo->prepare("INSERT INTO reservation (date_reservation,id_client,id_voyage) VALUES (?,?,?)")->execute($data);
     }
     public function deleteReservation($id)
     {
