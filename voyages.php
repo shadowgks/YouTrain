@@ -66,7 +66,7 @@ include(__DIR__ . '/includes/scripts.php');
             <div class="card text-center">
                 <h3 class="m-0 p-4 text-white" style="background-color: #6351ce">MY TRIP</h3>
                 <?php
-                $data = $data_voyages->searchData();
+                
                 // var_dump($data);
                 // die;
                 if (isset($_POST['search_voyage'])){
@@ -76,130 +76,79 @@ include(__DIR__ . '/includes/scripts.php');
                     $data_voyages->setGareDarrivee($_POST['gare_darrivee']);
                     $data_voyages->searchData();
                 };
-                foreach ($data as $item){
+                $data = $data_voyages->searchData();
+                $count = 0;
+                if(!$data){
                     echo '
-                    <div>
-                    <hr class="p-0 m-0" />
-                    <!-- price and date -->
-                    <div class="row px-5 py-3">
-                        <h5 class="text-start fw-bold" style="color: #6351ce">#1</h5>
-                        <div class="col d-md-flex">
-                            <!-- date -->
-                            <div class="text-start">
-                                <h4>22 SEP</h4>
-                            </div>
-                            <hr class="d-block d-md-none" />
-                            <!-- time -->
-                            <div class="ms-md-5">
-                                <div class="text-start">
-                                    <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                    <span>Youssoufia</span>
-                                </div>
-                                <div class="text-start">
-                                    <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                    <span>Casablanca</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- price -->
-                        <div class="col text-end">
-                            <h4 class="text-end">'.$item['price'].'DH</h4>
-                            <!-- Réserver -->
-                            <form action="includes/scripts.php" method="Post">
-                                <button type="submit" name="book-now" value="2" class="btn text-white" style="background-color: #6351ce">Book Now</button>
-                            </form>
-                        </div>
+                    <div class="card-body p-5">
+                        <h5 class="card-title">You have no more upcoming journeys!</h5>
+                        <a href="#" class="btn text-white" style="background-color: #6351ce">Go somewhere</a>
                     </div>
-                    <!-- Ticket -->
-                    <div class="row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded" style="background-color: #1c2331">
-                        <!-- time -->
-                        <div class="col-lg">
-                            <!-- time -->
-                            <div class="">
-                                <div class="">
-                                    <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                    <span>Youssoufia</span>
-                                </div>
-                                <div class="">
-                                    <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                    <span>Casablanca</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- Refund and exchange -->
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <div class="col-lg">
-                            <p class="fw-bold" style="color: #6351ce">Refund and exchange: STANDARD</p>
-                        </div>
-                    </div>
-                </div>
                     ';
+                }else{
+                    foreach ($data as $item){
+                        $count++;
+                        echo '
+                        <div>
+                        <hr class="p-0 m-0" />
+                        <!-- price and date -->
+                        <div class="row px-5 py-3">
+                            <h5 class="text-start fw-bold" style="color: #6351ce">#'.$count.'</h5>
+                            <div class="col d-md-flex">
+                                <!-- date -->
+                                <div class="text-start">
+                                    <h4>'.Voyages::splitDate($item['date_depart']).'</h4>
+                                </div>
+                                <hr class="d-block d-md-none" />
+                                <!-- time -->
+                                <div class="ms-md-5">
+                                    <div class="text-start">
+                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_depart']).'</span>
+                                        <span>'.$item['gare_depart'].'</span>
+                                    </div>
+                                    <div class="text-start">
+                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_darrivee']).'</span>
+                                        <span>'.$item['gare_darrivee'].'</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- price -->
+                            <div class="col text-end">
+                                <h4 class="text-end">'.$item['price'].'DH</h4>
+                                <!-- Réserver -->
+                                <form action="includes/scripts.php" method="Post">
+                                    <button type="submit" name="book-now" value="2" class="btn text-white" style="background-color: #6351ce">Book Now</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Ticket -->
+                        <div class="row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded" style="background-color: #1c2331">
+                            <!-- time -->
+                            <div class="col-lg">
+                                <!-- time -->
+                                <div class="">
+                                    <div class="">
+                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_depart']).'</span>
+                                        <span>'.$item['gare_depart'].'</span>
+                                    </div>
+                                    <div class="">
+                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_darrivee']).'</span>
+                                        <span>'.$item['gare_darrivee'].'</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="w-25 m-auto d-block d-lg-none" />
+                            <!-- Refund and exchange -->
+                            <hr class="w-25 m-auto d-block d-lg-none" />
+                            <div class="col-lg">
+                                <p class="fw-bold" style="color: #6351ce">Refund and exchange: STANDARD</p>
+                            </div>
+                        </div>
+                    </div>
+                        ';
+                    }
                 }
                 ?>
-                <div>
-                    <hr class="p-0 m-0" />
-                    <!-- price and date -->
-                    <div class="row px-5 py-3">
-                        <h5 class="text-start fw-bold" style="color: #6351ce">#1</h5>
-                        <div class="col d-md-flex">
-                            <!-- date -->
-                            <div class="text-start">
-                                <h4>22 SEP</h4>
-                            </div>
-                            <hr class="d-block d-md-none" />
-                            <!-- time -->
-                            <div class="ms-md-5">
-                                <div class="text-start">
-                                    <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                    <span>Youssoufia</span>
-                                </div>
-                                <div class="text-start">
-                                    <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                    <span>Casablanca</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- price -->
-                        <div class="col text-end">
-                            <h4 class="text-end">100.00DH</h4>
-                            <!-- Réserver -->
-                            <form action="includes/scripts.php" method="Post">
-                                <button type="submit" name="book-now" value="2" class="btn text-white" style="background-color: #6351ce">Book Now</button>
-                            </form>
-                        </div>
-                    </div>
-                    <!-- Ticket -->
-                    <div class="row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded" style="background-color: #1c2331">
-                        <!-- time -->
-                        <div class="col-lg">
-                            <!-- time -->
-                            <div class="">
-                                <div class="">
-                                    <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                    <span>Youssoufia</span>
-                                </div>
-                                <div class="">
-                                    <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                    <span>Casablanca</span>
-                                </div>
-                            </div>
-                        </div>
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <!-- names -->
-                        <div class="col-lg">
-                            <p class="m-0">Saad Moumou</p>
-                            <p class="m-0">Issam Moumou</p>
-                        </div>
-                        <!-- Refund and exchange -->
-                        <hr class="w-25 m-auto d-block d-lg-none" />
-                        <div class="col-lg">
-                            <p class="fw-bold" style="color: #6351ce">Refund and exchange: STANDARD</p>
-                        </div>
-                    </div>
-                </div>
-                
-
             </div>
         </div>
     </section>

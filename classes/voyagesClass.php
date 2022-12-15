@@ -117,7 +117,8 @@ class Voyages extends DatabaseConnection
     }
 
     //Search Data
-    function searchData(){
+    function searchData()
+    {
         try {
             $stm = $this->getConnect()->prepare("SELECT v.id,v.date_depart,v.date_darrivee,v.price,v.id_train,trains.capacite,
             g1.nom AS 'gare_depart',g2.nom AS 'gare_darrivee'
@@ -126,15 +127,24 @@ class Voyages extends DatabaseConnection
             join gares g2 on g2.id=v.gare_darrivee
             join trains on v.id_train
             where v.date_depart >= ?
-            and   v.date_darrivee <= ?
+            or    v.date_darrivee <= ?
             and   v.gare_depart = ? and v.gare_darrivee = ?;");
-            
             $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee]);
-            var_dump($stm->fetchAll());
-            die;
             return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    static public function splitDateTime($time)
+    {
+        $hour = new DateTime($time);
+        return $hour->format('H:i');
+    }
+
+    static public function splitDate($date)
+    {
+        $day = new DateTime($date);
+        return $day->format('d M');
     }
 }

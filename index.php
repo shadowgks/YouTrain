@@ -108,7 +108,7 @@ include(__DIR__ . '/includes/scripts.php');
                 </div>
                 <div class="col-md-6">
                     <label for="validationCustom03" class="form-label fw-bold">Return (optionel)</label>
-                    <input type="datetime-local" name="date_darrivee" class="form-control" id="validationCustom03" placeholder="Ma date de retour" required />
+                    <input type="datetime-local" name="date_darrivee" class="form-control" id="validationCustom03" placeholder="Ma date de retour" />
                     <div class="invalid-feedback">Please provide a valid Return.</div>
                 </div>
                 <div class="col-12 text-center pt-4">
