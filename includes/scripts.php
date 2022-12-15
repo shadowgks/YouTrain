@@ -14,6 +14,7 @@ if (isset($_POST['book-now'])) {
     $reservation_object->insertReservetion($_POST, $_SESSION);
     echo "<script>window.location.replace('../voyages.php')</script>";
 }
+
 //end crud fouad
 // ====================================================
 // Begin saad
@@ -45,8 +46,14 @@ if (isset($_POST["change_user_role"]))             change_role($_POST["check_use
 function signup()
 {
     if ($_POST["password"] == $_POST["password_confirm"]) {
-        $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["password"]
-        , $_POST["password_confirm"], $_FILES['edit_image']['name']);
+        $user1 = new Users(
+            $_POST["firstname"],
+            $_POST["lastname"],
+            $_POST["email"],
+            $_POST["password"],
+            $_POST["password_confirm"],
+            $_FILES['edit_image']['name']
+        );
         if ($user1->signup()) {
             header('Location:../dashboard.php');
         } else {
