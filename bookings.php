@@ -1,3 +1,6 @@
+<?php
+include(__DIR__ . '/includes/scripts.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,6 +14,10 @@
     <!-- Begin Bootstrap icon -->
     <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css" />
     <!-- End Bootstrap icon -->
+    <!-- BEGIN parsley css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
+    <!-- END parsley css-->
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>YouTrain</title>
 </head>
@@ -88,198 +95,160 @@
                 <div class="tab-content" id="nav-tabContent">
                     <!-- Begin bookings Now -->
                     <div class="tab-pane fade show active" id="Upcoming" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                        <div>
-                            <hr class="p-0 m-0" />
-                            <!-- price and date -->
-                            <div class="row px-5 py-3">
-                                <!-- NumRow And icon load -->
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="text-start fw-bold" style="color: #6351ce">#1</h5>
-                                    <div class="spinner-grow" role="status" style="color: #6351ce"></div>
-                                </div>
-
-                                <div class="col d-md-flex">
-                                    <!-- date -->
-                                    <div class="text-start">
-                                        <p class="m-0">TURSDAY</p>
-                                        <h4>22 SEP</h4>
+                        <?php
+                        $data = $reservation_object->getReservations();
+                        $index = 1;
+                        $time = time();
+                        $current_date = date('Y-m-d h:i:s', $time);
+                        while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
+                            // var_dump($current_date < $row['date_darrivee']);
+                            if ($current_date < $row['date_darrivee']) {
+                                echo "  <div>
+                                <hr class='p-0 m-0' />
+                                <!-- price and date -->
+                                <div class='row px-5 py-3'>
+                                    <!-- NumRow And icon load -->
+                                    <div class='d-flex justify-content-between'>
+                                        <h5 class='text-start fw-bold' style='color: #6351ce'>#" . $index . "</h5>
+                                        <div class='spinner-grow' role='status' style='color: #6351ce'></div>
                                     </div>
-                                    <hr class="d-block d-md-none" />
+    
+                                    <div class='col d-md-flex'>
+                                        <!-- date -->
+                                        <div class='text-start'>
+                                            <p class='m-0'>Date</p>
+                                            <h4>" . Reservation::splitDate($row['date_depart']) . "</h4>
+                                        </div>
+                                        <hr class='d-block d-md-none' />
+                                        <!-- time -->
+                                        <div class='ms-md-5'>
+                                            <div class='text-start'>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_depart']) . "</span>
+                                                <span>" . $row['Gare_depart'] . "</span>
+                                            </div>
+                                            <div class='text-start'>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_darrivee']) . "</span>
+                                                <span>" . $row['Gare_darrivee'] . "</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- price -->
+                                    <div class='col'>
+                                        <h4 class='text-end'>" . $row['price'] . ".00DH</h4>
+                                    </div>
+                                </div>
+                                <!-- Ticket -->
+                                <div class='row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded' style='background-color: #1c2331'>
                                     <!-- time -->
-                                    <div class="ms-md-5">
-                                        <div class="text-start">
-                                            <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                            <span>Youssoufia</span>
-                                        </div>
-                                        <div class="text-start">
-                                            <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                            <span>Casablanca</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- price -->
-                                <div class="col">
-                                    <h4 class="text-end">100.00DH</h4>
-                                </div>
-                            </div>
-                            <!-- Ticket -->
-                            <div class="row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded" style="background-color: #1c2331">
-                                <!-- time -->
-                                <div class="col-lg">
-                                    <!-- time -->
-                                    <div class="">
-                                        <div class="">
-                                            <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                            <span>Youssoufia</span>
-                                        </div>
-                                        <div class="">
-                                            <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                            <span>Casablanca</span>
+                                    <div class='col-lg'>
+                                        <!-- time -->
+                                        <div class=''>
+                                            <div class=''>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_depart']) . "</span>
+                                                <span>" . $row['Gare_depart'] . "</span>
+                                            </div>
+                                            <div class=''>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_darrivee']) . "</span>
+                                                <span>Casablanca</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <hr class="w-25 m-auto d-block d-lg-none" />
-                                <!-- names -->
-                                <div class="col-lg">
-                                    <p class="m-0">Saad Moumou</p>
-                                    <p class="m-0">Issam Moumou</p>
-                                </div>
-                                <!-- Refund and exchange -->
-                                <hr class="w-25 m-auto d-block d-lg-none" />
-                                <div class="col-lg">
-                                    <p class="fw-bold" style="color: #6351ce">Refund and exchange: STANDARD</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <hr class="p-0 m-0" />
-                            <!-- price and date -->
-                            <div class="row px-5 py-3">
-                                <!-- NumRow And icon load -->
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="text-start fw-bold" style="color: #6351ce">#1</h5>
-                                    <div class="spinner-grow" role="status" style="color: #6351ce"></div>
-                                </div>
-
-                                <div class="col d-md-flex">
-                                    <!-- date -->
-                                    <div class="text-start">
-                                        <h4>22 SEP</h4>
+                                    <hr class='w-25 m-auto d-block d-lg-none' />
+                                    <!-- names -->
+                                    <div class='col-lg'>
+                                        <p class='m-0'>YOUTRAIN</p>
+                                        <p class='m-0'>YOUTRAIN</p>
                                     </div>
-                                    <hr class="d-block d-md-none" />
-                                    <!-- time -->
-                                    <div class="ms-md-5">
-                                        <div class="text-start">
-                                            <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                            <span>Youssoufia</span>
-                                        </div>
-                                        <div class="text-start">
-                                            <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                            <span>Casablanca</span>
-                                        </div>
+                                    <!-- Refund and exchange -->
+                                    <hr class='w-25 m-auto d-block d-lg-none' />
+                                    <div class='col-lg'>
+                                        <p class='fw-bold' style='color: #6351ce'>Refund and exchange: STANDARD</p>
                                     </div>
                                 </div>
-                                <!-- price -->
-                                <div class="col">
-                                    <h4 class="text-end">100.00DH</h4>
-                                </div>
-                            </div>
-                            <!-- Ticket -->
-                            <div class="row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded" style="background-color: #1c2331">
-                                <!-- time -->
-                                <div class="col-lg">
-                                    <!-- time -->
-                                    <div class="">
-                                        <div class="">
-                                            <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                            <span>Youssoufia</span>
-                                        </div>
-                                        <div class="">
-                                            <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                            <span>Casablanca</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class="w-25 m-auto d-block d-lg-none" />
-                                <!-- names -->
-                                <div class="col-lg">
-                                    <p class="m-0">Saad Moumou</p>
-                                    <p class="m-0">Issam Moumou</p>
-                                </div>
-                                <!-- Refund and exchange -->
-                                <hr class="w-25 m-auto d-block d-lg-none" />
-                                <div class="col-lg">
-                                    <p class="fw-bold" style="color: #6351ce">Refund and exchange: STANDARD</p>
-                                </div>
-                            </div>
-                        </div>
+                            </div>";
+                                $index++;
+                            }
+                        }
+                        ?>
                     </div>
                     <!-- End bookings Now -->
                     <!-- Begin bookings old -->
                     <div class="tab-pane fade" id="Past" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                        <div>
-                            <hr class="p-0 m-0" />
-                            <!-- price and date -->
-                            <div class="row px-5 py-3">
-                                <!-- NumRow And icon Trash -->
-                                <div class="d-flex justify-content-between">
-                                    <h5 class="text-start fw-bold" style="color: #6351ce">#1</h5>
-                                    <a href="#" style="color: #6351ce"><i class="bi bi-trash fs-2"></i></a>
-                                </div>
-
-                                <div class="col d-md-flex">
-                                    <!-- date -->
-                                    <div class="text-start">
-                                        <h4>22 SEP</h4>
+                        <?php
+                        $data = $reservation_object->getReservations();
+                        $index = 1;
+                        $time = time();
+                        $current_date = date('Y-m-d h:i:s', $time);
+                        while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
+                            // var_dump($current_date < $row['date_darrivee']);
+                            if ($current_date > $row['date_darrivee']) {
+                                echo "  <div>
+                                <hr class='p-0 m-0' />
+                                <!-- price and date -->
+                                <div class='row px-5 py-3'>
+                                    <!-- NumRow And icon load -->
+                                    <div class='d-flex justify-content-between'>
+                                        <h5 class='text-start fw-bold' style='color: #6351ce'>#" . $index . "</h5>
+                                        <div class='spinner-grow' role='status' style='color: #6351ce'></div>
                                     </div>
-                                    <hr class="d-block d-md-none" />
+    
+                                    <div class='col d-md-flex'>
+                                        <!-- date -->
+                                        <div class='text-start'>
+                                            <p class='m-0'>Date</p>
+                                            <h4>" . Reservation::splitDate($row['date_depart']) . "</h4>
+                                        </div>
+                                        <hr class='d-block d-md-none' />
+                                        <!-- time -->
+                                        <div class='ms-md-5'>
+                                            <div class='text-start'>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_depart']) . "</span>
+                                                <span>" . $row['Gare_depart'] . "</span>
+                                            </div>
+                                            <div class='text-start'>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_darrivee']) . "</span>
+                                                <span>" . $row['Gare_darrivee'] . "</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- price -->
+                                    <div class='col'>
+                                        <h4 class='text-end'>" . $row['price'] . ".00DH</h4>
+                                    </div>
+                                </div>
+                                <!-- Ticket -->
+                                <div class='row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded' style='background-color: #1c2331'>
                                     <!-- time -->
-                                    <div class="ms-md-5">
-                                        <div class="text-start">
-                                            <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                            <span>Youssoufia</span>
-                                        </div>
-                                        <div class="text-start">
-                                            <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                            <span>Casablanca</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- price -->
-                                <div class="col">
-                                    <h4 class="text-end">100.00DH</h4>
-                                </div>
-                            </div>
-                            <!-- Ticket -->
-                            <div class="row gap-4 align-items-center mx-5 mb-5 py-3 text-white rounded" style="background-color: #1c2331">
-                                <!-- time -->
-                                <div class="col-lg">
-                                    <!-- time -->
-                                    <div class="">
-                                        <div class="">
-                                            <span class="fw-bold" style="color: #6351ce">11:13</span>
-                                            <span>Youssoufia</span>
-                                        </div>
-                                        <div class="">
-                                            <span class="fw-bold" style="color: #6351ce">02:20</span>
-                                            <span>Casablanca</span>
+                                    <div class='col-lg'>
+                                        <!-- time -->
+                                        <div class=''>
+                                            <div class=''>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_depart']) . "</span>
+                                                <span>" . $row['Gare_depart'] . "</span>
+                                            </div>
+                                            <div class=''>
+                                                <span class='fw-bold' style='color: #6351ce'>" . Reservation::splitDateTime($row['date_darrivee']) . "</span>
+                                                <span>Casablanca</span>
+                                            </div>
                                         </div>
                                     </div>
+                                    <hr class='w-25 m-auto d-block d-lg-none' />
+                                    <!-- names -->
+                                    <div class='col-lg'>
+                                        <p class='m-0'>YOUTRAIN</p>
+                                        <p class='m-0'>YOUTRAIN</p>
+                                    </div>
+                                    <!-- Refund and exchange -->
+                                    <hr class='w-25 m-auto d-block d-lg-none' />
+                                    <div class='col-lg'>
+                                        <p class='fw-bold' style='color: #6351ce'>Refund and exchange: STANDARD</p>
+                                    </div>
                                 </div>
-                                <hr class="w-25 m-auto d-block d-lg-none" />
-                                <!-- names -->
-                                <div class="col-lg">
-                                    <p class="m-0">Saad Moumou</p>
-                                    <p class="m-0">Issam Moumou</p>
-                                </div>
-                                <!-- Refund and exchange -->
-                                <hr class="w-25 m-auto d-block d-lg-none" />
-                                <div class="col-lg">
-                                    <p class="fw-bold" style="color: #6351ce">Refund and exchange: STANDARD</p>
-                                </div>
-                            </div>
-                        </div>
+                            </div>";
+                                $index++;
+                            }
+                        }
+                        ?>
                     </div>
                     <!-- End bookings old -->
 
@@ -411,6 +380,10 @@
     <!-- END footer -->
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- BEGIN parsley js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- END parsley js-->
     <script class="assets/js/scripts.js"></script>
 </body>
 

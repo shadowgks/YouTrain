@@ -50,10 +50,15 @@ $result = $stmt->fetch();
     <!-- Begin css switch toggle -->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet" />
     <!-- End css switch toggle -->
+    <!-- BEGIN parsley css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
+    <!-- END parsley css-->
 
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>Dashboard</title>
 </head>
+
 
 <body>
     <div class=" grid">
@@ -410,9 +415,9 @@ $result = $stmt->fetch();
                     $data = $train_object->displaytrains();
                     while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
                         echo "<tr>
-                                    <td>" . $index . "</td>
-                                    <td>" . $row['nom'] . "</td>
-                                    <td>" . $row['capacite'] . "</td>
+                                    <td data-gareId = ".$row['id'].">" . $index . "</td>
+                                    <td data-gareNom = ".$row['nom'].">" . $row['nom'] . "</td>
+                                    <td data-gareCapacite = ".$row['capacite'].">" . $row['capacite'] . "</td>
                                     <!-- btn edite delete -->
                                     <td class='d-flex align-items-center'>
                                     <div>
@@ -424,18 +429,6 @@ $result = $stmt->fetch();
                         $index++;
                     }
                     ?>
-                    <!-- <tr>
-                            <td>1</td>
-                            <td>nombre</td>
-                            <td>nom</td>
-                            <td>8478</td> -->
-                    <!-- btn edite delete -->
-                    <!-- <td class="d-flex align-items-center">
-                                <button type="submit" class="btn btn-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-pencil-square"></i></button>
-                                <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
-                            </td>
-                        </tr> -->
-
                 </tbody>
             </table>
         </section>
@@ -600,6 +593,9 @@ $result = $stmt->fetch();
 
     <!--BEGIN DATATABLE -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- BEGIN parsley js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- END parsley js-->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <!--BEGIN SWITCH -->

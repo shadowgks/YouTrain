@@ -1,5 +1,8 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
+if (!isset($_SESSION["user_id"])) {
+    header('Location:login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,10 +14,19 @@ include(__DIR__ . '/includes/scripts.php');
     <!-- Begin Bootstrap css -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
     <!-- End Bootstrap css -->
+
     <!-- Begin Bootstrap icon -->
     <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css" />
     <!-- End Bootstrap icon -->
+
+    <!-- Begin Style css -->
     <link rel="stylesheet" href="assets/css/styles.css" />
+    <!-- End Style css -->
+
+    <!-- BEGIN parsley css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
+    <!-- END parsley css-->
     <title>YouTrain</title>
 </head>
 
@@ -66,10 +78,10 @@ include(__DIR__ . '/includes/scripts.php');
             <div class="card text-center">
                 <h3 class="m-0 p-4 text-white" style="background-color: #6351ce">MY TRIP</h3>
                 <?php
-                
+
                 // var_dump($data);
                 // die;
-                if (isset($_POST['search_voyage'])){
+                if (isset($_POST['search_voyage'])) {
                     $data_voyages->setDateDeparte($_POST['date_depart']);
                     $data_voyages->setDateDarrivee($_POST['date_darrivee']);
                     $data_voyages->setGareDepart($_POST['gare_depart']);
@@ -78,46 +90,46 @@ include(__DIR__ . '/includes/scripts.php');
                 };
                 $data = $data_voyages->searchData();
                 $count = 0;
-                if(!$data){
+                if (!$data) {
                     echo '
                     <div class="card-body p-5">
                         <h5 class="card-title">You have no more upcoming journeys!</h5>
                         <a href="#" class="btn text-white" style="background-color: #6351ce">Go somewhere</a>
                     </div>
                     ';
-                }else{
-                    foreach ($data as $item){
+                } else {
+                    foreach ($data as $item) {
                         $count++;
                         echo '
                         <div>
                         <hr class="p-0 m-0" />
                         <!-- price and date -->
                         <div class="row px-5 py-3">
-                            <h5 class="text-start fw-bold" style="color: #6351ce">#'.$count.'</h5>
+                            <h5 class="text-start fw-bold" style="color: #6351ce">#' . $count . '</h5>
                             <div class="col d-md-flex">
                                 <!-- date -->
                                 <div class="text-start">
-                                    <h4>'.Voyages::splitDate($item['date_depart']).'</h4>
+                                    <h4>' . Voyages::splitDate($item['date_depart']) . '</h4>
                                 </div>
                                 <hr class="d-block d-md-none" />
                                 <!-- time -->
                                 <div class="ms-md-5">
                                     <div class="text-start">
-                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_depart']).'</span>
-                                        <span>'.$item['gare_depart'].'</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_depart']) . '</span>
+                                        <span>' . $item['gare_depart'] . '</span>
                                     </div>
                                     <div class="text-start">
-                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_darrivee']).'</span>
-                                        <span>'.$item['gare_darrivee'].'</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_darrivee']) . '</span>
+                                        <span>' . $item['gare_darrivee'] . '</span>
                                     </div>
                                 </div>
                             </div>
                             <!-- price -->
                             <div class="col text-end">
-                                <h4 class="text-end">'.$item['price'].'DH</h4>
+                                <h4 class="text-end">' . $item['price'] . 'DH</h4>
                                 <!-- Réserver -->
                                 <form action="includes/scripts.php" method="Post">
-                                    <button type="submit" name="book-now" value="2" class="btn text-white" style="background-color: #6351ce">Book Now</button>
+                                    <button type="submit" name="book-now" value="' . $item['id'] . '" class="btn text-white" style="background-color: #6351ce">Book Now</button>
                                 </form>
                             </div>
                         </div>
@@ -128,12 +140,12 @@ include(__DIR__ . '/includes/scripts.php');
                                 <!-- time -->
                                 <div class="">
                                     <div class="">
-                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_depart']).'</span>
-                                        <span>'.$item['gare_depart'].'</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_depart']) . '</span>
+                                        <span>' . $item['gare_depart'] . '</span>
                                     </div>
                                     <div class="">
-                                        <span class="fw-bold" style="color: #6351ce">'.Voyages::splitDateTime($item['date_darrivee']).'</span>
-                                        <span>'.$item['gare_darrivee'].'</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_darrivee']) . '</span>
+                                        <span>' . $item['gare_darrivee'] . '</span>
                                     </div>
                                 </div>
                             </div>
@@ -270,6 +282,10 @@ include(__DIR__ . '/includes/scripts.php');
     <!-- END footer -->
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- BEGIN parsley js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- END parsley js-->
     <script class="assets/js/scripts.js"></script>
 </body>
 
