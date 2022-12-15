@@ -107,9 +107,6 @@ if (!isset($_SESSION["user_id"])) {
             <div class="card text-center">
                 <h3 class="m-0 p-4 text-white" style="background-color: #6351ce">MY TRIP</h3>
                 <?php
-
-                // var_dump($data);
-                // die;
                 if (isset($_POST['search_voyage'])) {
                     $data_voyages->setDateDeparte($_POST['date_depart']);
                     $data_voyages->setDateDarrivee($_POST['date_darrivee']);
@@ -138,17 +135,17 @@ if (!isset($_SESSION["user_id"])) {
                             <div class="col d-md-flex">
                                 <!-- date -->
                                 <div class="text-start">
-                                    <h4>' . Voyages::splitDate($item['date_depart']) . '</h4>
+                                    <h4>' . $data_voyages->splitDate($item['date_depart']) . '</h4>
                                 </div>
                                 <hr class="d-block d-md-none" />
                                 <!-- time -->
                                 <div class="ms-md-5">
                                     <div class="text-start">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_depart']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_depart']) . '</span>
                                         <span>' . $item['gare_depart'] . '</span>
                                     </div>
                                     <div class="text-start">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_darrivee']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_darrivee']) . '</span>
                                         <span>' . $item['gare_darrivee'] . '</span>
                                     </div>
                                 </div>
@@ -169,11 +166,11 @@ if (!isset($_SESSION["user_id"])) {
                                 <!-- time -->
                                 <div class="">
                                     <div class="">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_depart']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_depart']) . '</span>
                                         <span>' . $item['gare_depart'] . '</span>
                                     </div>
                                     <div class="">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_darrivee']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_darrivee']) . '</span>
                                         <span>' . $item['gare_darrivee'] . '</span>
                                     </div>
                                 </div>
