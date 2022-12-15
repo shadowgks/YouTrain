@@ -55,7 +55,6 @@ function signin()
     $row = Users::login($_POST["email"], $_POST["password"]);
     if (!empty($row)) {
         $_SESSION["user_id"] = $row["id"];
-
         $_SESSION["user_last"] = $row["nom"];
         $_SESSION["user_first"] = $row["prenom"];
         $_SESSION["user_image"] = $row["image"];
