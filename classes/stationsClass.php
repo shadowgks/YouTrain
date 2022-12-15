@@ -48,6 +48,13 @@ class Stations{
         $stmt= $pdo->prepare($sql);
         $stmt->execute(array($data["id"]));
     }
+
+    static public function availableStations(){
+        global $db_obj;
+        $sql = "SELECT count(*) FROM gares";
+        $res = $db_obj->getConnect()->query($sql,PDO::FETCH_NUM);
+        return $res->fetch()[0];
+    }
 }
 // $test = [
 //     "id"=>4
