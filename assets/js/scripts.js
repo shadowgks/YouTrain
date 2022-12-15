@@ -25,7 +25,13 @@ let departureInput = document.querySelector('#departureInput')
 console.log(updateTravels);
 let idInput = document.querySelector('#idInput');
 let arrivalDateInput = document.querySelector('#arrivalInput');
-console.log(idInput)
+let departureStation = document.querySelector('#depStation');
+let arrivalStation = document.querySelector('#arrStation');
+let trippriceInput = document.querySelector('#priceInput');
+let saveBtn = document.querySelector('#saveBtn');
+let upBtn = document.querySelector('#updateBtn');
+let deleteBtn = document.querySelector('#deleteBtn')
+console.log(arrivalStation)
 
 
 //function show sign_up
@@ -136,13 +142,11 @@ function updateTrip(id){
     idInput.value=tripNum;
     departureInput.value = tripDepDate;
     arrivalDateInput.value = tripArrDate;
-    console.log(depDateInput);
-    console.log(tripNum)
-    console.log(tripDepDate)
-    console.log(tripArrDate)
-    console.log(tripDepStation)
-    console.log(tripArrStation)
-    console.log(tripPrice)
+    departureStation.value = tripDepStation;
+    arrivalStation.value = tripArrStation;
+    trippriceInput.value = tripPrice;
+    saveBtn.style.display = 'none';
+    deleteBtn.style.display = 'none';
 }
 // function showUpdateTripModal() {
 //     // showUpdateTripModal();

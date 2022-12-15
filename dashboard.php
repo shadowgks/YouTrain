@@ -520,7 +520,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3 dstation-select">
                         <label class="form-label">Departure Station</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="depStation">
                             <option selected>Open this select menu</option>
                             <?php 
                             $data = Stations::readStations();
@@ -534,8 +534,9 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <select class="form-select" aria-label="Default select example" id="arrStation">
                             <option selected>Open this select menu</option>
+
                             <?php 
                             $data = Stations::readStations();
                                 foreach($data AS $item){
@@ -544,6 +545,7 @@ $result = $stmt->fetch();
                                     ';
                                 }
                             ?>
+
                         </select>
                     </div>
 
@@ -578,7 +580,7 @@ $result = $stmt->fetch();
 
                     <div class="mb-3 price-input">
                         <label class="form-label">Price</label>
-                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="arrivalInput">
+                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="priceInput">
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">departure date</label>
@@ -594,9 +596,9 @@ $result = $stmt->fetch();
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="delete">delete</button>
-                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" name="update">update</button>
-                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" name="save">Save</button>
+                    <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="delete" id="deleteBtn">delete</button>
+                    <button type="submit" class="btn btn-warning" data-bs-dismiss="modal" name="update" id="updateBtn">update</button>
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" name="save" id="saveBtn">Save</button>
                 </div>
             </div>
         </div>
