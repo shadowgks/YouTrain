@@ -1,5 +1,6 @@
 <?php
 require_once('databaseClass.php');
+
 class Voyages extends DatabaseConnection
 {
     private $id;
@@ -131,7 +132,7 @@ class Voyages extends DatabaseConnection
             join gares g2 on g2.id=v.gare_darrivee
             join trains on v.id_train
             where v.date_depart >= ?
-            or    v.date_darrivee <= ?
+            and    v.date_darrivee <= ?
             and   v.gare_depart = ? and v.gare_darrivee = ?;");
             $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee]);
             return $stm->fetchAll();
