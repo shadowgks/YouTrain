@@ -42,10 +42,7 @@ class Users
         if (!empty($row)) {
             return false;
         }
-        unset($stmt);
-        unset($pdo);
-        $db = new DatabaseConnection;
-        $pdo = $db->getConnect();
+        //
         $sql = "INSERT INTO `users`(`nom`, `prenom`, `email`, `password`,`role`,`image`) VALUES (:nom,:prenom,:email,:password,0,'image.png')";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nom", $this->lastname);
@@ -66,7 +63,7 @@ class Users
         $sql = "SELECT * FROM users WHERE email=:email and password=:password";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":password", md5($password));
+        $stmt->bindParam(":password",$password);
         $stmt->execute();
 
         $row = $stmt->fetch();
@@ -172,7 +169,6 @@ class Users
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":user_id",      $user_id);
         $stmt->bindParam(":role",    $input);
-
         if ($stmt->execute()) {
             return true;
         } else {
