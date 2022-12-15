@@ -215,7 +215,6 @@
                         <button class="btn text-white rounded-0 w-25 mb-4" style="background-color: #6351ce">Buy Now</button>
                     </div>
                 </div>
-               
             </div>
         </section>
 
