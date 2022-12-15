@@ -365,18 +365,18 @@ $result = $stmt->fetch();
                     foreach ($data_voyages->readData() as $item) {
                         $count += 1;
                         echo '
-                                <tr>
-                                    <td>' . $count . '</td>
-                                    <td>' . $item['date_depart'] . '</td>
-                                    <td>' . $item['date_darrivee'] . '</td>
-                                    <td>' . $item['gare_depart'] . '</td>
-                                    <td>' . $item['gare_darrivee'] . '</td>
-                                    <td>' . $item['price'] . '</td>
+                                <tr id="trip-' . $item['id'] . '">
+                                    <td class="tripId" data-tripId = ' . $item['id'] . '> ' . $count . '</td>
+                                    <td class="tripDepDate" data-tripDepDate = "' . $item['date_depart'] . '">' . $item['date_depart'] . '</td>
+                                    <td class="tripArrDate" data-tripArrDate = "' . $item['date_darrivee'] . '">' . $item['date_darrivee'] . '</td>
+                                    <td class="tripDepStation" data-tripDepStation = ' . $item['gare_depart'] . '>' . $item['gare_depart'] . '</td>
+                                    <td class="tripArrStation" data-tripArrStation = ' . $item['gare_darrivee'] . '>' . $item['gare_darrivee'] . '</td>
+                                    <td class="tripPrice" data-tripPrice = ' . $item['price'] . '>' . $item['price'] . '</td>
                                     <!-- btn edite delete -->
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-primary me-2 updateTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip('.$item['id'].')><i class="bi bi-pencil-square"></i></button>
+                                            <button type="submit" class="btn btn-danger deleteTravels" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -416,8 +416,8 @@ $result = $stmt->fetch();
                                     <!-- btn edite delete -->
                                     <td class='d-flex align-items-center'>
                                     <div>
-                                        <button type='submit' class='btn btn-primary me-2'><i class='bi bi-pencil-square'></i></button>
-                                        <button type='submit' class='btn btn-danger'><i class='bi bi-trash'></i></button>
+                                        <button type='submit' class='btn btn-primary me-2 updateTrain'><i class='bi bi-pencil-square'></i></button>
+                                        <button type='submit' class='btn btn-danger deleteTrain'><i class='bi bi-trash'></i></button>
                                     </div>
                                     </td>
                                 </tr>";
@@ -449,8 +449,6 @@ $result = $stmt->fetch();
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
-                        <th>Train</th>
-                        <th>Voyage</th>
                         <th>Ville</th>
                         <th>Action</th>
                     </tr>
@@ -465,12 +463,12 @@ $result = $stmt->fetch();
                         <tr>
                         <td>'  .  $count  .  '</td>
                         <td>'  .  $row['nom']  .  '</td>
-                        <td>'  .  $row['id-ville']  .  '</td>
+                        <td>'  .  $row['city']  .  '</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">
                             <div>
-                                <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                <button type="submit" class="btn btn-primary me-2 updateStation"><i class="bi bi-pencil-square"></i></button>
+                                <button type="submit" class="btn btn-danger deleteStation"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -498,7 +496,7 @@ $result = $stmt->fetch();
                 <div class="modal-body">
                     <div>
                         <!--this input is used to stock the id -->
-                        <input type="hidden" name="id">
+                        <input type="hidden" name="id" id="idInput">
                     </div>
                     <!-- <div> -->
                     <!--this input is used to stock the id_resirvation -->
@@ -510,7 +508,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3" id="nameInput">
                         <label class="form-label">Nom</label>
-                        <input type="text" class="form-control" name="nom">
+                        <input type="text" class="form-control" name="nom" id="nameInput">
                     </div>
                     <div class="mb-3" id="capacityInput">
                         <label class="form-label">capacité</label>
@@ -519,11 +517,11 @@ $result = $stmt->fetch();
 
                     <div class="mb-3 d-input">
                         <label class="form-label">Departure Date</label>
-                        <input type="datetime-local" class="form-control" name="departureDate" id="departureInput">
+                        <input type="datetime" class="form-control" name="departureDate" id="departureInput">
                     </div>
                     <div class="mb-3 a-input">
                         <label class="form-label">Arrival Date</label>
-                        <input type="datetime-local" class="form-control" name="arrivalDate" id="arrivalInput">
+                        <input type="datetime" class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <div class="mb-3 dstation-select">
                         <label class="form-label">Departure Station</label>
