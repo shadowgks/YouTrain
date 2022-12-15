@@ -1,5 +1,6 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
+
 if (!isset($_SESSION["user_id"])) {
     header('Location:login.php');
 }
@@ -50,6 +51,10 @@ $result = $stmt->fetch();
     <!-- Begin css switch toggle -->
     <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet" />
     <!-- End css switch toggle -->
+    <!-- BEGIN parsley css-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
+    <!-- END parsley css-->
 
     <link rel="stylesheet" href="assets/css/styles.css" />
     <title>Dashboard</title>
@@ -192,7 +197,7 @@ $result = $stmt->fetch();
                         <div class="profile" data-bs-toggle="dropdown" aria-expanded="false">
                             <div class="profile-img">
 
-                                <img src="<?= $result['image'] ?>" alt="" class="rounded" width="50px">
+                                <img toggle="modal" data-bs-target="#edit_user" src="<?= $result['image'] ?>" alt="" class="rounded" width="50px">
                                 <!-- <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 29 29">
                                     <path d="M14.5 2A12.514 12.514 0 0 0 2 14.5 12.521 12.521 0 0 0 14.5 27a12.5 12.5 0 0 0 0-25Zm7.603 19.713a8.48 8.48 0 0 0-15.199.008A10.367 10.367 0 0 1 4 14.5a10.5 10.5 0 0 1 21 0 10.368 10.368 0 0 1-2.897 7.213ZM14.5 7a4.5 4.5 0 1 0 4.5 4.5A4.5 4.5 0 0 0 14.5 7Z" />
                                 </svg> -->
@@ -323,9 +328,9 @@ $result = $stmt->fetch();
                                     <form action="" method="post">
                                         <input type="hidden" value="<?= $row["id"]; ?>" name="id_user">
                                         <input type="hidden" value="<?= $row["role"]; ?>" name="check_user">
-                                        <button id="btn_submit_change_user<?=$row['id'];?>" type="submit" name="change_user_role" class="d-none"></button>
+                                        <button id="btn_submit_change_user<?= $row['id']; ?>" type="submit" name="change_user_role" class="d-none"></button>
                                     </form>
-                                    <input onchange="change_user_role(this.id)" id="<?= $row['id'];?>" type="checkbox" data-toggle="toggle" data-off="<?= $data_on ?>" data-on="<?= $data_off ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
+                                    <input onchange="change_user_role(this.id)" id="<?= $row['id']; ?>" type="checkbox" data-toggle="toggle" data-off="<?= $data_on ?>" data-on="<?= $data_off ?>" data-size="mini" data-onstyle="danger" data-offstyle="primary" />
                                     <form action="" method="post"><input type="hidden" value="<?= $row["id"]; ?>" name="user_id"><button type="submit" name="delete_user" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button></form>
                                 </td>
                             </tr>
@@ -339,7 +344,7 @@ $result = $stmt->fetch();
             </table>
             <script>
                 function change_user_role(id) {
-                    document.getElementById("btn_submit_change_user"+id).click();
+                    document.getElementById("btn_submit_change_user" + id).click();
                 }
             </script>
         </section>
@@ -366,18 +371,18 @@ $result = $stmt->fetch();
                     foreach ($data_voyages->readData() as $item) {
                         $count += 1;
                         echo '
-                                <tr>
-                                    <td>' . $count . '</td>
-                                    <td>' . $item['date_depart'] . '</td>
-                                    <td>' . $item['date_darrivee'] . '</td>
-                                    <td>' . $item['gare_depart'] . '</td>
-                                    <td>' . $item['gare_darrivee'] . '</td>
-                                    <td>' . $item['price'] . '</td>
+                                <tr id="trip-' . $item['id'] . '">
+                                    <td class="tripId" data-tripId = ' . $item['id'] . '> ' . $count . '</td>
+                                    <td class="tripDepDate" data-tripDepDate = "' . $item['date_depart'] . '">' . $item['date_depart'] . '</td>
+                                    <td class="tripArrDate" data-tripArrDate = "' . $item['date_darrivee'] . '">' . $item['date_darrivee'] . '</td>
+                                    <td class="tripDepStation" data-tripDepStation = ' . $item['gare_depart'] . '>' . $item['gare_depart'] . '</td>
+                                    <td class="tripArrStation" data-tripArrStation = ' . $item['gare_darrivee'] . '>' . $item['gare_darrivee'] . '</td>
+                                    <td class="tripPrice" data-tripPrice = ' . $item['price'] . '>' . $item['price'] . '</td>
                                     <!-- btn edite delete -->
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                                            <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-primary me-2 updateTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip('.$item['id'].')><i class="bi bi-pencil-square"></i></button>
+                                            <button type="submit" class="btn btn-danger deleteTravels" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -417,8 +422,8 @@ $result = $stmt->fetch();
                                     <!-- btn edite delete -->
                                     <td class='d-flex align-items-center'>
                                     <div>
-                                        <button type='submit' class='btn btn-primary me-2'><i class='bi bi-pencil-square'></i></button>
-                                        <button type='submit' class='btn btn-danger'><i class='bi bi-trash'></i></button>
+                                        <button type='submit' class='btn btn-primary me-2 updateTrain'><i class='bi bi-pencil-square'></i></button>
+                                        <button type='submit' class='btn btn-danger deleteTrain'><i class='bi bi-trash'></i></button>
                                     </div>
                                     </td>
                                 </tr>";
@@ -438,7 +443,7 @@ $result = $stmt->fetch();
                     <tr>
                         <th>#</th>
                         <th>Nom</th>
-                        <th>Train</th>
+                        <th>Ville</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -452,12 +457,12 @@ $result = $stmt->fetch();
                         <tr>
                         <td>'  .  $count  .  '</td>
                         <td>'  .  $row['nom']  .  '</td>
-                        <td>'  .  $row['id_ville']  .  '</td>
+                        <td>'  .  $row['city']  .  '</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">
                             <div>
-                                <button type="submit" class="btn btn-primary me-2"><i class="bi bi-pencil-square"></i></button>
-                                <button type="submit" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                                <button type="submit" class="btn btn-primary me-2 updateStation"><i class="bi bi-pencil-square"></i></button>
+                                <button type="submit" class="btn btn-danger deleteStation"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -485,7 +490,7 @@ $result = $stmt->fetch();
                 <div class="modal-body">
                     <div>
                         <!--this input is used to stock the id -->
-                        <input type="hidden" name="id">
+                        <input type="hidden" name="id" id="idInput">
                     </div>
                     <!-- <div> -->
                     <!--this input is used to stock the id_resirvation -->
@@ -497,7 +502,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3" id="nameInput">
                         <label class="form-label">Nom</label>
-                        <input type="text" class="form-control" name="nom">
+                        <input type="text" class="form-control" name="nom" id="nameInput">
                     </div>
                     <div class="mb-3" id="capacityInput">
                         <label class="form-label">capacité</label>
@@ -506,11 +511,11 @@ $result = $stmt->fetch();
 
                     <div class="mb-3 d-input">
                         <label class="form-label">Departure Date</label>
-                        <input type="datetime-local" class="form-control" name="departureDate" id="departureInput">
+                        <input type="datetime" class="form-control" name="departureDate" id="departureInput">
                     </div>
                     <div class="mb-3 a-input">
                         <label class="form-label">Arrival Date</label>
-                        <input type="datetime-local" class="form-control" name="arrivalDate" id="arrivalInput">
+                        <input type="datetime" class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <div class="mb-3 dstation-select">
                         <label class="form-label">Departure Station</label>
@@ -588,6 +593,9 @@ $result = $stmt->fetch();
 
     <!--BEGIN DATATABLE -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- BEGIN parsley js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- END parsley js-->
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <!--BEGIN SWITCH -->

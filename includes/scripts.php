@@ -32,19 +32,20 @@ $data_stations = Stations::readStations();
 
 // Begin Amina
 include(__DIR__ . "/../classes/userClass.php");
-if (isset($_POST["signup"])) signup();
-if (isset($_POST["signin"])) signin();
-if (isset($_POST["profile_edit"])) updateUser($_SESSION["user_id"]);
-if (isset($_POST["profile_delete"]))  delete_user($_SESSION["user_id"]);
-if (isset($_GET["logout"]))                      logout();
-if (isset($_POST["delete_user"]))  delete_user($_POST["user_id"]);
+if (isset($_POST["signup"]))                       signup();
+if (isset($_POST["signin"]))                       signin();
+if (isset($_POST["profile_edit"]))                 updateUser($_SESSION["user_id"]);
+if (isset($_POST["profile_delete"]))               delete_user($_SESSION["user_id"]);
+if (isset($_GET["logout"]))                        logout();
+if (isset($_POST["delete_user"]))                  delete_user($_POST["user_id"]);
 if (isset($_POST["change_user_role"]))             change_role($_POST["check_user"], $_POST["id_user"]);
 
 
 function signup()
 {
     if ($_POST["password"] == $_POST["password_confirm"]) {
-        $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], md5($_POST["password"]), $_POST["password_confirm"], $_FILES['edit_image']['name']);
+        $user1 = new Users($_POST["firstname"], $_POST["lastname"], $_POST["email"], $_POST["password"]
+        , $_POST["password_confirm"], $_FILES['edit_image']['name']);
         if ($user1->signup()) {
             header('Location:../dashboard.php');
         } else {
@@ -64,6 +65,7 @@ function signin()
         $_SESSION["user_last"] = $row["nom"];
         $_SESSION["user_first"] = $row["prenom"];
         $_SESSION["user_image"] = $row["image"];
+        $_SESSION["role"] = $row["role"];
         header("location:../dashboard.php");
     } else {
         header('Location:../login.php');

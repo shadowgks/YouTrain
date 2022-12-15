@@ -20,7 +20,12 @@ let depSelectBox = document.querySelector('.dstation-select');
 let arrSelectBox = document.querySelector('.aStation-select');
 let usersList = document.querySelector('.users-select');
 let tripsList = document.querySelector('.trip-select');
-console.log(ticketBtn);
+let updateTravels = document.querySelectorAll('.updateTravels');
+let departureInput = document.querySelector('#departureInput')
+console.log(updateTravels);
+let idInput = document.querySelector('#idInput');
+let arrivalDateInput = document.querySelector('#arrivalInput');
+console.log(idInput)
 
 
 //function show sign_up
@@ -119,6 +124,32 @@ if(addMobile.classList.contains("expand")){
 }
 })
 
+function updateTrip(id){
+    const tripId = document.getElementById(`trip-${id}`);
+    const tripNum = tripId.querySelector('.tripId').getAttribute('data-tripId');
+    const tripDepDate = tripId.querySelector('.tripDepDate').getAttribute('data-tripDepDate');
+    const tripArrDate = tripId.querySelector('.tripArrDate').getAttribute('data-tripArrDate');
+    const tripDepStation = tripId.querySelector('.tripDepStation').getAttribute('data-tripDepStation');
+    const tripArrStation = tripId.querySelector('.tripArrStation').getAttribute('data-tripArrStation');
+    const tripPrice = tripId.querySelector('.tripPrice').getAttribute('data-tripPrice');
+    showTripModal();
+    idInput.value=tripNum;
+    departureInput.value = tripDepDate;
+    arrivalDateInput.value = tripArrDate;
+    console.log(depDateInput);
+    console.log(tripNum)
+    console.log(tripDepDate)
+    console.log(tripArrDate)
+    console.log(tripDepStation)
+    console.log(tripArrStation)
+    console.log(tripPrice)
+}
+// function showUpdateTripModal() {
+//     // showUpdateTripModal();
+//     // showTripModal();
+//     console.log(depDateInput.value);
+
+// }
 
 // tripBtn.addEventListener('click', showTripModal);
 for(i=0;i<tripBtn.length;i++){
@@ -134,6 +165,10 @@ for(i=0;i<stationBtn.length;i++){
 for(i=0;i<trainBtn.length;i++){
     trainBtn[i].addEventListener('click', showTrainModal)
 }
+
+// for(i=0;i<updateTravels.length;i++){
+//     updateTravels[i].addEventListener('click', showUpdateTripModal)
+// }
 
 // trainBtn.addEventListener('click', showTrainModal);
 // stationBtn.addEventListener('click', showStationModal);
