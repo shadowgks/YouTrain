@@ -117,7 +117,7 @@ include(__DIR__ . '/includes/scripts.php');
                                 <h4 class="text-end">'.$item['price'].'DH</h4>
                                 <!-- Réserver -->
                                 <form action="includes/scripts.php" method="Post">
-                                    <button type="submit" name="book-now" value="2" class="btn text-white" style="background-color: #6351ce">Book Now</button>
+                                    <button type="submit" name="book-now" value="'.$item['id'].'" class="btn text-white" style="background-color: #6351ce">Book Now</button>
                                 </form>
                             </div>
                         </div>
