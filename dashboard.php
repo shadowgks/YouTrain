@@ -556,7 +556,7 @@ $result = $stmt->fetch();
                         </select>
                     </div>
                     <!-- train -->
-                    <div class="mb-3 users-select">
+                    <div class="mb-3 train-list">
                         <label class="form-label">Train</label>
                         <select class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
@@ -584,7 +584,7 @@ $result = $stmt->fetch();
                             ?>
                         </select>
                     </div>
-                    <div class="mb-3 users-select">
+                    <div class="mb-3 trip-select">
                         <label class="form-label">Trip</label>
                         <select class="form-select" aria-label="Default select example">
                         <option selected>Open this select menu</option>
@@ -596,7 +596,7 @@ $result = $stmt->fetch();
                                 ?>
                         </select>
                     </div>
-                    <div class="mb-3 trip-select">
+                    <div class="mb-3 users-select">
                         <label class="form-label">Users</label> 
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
