@@ -140,7 +140,9 @@ $result = $stmt->fetch();
                     </div>
                     <div class="c-functions">
                         <div class="add-container" id="addMobile">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                            </svg>
                         </div>
                         <div class="add-functions">
                             <div class="icon-container">
@@ -148,7 +150,9 @@ $result = $stmt->fetch();
                                     <img src="./assets/train.png" alt="" class="icon" style="margin-bottom:7.5px;">
                                 </button>
                                 <button type="button" class="addBtn train" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Train
                                     </p>
@@ -172,7 +176,9 @@ $result = $stmt->fetch();
                                     <img src="./assets/map.png" alt="" class="icon">
                                 </button>
                                 <button type="button" class="addBtn trip" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Trip
                                     </p>
@@ -183,7 +189,9 @@ $result = $stmt->fetch();
                                     <img src="./assets/booking.png" alt="" class="icon">
                                 </button>
                                 <button type="button" class="addBtn ticketBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Ticket
                                     </p>
@@ -232,7 +240,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="desc">
                         <h1 class="card-title"><span>Stations</span></h1>
-                        <p class="text"><?php echo Stations::availableStations();?></p>
+                        <p class="text"><?php echo Stations::availableStations(); ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -241,7 +249,11 @@ $result = $stmt->fetch();
                     </div>
                     <div class="desc">
                         <h1 class="card-title"><span>Total users</span></h1>
-                        <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
+                        <p class="text"><?php if (is_array(Users::viewUser("all", true))) {
+                                            echo count(Users::viewUser("all", true));
+                                        } else {
+                                            echo 0;
+                                        } ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -250,7 +262,11 @@ $result = $stmt->fetch();
                     </div>
                     <div class="desc">
                         <h1 class="card-title"><span>Total users</span></h1>
-                            <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
+                        <p class="text"><?php if (is_array(Users::viewUser("all", true))) {
+                                            echo count(Users::viewUser("all", true));
+                                        } else {
+                                            echo 0;
+                                        } ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -260,7 +276,7 @@ $result = $stmt->fetch();
                     <div class="desc">
                         <h1 class="card-title"><span>Trains</span></h1>
                         <p class="text"><?php echo $train_object->displaytrains()->rowcount(); //rowCount() count the number of rows
-                                            ?></p>
+                                        ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -480,9 +496,6 @@ $result = $stmt->fetch();
         </section>
     </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
     <!-- Modal crud -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -587,29 +600,29 @@ $result = $stmt->fetch();
                     <div class="mb-3 users-select">
                         <label class="form-label">Trip</label>
                         <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                            <option selected>Open this select menu</option>
                             <?php
-                                foreach ($data_voyages->readData() as $item):?>
-                                    <option value="<?=$item['id']?>"><?=$item['gare_depart']?> - <?=$item['gare_darrivee']?></option>
-                                <?php
-                                endforeach
-                                ?>
+                            foreach ($data_voyages->readData() as $item) : ?>
+                                <option value="<?= $item['id'] ?>"><?= $item['gare_depart'] ?> - <?= $item['gare_darrivee'] ?></option>
+                            <?php
+                            endforeach
+                            ?>
                         </select>
                     </div>
                     <div class="mb-3 trip-select">
-                        <label class="form-label">Users</label> 
+                        <label class="form-label">Users</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <?php
-                                $users = Users::viewUser("all", true);
-                                // var_dump($users);
-                                // die();
-                                foreach ($users as $user):?>
-                                    <option value="<?=$user['id']?>"><?=$user['nom']?> <?=$user['prenom']?></option>
-                                <?php
-                                endforeach
-                                ?>
-                    
+                            $users = Users::viewUser("all", true);
+                            // var_dump($users);
+                            // die();
+                            foreach ($users as $user) : ?>
+                                <option value="<?= $user['id'] ?>"><?= $user['nom'] ?> <?= $user['prenom'] ?></option>
+                            <?php
+                            endforeach
+                            ?>
+
                         </select>
                     </div>
 
