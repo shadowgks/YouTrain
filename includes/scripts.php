@@ -1,6 +1,6 @@
 <?php
 // begin fouad
-include(__DIR__ . '/../classes/trainClass.php');
+include_once(__DIR__ . '/../classes/trainClass.php');
 session_start();
 
 
@@ -13,7 +13,7 @@ if (isset($_POST['update'])) update();
 if (isset($_POST['delete'])) delete();
 
 
-include(__DIR__ . '/../classes/reservationClass.php');
+include_once(__DIR__ . '/../classes/reservationClass.php');
 $reservation_object = new Reservation;
 if (isset($_POST['book-now'])) {
     $reservation_object->insertReservetion($_POST, $_SESSION);
@@ -37,16 +37,10 @@ if (isset($_POST['search_voyage'])) {
     $data_voyages->setGareDarrivee($_POST['gare_darrivee']);
 };
 // End saad
-
-// //==========================================================
-// Begin amine
-include __DIR__ . '/../classes/stationsClass.php';
-$data_stations = Stations::readStations();
-// End amine
-
+include_once(__DIR__ . '/../classes/stationsClass.php');
 
 // Begin Amina
-include(__DIR__ . "/../classes/userClass.php");
+include_once(__DIR__ . "/../classes/userClass.php");
 if (isset($_POST["signup"]))                       signup();
 if (isset($_POST["signin"]))                       signin();
 if (isset($_POST["profile_edit"]))                 updateUser($_SESSION["user_id"]);
@@ -142,13 +136,15 @@ function change_role($input, $user_id)
     }
 }
 
-function save(){
-    if($_POST["functionToUse"] == 'train'){
+function save()
+{
+    if ($_POST["functionToUse"] == 'train') {
         $train_object = new Train();
         $train_object->insert($_POST);
-    }else if($_POST["functionToUse"] == 'station'){
+    } else if ($_POST["functionToUse"] == 'station') {
+        include_once(__DIR__ . '/../classes/stationsClass.php');
         Stations::insertStation($_POST);
-    }else if(isset($_POST["functionToUse"]) == 'trip'){
+    } else if (isset($_POST["functionToUse"]) == 'trip') {
         require_once __DIR__ . '/../classes/voyagesClass.php';
         $save_voyages = new Voyages();
         $save_voyages->setDateDeparte($_POST["departureDate"]);
@@ -156,18 +152,21 @@ function save(){
         $save_voyages->setGareDepart($_POST["depStation"]);
         $save_voyages->setGareDarrivee($_POST["arrStation"]);
         $save_voyages->setPrice($_POST["price"]);
-        // $save_voyages->setTrain($_POST["Train"]);
+        $save_voyages->setTrain($_POST["train"]);
         $save_voyages->createData();
     }
 }
 
-function update(){
-    if($_POST["functionToUse"] == 'train'){
+function update()
+{
+    if ($_POST["functionToUse"] == 'train') {
         $train_object = new Train();
         $train_object->update($_POST);
-    }else if($_POST["functionToUse"] == 'station'){
+    } else if ($_POST["functionToUse"] == 'station') {
+        include_once(__DIR__ . '/../classes/stationsClass.php');
         Stations::updateStation($_POST);
-    }else if(isset($_POST["functionToUse"]) == 'trip'){
+    } else if (isset($_POST["functionToUse"]) == 'trip') {
+       
         require_once __DIR__ . '/../classes/voyagesClass.php';
         $update_voyages = new Voyages();
         $update_voyages->setID($_POST["id"]);
@@ -176,19 +175,20 @@ function update(){
         $update_voyages->setGareDepart($_POST["depStation"]);
         $update_voyages->setGareDarrivee($_POST["arrStation"]);
         $update_voyages->setPrice($_POST["price"]);
-        // $update_voyages->setTrain($_POST["Train"]);
+        $update_voyages->setTrain($_POST["train"]);
         $update_voyages->updateData();
-        
     }
 }
 
-function delete(){
-    if($_POST["functionToUse"] == 'train'){
+function delete()
+{
+    if ($_POST["functionToUse"] == 'train') {
         $train_object = new Train();
         $train_object->delete($_POST);
-    }else if($_POST["functionToUse"] == 'station'){
+    } else if ($_POST["functionToUse"] == 'station') {
+        include_once(__DIR__ . '/../classes/stationsClass.php');
         Stations::deleteStation($_POST);
-    }else if($_POST["functionToUse"] == 'trip'){
+    } else if ($_POST["functionToUse"] == 'trip') {
         require_once __DIR__ . '/../classes/voyagesClass.php';
         $delete_voyages = new Voyages();
         $delete_voyages->setID($_POST["id"]);

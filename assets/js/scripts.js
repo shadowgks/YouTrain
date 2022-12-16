@@ -222,13 +222,13 @@ for(i=0;i<trainBtn.length;i++){
     trainBtn[i].addEventListener('click', showTrainModal)
 }
 
-deleteBtn.addEventListener('click', ()=>{
-    crudform.reset();
-})
-updateBtn.addEventListener('click', ()=>{
-    crudform.reset();
-})
-// for(i=0;i<updateTravels.length;i++){
+// deleteBtn.addEventListener('click', ()=>{
+//     crudform.reset();
+// })
+// updateBtn.addEventListener('click', ()=>{
+//     crudform.reset();
+// })
+// // for(i=0;i<updateTravels.length;i++){
 //     updateTravels[i].addEventListener('click', showUpdateTripModal)
 // }
 

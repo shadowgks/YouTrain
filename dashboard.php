@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/includes/scripts.php');
+include_once(__DIR__ . '/includes/scripts.php');
 
 if (!isset($_SESSION["user_id"]) || ($_SESSION["role"]) == 0) {
     header('Location:index.php');
@@ -285,7 +285,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="desc">
                         <h1 class="card-title"><span>Voyages</span></h1>
-                            <p class="text"><?php echo $data_voyages->countVoyageAvailable()['countVoyages'] ?></p>
+                        <p class="text"><?php echo $data_voyages->countVoyageAvailable()['countVoyages'] ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -401,8 +401,8 @@ $result = $stmt->fetch();
                                     <!-- btn edite delete -->
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <button type="submit" class="btn btn-primary me-2 updateTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip('.$item['id'].')><i class="bi bi-pencil-square"></i></button>
-                                            <button type="submit" class="btn btn-danger deleteTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip('.$item['id'].')><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-primary me-2 updateTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip(' . $item['id'] . ')><i class="bi bi-pencil-square"></i></button>
+                                            <button type="submit" class="btn btn-danger deleteTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip(' . $item['id'] . ')><i class="bi bi-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -435,15 +435,15 @@ $result = $stmt->fetch();
                     $index = 1;
                     $data = $train_object->displaytrains();
                     while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr id=".'train'.'-'.$row['id'].">
-                                    <td id='trainId' data-gareId = ".$row['id']." data-gareNum= ".$row['num'].">" . $index . "</td>
-                                    <td id='trainName' data-gareNom = ".$row['nom'].">" . $row['nom'] . "</td>
-                                    <td id='trainCapacity' data-gareCapacite = ".$row['capacite'].">" . $row['capacite'] . "</td>
+                        echo "<tr id=" . 'train' . '-' . $row['id'] . ">
+                                    <td id='trainId' data-gareId = " . $row['id'] . " data-gareNum= " . $row['num'] . ">" . $index . "</td>
+                                    <td id='trainName' data-gareNom = " . $row['nom'] . ">" . $row['nom'] . "</td>
+                                    <td id='trainCapacity' data-gareCapacite = " . $row['capacite'] . ">" . $row['capacite'] . "</td>
                                     <!-- btn edite delete -->
                                     <td class='d-flex align-items-center'>
                                     <div>
-                                        <button type='submit' class='btn btn-primary me-2 updateTrain' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick=updateTrain(".$row['id'].")><i class='bi bi-pencil-square'></i></button>
-                                        <button type='submit' class='btn btn-danger deleteTrain' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick=updateTrain(".$row['id'].")><i class='bi bi-trash'></i></button>
+                                        <button type='submit' class='btn btn-primary me-2 updateTrain' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick=updateTrain(" . $row['id'] . ")><i class='bi bi-pencil-square'></i></button>
+                                        <button type='submit' class='btn btn-danger deleteTrain' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick=updateTrain(" . $row['id'] . ")><i class='bi bi-trash'></i></button>
                                     </div>
                                     </td>
                                 </tr>";
@@ -470,19 +470,20 @@ $result = $stmt->fetch();
                 <tbody>
 
                     <?php
+                    $data = Stations::readStations();
                     $count = 0;
-                    foreach ($data_stations as $row) {
+                    foreach ($data as $row) {
                         $count++;
                         echo '
-                        <tr id="station-'.$row['id'].'">
+                        <tr id="station-' . $row['id'] . '">
                         <td>'  .  $count  .  '</td>
-                        <td id="stationName" data-stationName='.$row['nom'].'>'  .  $row['nom']  .  '</td>
-                        <td id="cityName" data-stationCityId='.$row['id_ville'].'>'  .  $row['city']  .  '</td>
+                        <td id="stationName" data-stationName=' . $row['nom'] . '>'  .  $row['nom']  .  '</td>
+                        <td id="cityName" data-stationCityId=' . $row['id_ville'] . '>'  .  $row['city']  .  '</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">
                             <div>
-                                <button type="submit" class="btn btn-primary me-2 updateStation" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateStations('.$row['id'].')"><i class="bi bi-pencil-square"></i></button>
-                                <button type="submit" class="btn btn-danger deleteStation" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateStations('.$row['id'].')"><i class="bi bi-trash"></i></button>
+                                <button type="submit" class="btn btn-primary me-2 updateStation" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateStations(' . $row['id'] . ')"><i class="bi bi-pencil-square"></i></button>
+                                <button type="submit" class="btn btn-danger deleteStation" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateStations(' . $row['id'] . ')"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -540,58 +541,58 @@ $result = $stmt->fetch();
                     </div>
                     <div class="mb-3 dstation-select">
                         <label class="form-label">Departure Station</label>
-                        <select class="form-select" aria-label="Default select example" name="depStation"id="depStation">
+                        <select class="form-select" aria-label="Default select example" name="depStation" id="depStation">
                             <option selected>Open this select menu</option>
-                            <?php 
+                            <?php
                             $data = Stations::readStations();
-                                foreach($data AS $item){
-                                    echo '
-                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                            foreach ($data as $item) {
+                                echo '
+                                    <option value="' . $item['id'] . '">' . $item['nom'] . '</option>
                                     ';
-                                }
+                            }
                             ?>
-                    </select>
-                    
+                        </select>
+
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
-                        <select class="form-select" aria-label="Default select example" name="arrStation"id="arrStation">
+                        <select class="form-select" aria-label="Default select example" name="arrStation" id="arrStation">
                             <option selected>Open this select menu</option>
 
-                            <?php 
+                            <?php
                             $data = Stations::readStations();
-                                foreach($data AS $item){
-                                    echo '
-                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                            foreach ($data as $item) {
+                                echo '
+                                    <option value="' . $item['id'] . '">' . $item['nom'] . '</option>
                                     ';
-                                }
+                            }
                             ?>
                         </select>
                     </div>
                     <!-- train -->
                     <div class="mb-3 train-list">
                         <label class="form-label">Train</label>
-                        <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
+                        <select class="form-select" aria-label="Default select example" name="train">
+                            <option selected>Open this select menu</option>
                             <?php
                             $data_Train = $train_object->displaytrains();
                             while ($row = $data_Train->fetch(PDO::FETCH_ASSOC)) {
-                                echo'
-                                    <option value="'.$row['id'].'">'.$row['nom'].'</option>
+                                echo '
+                                    <option value="' . $row['id'] . '">' . $row['nom'] . '</option>
                                 ';
                             }
-                                
+
                             ?>
                         </select>
                     </div>
                     <div class="mb-3 cities">
                         <label class="form-label">Cities</label>
-                        <select class="form-select" aria-label="Default select example" id="citiesBox">
+                        <select class="form-select" aria-label="Default select example" name="id_ville" id="citiesBox">
                             <option selected>Open this select menu</option>
                             <?php
                             $cities = new Ville();
-                            foreach($cities->readData() as $city):?>
-                            <option value="<?=$city['id']?>"><?=$city['ville']?></option>
+                            foreach ($cities->readData() as $city) : ?>
+                                <option value="<?= $city['id'] ?>"><?= $city['ville'] ?></option>
                             <?php
                             endforeach;
                             ?>
@@ -611,7 +612,7 @@ $result = $stmt->fetch();
                     </div>
 
                     <div class="mb-3 users-select">
-                        <label class="form-label">Users</label> 
+                        <label class="form-label">Users</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <?php
