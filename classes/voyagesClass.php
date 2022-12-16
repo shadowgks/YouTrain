@@ -87,7 +87,7 @@ class Voyages extends DatabaseConnection
     function createData()
     {
         try {
-            $stm = $this->getConnect()->prepare("INSERT INTO `voyages`(`date_depart`, `date_darrivee`, `gare_depart`, `gare_darrivee`, `price`, `train`) VALUES (?,?,?,?,?,?)");
+            $stm = $this->getConnect()->prepare("INSERT INTO `voyages`(`date_depart`, `date_darrivee`, `gare_depart`, `gare_darrivee`, `price`, `id_train`) VALUES (?,?,?,?,?,?)");
             $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price, $this->id_train]);
         } catch (Exception $e) {
             return $e->getMessage();

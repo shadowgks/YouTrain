@@ -106,11 +106,12 @@ include(__DIR__ . '/includes/scripts.php');
                     <label for="validationCustom01" class="form-label fw-bold">Departure City</label>
                     <select class="form-select" name="gare_depart" id="validationCustom04" required>
                         <option selected disabled value="">Choose...</option>
-                        <!-- Affichage Villes -->
+                        <!-- Affichage gares -->
                         <?php
-                        foreach ($data_villes->readData() as $ville) {
+                        $data = Stations::readStations(); 
+                        foreach ($data as $gare) {
                             echo '
-                                <option value="' . $ville['id'] . '">' . $ville['ville'] . '</option>
+                                <option value="' . $gare['id'] . '">' . $gare['nom'] . '</option>
                             ';
                         }
                         ?>
@@ -126,11 +127,12 @@ include(__DIR__ . '/includes/scripts.php');
                     <label for="validationCustom01" class="form-label fw-bold">Arrival City</label>
                     <select class="form-select" name="gare_darrivee" id="validationCustom04" required>
                         <option selected disabled value="">Choose...</option>
-                        <!-- Affichage Villes -->
+                        <!-- Affichage gares -->
                         <?php
-                        foreach ($data_villes->readData() as $ville) {
+                        $data = Stations::readStations(); 
+                        foreach ($data as $gare) {
                             echo '
-                                <option value="' . $ville['id'] . '">' . $ville['ville'] . '</option>
+                                <option value="' . $gare['id'] . '">' . $gare['nom'] . '</option>
                             ';
                         }
                         ?>
