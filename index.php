@@ -48,14 +48,41 @@ include(__DIR__ . '/includes/scripts.php');
                         </li>
                         <li>
                             <!-- basket -->
-                            <a href="basket.php" class="position-relative nav-link text-white ">
+                            <!-- <a href="basket.php" class="position-relative nav-link text-white ">
                                 <i class="bi bi-bag-check-fill fs-4"></i>
                                 <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
-                            </a>
+                            </a> -->
                         </li>
                         <li>
-                            <!-- sign in -->
-                            <a href="login.php" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></a>
+                            <!-- begin User -->
+                            <?php
+                            if (isset($_SESSION["user_id"])) {
+                                echo '
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="uploads/' . $_SESSION["user_image"] . '" class="rounded-circle img-profile" alt="Portrait of a Woman" loading="lazy" />
+                                <span class="ps-2 text-white">' . $_SESSION["user_first"] . '</span>
+                            </a>
+
+                            <ul class="dropdown-menu py-2" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<li>
+                                    <a class="dropdown-item" href="profile.html">My profile</a>
+                                </li>-->
+                                <li>
+                                    <a class="dropdown-item" href="?logout=true">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                                    ';
+                            } else {
+                                echo '
+                                    <!-- sign in -->
+                                    <a href="login.php" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></a>
+                                    ';
+                            }
+                            ?>
+                            <!-- end User -->
                         </li>
                     </ul>
                 </div>
@@ -74,7 +101,7 @@ include(__DIR__ . '/includes/scripts.php');
     <section class="container-fluid travellers-img p-md-5 p-0 vh-100 align-items-center d-flex">
         <div class="container d-grid gap-5 bg-dark bg-opacity-50 rounded p-md-5 py-4 shadow">
             <h1 class="text-center text-white">Hello Travellers</h1>
-            <form class="row g-3 needs-validation text-white" method="POST" action="voyages.php">
+            <form class="row g-3 needs-validation text-white" method="POST" action="voyages.php" data-parsley-validate>
                 <div class="col-md-6">
                     <label for="validationCustom01" class="form-label fw-bold">Departure City</label>
                     <select class="form-select" name="gare_depart" id="validationCustom04" required>
