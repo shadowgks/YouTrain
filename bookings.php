@@ -106,7 +106,7 @@ if (!isset($_SESSION["user_id"])) {
                         $current_date = date('Y-m-d h:i:s', $time);
                         while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
                             // var_dump($current_date < $row['date_darrivee']);
-                            if ($current_date < $row['date_darrivee']) {
+                            if ($current_date < $row['date_darrivee'] && $row['id_client'] == $_SESSION['user_id']) {
                                 echo "  <div>
                                 <hr class='p-0 m-0' />
                                 <!-- price and date -->
@@ -185,7 +185,7 @@ if (!isset($_SESSION["user_id"])) {
                         $current_date = date('Y-m-d h:i:s', $time);
                         while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
                             // var_dump($current_date < $row['date_darrivee']);
-                            if ($current_date > $row['date_darrivee']) {
+                            if ($current_date > $row['date_darrivee'] && $row['id_client'] == $_SESSION['user_id']) {
                                 echo "  <div>
                                 <hr class='p-0 m-0' />
                                 <!-- price and date -->
