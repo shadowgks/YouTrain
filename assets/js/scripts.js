@@ -1,7 +1,7 @@
-let form1             = document.getElementById("signin");
-let form2             = document.getElementById("signup");
-let btnsignup         = document.getElementById("btnup") ;
-let btnsignin         = document.getElementById("btnin");
+let form1 = document.getElementById("signin");
+let form2 = document.getElementById("signup");
+let btnsignup = document.getElementById("btnup") ;
+let btnsignin = document.getElementById("btnin");
 let addMobile = document.getElementById("addMobile");
 let addMenu = document.querySelector('.add-functions');
 let tripBtn = document.querySelectorAll('.trip');
@@ -20,6 +20,7 @@ let depSelectBox = document.querySelector('.dstation-select');
 let arrSelectBox = document.querySelector('.aStation-select');
 let usersList = document.querySelector('.users-select');
 let tripsList = document.querySelector('.trip-select');
+let trainList = document.querySelector('.train-list');
 let updateTravels = document.querySelectorAll('.updateTravels');
 let departureInput = document.querySelector('#departureInput');
 let idInput = document.querySelector('#idInput');
@@ -73,7 +74,8 @@ function showTripModal(){
     nameInput.style.display = 'none';
     usersList.style.display = 'none';
     tripsList.style.display = 'none';
-    citiesBox.style.display = 'none'
+    citiesBox.style.display = 'none';
+    trainList.style.display = 'block';
     modalTitle.innerText = "Add Trip";
     saveBtn.style.display = 'block';
     deleteBtn.style.display = 'none';
@@ -97,6 +99,7 @@ function showTrainModal(){
     deleteBtn.style.display = 'none';
     updateBtn.style.display = 'none';
     saveBtn.style.display = 'block';
+    trainList.style.display = 'none';
     funcInput.value = 'train';
 }
 
@@ -112,7 +115,7 @@ function showStationModal(){
     tripsList.style.display = 'none';
     nameInput.style.display = 'block';
     citiesBox.style.display = 'block'
-
+    trainList.style.display = 'none';
     modalTitle.innerText = "Add Station";
     deleteBtn.style.display = 'none';
     updateBtn.style.display = 'none';
@@ -131,6 +134,8 @@ function showTicketModal(){
     priceInput.style.display = 'none';
     depSelectBox.style.display = 'none';
     arrSelectBox.style.display = 'none';
+    citiesBox.style.display = 'none'
+    trainList.style.display = 'none';
     modalTitle.innerText = "Add Ticket";
     deleteBtn.style.display = 'none';
     updateBtn.style.display = 'none';
