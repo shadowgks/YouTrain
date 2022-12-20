@@ -31,10 +31,15 @@ $data_voyages = new Voyages();
 
 //Search voyages
 if (isset($_POST['search_voyage'])) {
-    $data_voyages->setDateDeparte($_POST['date_depart']);
-    $data_voyages->setDateDarrivee($_POST['date_darrivee']);
+    if(!empty($_POST['date_depart']))$data_voyages->setDateDeparte($_POST['date_depart']);
+    // if(empty($_POST['date_depart']))$data_voyages->setDateDeparte('any(select v.date_depart from voyages)');
+    if(!empty($_POST['date_darrivee']))$data_voyages->setDateDarrivee($_POST['date_darrivee']);
+    // if(empty($_POST['date_darrivee']))$data_voyages->setDateDarrivee('any(select v.date_darrivee from voyages)');
+    
     $data_voyages->setGareDepart($_POST['gare_depart']);
     $data_voyages->setGareDarrivee($_POST['gare_darrivee']);
+    // var_dump($data_voyages);
+    // die;
 };
 // End saad
 include_once(__DIR__ . '/../classes/stationsClass.php');

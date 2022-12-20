@@ -138,16 +138,16 @@ class Voyages extends DatabaseConnection
     function searchData()
     {
         try {
-            $stm = $this->getConnect()->prepare("SELECT v.id,v.date_depart,v.date_darrivee,v.price,v.id_train,trains.capacite,
+            $stm = $this->getConnect()->prepare("SELECT DISTINCT  v.*,trains.capacite,
             g1.nom AS 'gare_depart',g2.nom AS 'gare_darrivee'
             From voyages v
-            join gares g1 on g1.id=v.gare_depart 
-            join gares g2 on g2.id=v.gare_darrivee
-            join trains on v.id_train
+            inner join gares g1 on g1.id=v.gare_depart 
+            inner join gares g2 on g2.id=v.gare_darrivee
+            inner join trains on v.id_train
             where v.date_depart >= ?
-            and   v.date_darrivee <= ?
+            and    v.date_darrivee <= ?
             and   v.gare_depart = ? and v.gare_darrivee = ?;");
-            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee]);
+            $stm->execute([$this->date_depart,$this->date_darrivee,$this->gare_depart,$this->gare_darrivee]);
             return $stm->fetchAll();
         } catch (Exception $e) {
             return $e->getMessage();
@@ -167,16 +167,14 @@ class Voyages extends DatabaseConnection
     }
 
     //Count voyages
-    function countVoyageAvailable(){
-        try{
+    function countVoyageAvailable()
+    {
+        try {
             $stm = $this->getConnect()->prepare("SELECT count(*) AS countVoyages FROM voyages");
             $stm->execute();
             return $stm->fetch();
-        }catch (Exception $e){
+        } catch (Exception $e) {
             return $e->getMessage();
         }
-        
     }
-
-
 }

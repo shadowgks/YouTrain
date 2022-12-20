@@ -120,7 +120,7 @@ include(__DIR__ . '/includes/scripts.php');
                 </div>
                 <div class="col-md-6">
                     <label for="validationCustom02" class="form-label fw-bold">Departure</label>
-                    <input type="datetime-local" name="date_depart" class="form-control" id="validationCustom02" placeholder="Ma date de départ" required />
+                    <input type="datetime-local" name="date_depart" class="form-control" id="validationCustom02" placeholder="Ma date de départ" />
                     <div class="valid-feedback">Looks good!</div>
                 </div>
                 <div class="col-md-6">
