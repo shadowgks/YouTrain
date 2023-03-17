@@ -9,14 +9,13 @@ class Users
     private $password_confirm;
     private $image;
 
-    public function __construct($firstname, $lastname, $email, $password, $password_confirm, $image)
+    public function __construct($firstname, $lastname, $email, $password, $password_confirm)
     {
         $this->firstname        = $firstname;
         $this->lastname         = $lastname;
         $this->email            = $email;
         $this->password         = $password;
         $this->password_confirm = $password_confirm;
-        $this->image = $image;
     }
     public function __set($var, $val)
     {
@@ -43,7 +42,7 @@ class Users
             return false;
         }
         //
-        $sql = "INSERT INTO `users`(`nom`, `prenom`, `email`, `password`,`role`,`image`) VALUES (:nom,:prenom,:email,:password,0,'image.png')";
+        $sql = "INSERT INTO `users`(`nom`, `prenom`, `email`, `password`,`role`) VALUES (:nom,:prenom,:email,:password,0)";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(":nom", $this->lastname);
         $stmt->bindParam(":prenom", $this->firstname);
