@@ -11,7 +11,10 @@
     background-repeat: no-repeat;
     background-position:right;
 }
-
+.img-profile{
+    height: 30px ;
+    width: 30px ;
+}
 /* End images home Saad*/
 
 /*======================================Preset=============================*/

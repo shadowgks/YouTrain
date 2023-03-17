@@ -1,5 +1,10 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
+
+if (!isset($_SESSION["user_id"])) {
+    header('Location: login.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,26 +53,40 @@ include(__DIR__ . '/includes/scripts.php');
                         </li>
                         <li>
                             <!-- basket -->
-                            <a href="basket.php" class="position-relative nav-link text-white ">
+                            <!-- <a href="basket.php" class="position-relative nav-link text-white ">
                                 <i class="bi bi-bag-check-fill fs-4"></i>
                                 <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
-                            </a>
+                            </a> -->
                         </li>
-                        <!-- begin User -->
+                        <li>
+                            <!-- begin User -->
+                            <?php
+                            if (isset($_SESSION["user_id"])) {
+                                echo '
+                                    
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle" height="30" alt="Portrait of a Woman" loading="lazy" />
-                                <span class="ps-2 text-white">Saad Moumou</span>
+                                <img src="uploads/'.$_SESSION["user_image"].'" class="rounded-circle img-profile" alt="Portrait of a Woman" loading="lazy" />
+                                <span class="ps-2 text-white">'.$_SESSION["user_first"].'</span>
                             </a>
 
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li>
+                            <ul class="dropdown-menu py-2" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<li>
                                     <a class="dropdown-item" href="profile.html">My profile</a>
-                                </li>
+                                </li>-->
                                 <li>
-                                    <a class="dropdown-item" href="#">Logout</a>
+                                    <a class="dropdown-item" href="?logout=true">Logout</a>
                                 </li>
                             </ul>
+                        </li>
+                                    ';
+                            } else {
+                                echo '
+                                    <!-- sign in -->
+                                    <a href="login.php" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></a>
+                                    ';
+                            }
+                            ?>
                         </li>
                         <!-- end User -->
                     </ul>
@@ -102,7 +121,7 @@ include(__DIR__ . '/includes/scripts.php');
                         $current_date = date('Y-m-d h:i:s', $time);
                         while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
                             // var_dump($current_date < $row['date_darrivee']);
-                            if ($current_date < $row['date_darrivee']) {
+                            if ($current_date < $row['date_darrivee'] && $row['id_client'] == $_SESSION['user_id']) {
                                 echo "  <div>
                                 <hr class='p-0 m-0' />
                                 <!-- price and date -->
@@ -181,7 +200,7 @@ include(__DIR__ . '/includes/scripts.php');
                         $current_date = date('Y-m-d h:i:s', $time);
                         while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
                             // var_dump($current_date < $row['date_darrivee']);
-                            if ($current_date > $row['date_darrivee']) {
+                            if ($current_date > $row['date_darrivee'] && $row['id_client'] == $_SESSION['user_id']) {
                                 echo "  <div>
                                 <hr class='p-0 m-0' />
                                 <!-- price and date -->

@@ -1,11 +1,12 @@
 <?php
-include(__DIR__ . '/includes/scripts.php');
+include_once(__DIR__ . '/includes/scripts.php');
 
 if (!isset($_SESSION["user_id"]) || ($_SESSION["role"]) == 0) {
     header('Location:index.php');
 }
 
 //fouad
+$train_object = new Train();
 $train_object->displayTrains();
 //fouad
 
@@ -139,7 +140,9 @@ $result = $stmt->fetch();
                     </div>
                     <div class="c-functions">
                         <div class="add-container" id="addMobile">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                            </svg>
                         </div>
                         <div class="add-functions">
                             <div class="icon-container">
@@ -147,7 +150,9 @@ $result = $stmt->fetch();
                                     <img src="./assets/train.png" alt="" class="icon" style="margin-bottom:7.5px;">
                                 </button>
                                 <button type="button" class="addBtn train" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Train
                                     </p>
@@ -171,7 +176,9 @@ $result = $stmt->fetch();
                                     <img src="./assets/map.png" alt="" class="icon">
                                 </button>
                                 <button type="button" class="addBtn trip" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Trip
                                     </p>
@@ -182,7 +189,9 @@ $result = $stmt->fetch();
                                     <img src="./assets/booking.png" alt="" class="icon">
                                 </button>
                                 <button type="button" class="addBtn ticketBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);"><path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(0, 0, 0, 1);">
+                                        <path d="M19 11h-6V5h-2v6H5v2h6v6h2v-6h6z"></path>
+                                    </svg>
                                     <p class="add">
                                         Ticket
                                     </p>
@@ -233,7 +242,7 @@ $result = $stmt->fetch();
                     </div>
                     <div class="desc">
                         <h1 class="card-title"><span>Stations</span></h1>
-                        <p class="text"><?php echo Stations::availableStations();?></p>
+                        <p class="text"><?php echo Stations::availableStations(); ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -242,7 +251,11 @@ $result = $stmt->fetch();
                     </div>
                     <div class="desc">
                         <h1 class="card-title"><span>Total users</span></h1>
-                        <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
+                        <p class="text"><?php if (is_array(Users::viewUser("all", true))) {
+                                            echo count(Users::viewUser("all", true));
+                                        } else {
+                                            echo 0;
+                                        } ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -251,7 +264,11 @@ $result = $stmt->fetch();
                     </div>
                     <div class="desc">
                         <h1 class="card-title"><span>Total users</span></h1>
-                            <p class="text"><?php if(is_array(Users::viewUser("all", true))){ echo count(Users::viewUser("all", true));}else{ echo 0;}?></p>
+                        <p class="text"><?php if (is_array(Users::viewUser("all", true))) {
+                                            echo count(Users::viewUser("all", true));
+                                        } else {
+                                            echo 0;
+                                        } ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -261,7 +278,7 @@ $result = $stmt->fetch();
                     <div class="desc">
                         <h1 class="card-title"><span>Trains</span></h1>
                         <p class="text"><?php echo $train_object->displaytrains()->rowcount(); //rowCount() count the number of rows
-                                            ?></p>
+                                        ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -269,8 +286,8 @@ $result = $stmt->fetch();
                         <img src="assets/group.png" alt="">
                     </div>
                     <div class="desc">
-                        <h1 class="card-title"><span>Stations</span></h1>
-                            <p class="text">20</p>
+                        <h1 class="card-title"><span>Voyages</span></h1>
+                        <p class="text"><?php echo $data_voyages->countVoyageAvailable()['countVoyages'] ?></p>
                     </div>
                 </div>
                 <div class="card-stat">
@@ -365,6 +382,7 @@ $result = $stmt->fetch();
                         <th>Gare départ</th>
                         <th>Gare d'arrivée</th>
                         <th>Price</th>
+                        <th>Train</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -381,11 +399,12 @@ $result = $stmt->fetch();
                                     <td class="tripDepStation" data-tripDepStation = ' . $item['gare_depart'] . '>' . $item['gare_depart'] . '</td>
                                     <td class="tripArrStation" data-tripArrStation = ' . $item['gare_darrivee'] . '>' . $item['gare_darrivee'] . '</td>
                                     <td class="tripPrice" data-tripPrice = ' . $item['price'] . '>' . $item['price'] . '</td>
+                                    <td class="tripTrain" data-tripTrain = ' . $item['id_train'] . '>' . $item['nom_train'] . '</td>
                                     <!-- btn edite delete -->
                                     <td>
                                         <div class="d-flex align-items-center">
-                                            <button type="submit" class="btn btn-primary me-2 updateTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip('.$item['id'].')><i class="bi bi-pencil-square"></i></button>
-                                            <button type="submit" class="btn btn-danger deleteTravels" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="bi bi-trash"></i></button>
+                                            <button type="submit" class="btn btn-primary me-2 updateTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip(' . $item['id'] . ')><i class="bi bi-pencil-square"></i></button>
+                                            <button type="submit" class="btn btn-danger deleteTravels" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick=updateTrip(' . $item['id'] . ')><i class="bi bi-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -418,15 +437,15 @@ $result = $stmt->fetch();
                     $index = 1;
                     $data = $train_object->displaytrains();
                     while ($row = $data->fetch(PDO::FETCH_ASSOC)) {
-                        echo "<tr>
-                                    <td data-gareId = ".$row['id'].">" . $index . "</td>
-                                    <td data-gareNom = ".$row['nom'].">" . $row['nom'] . "</td>
-                                    <td data-gareCapacite = ".$row['capacite'].">" . $row['capacite'] . "</td>
+                        echo "<tr id=" . 'train' . '-' . $row['id'] . ">
+                                    <td id='trainId' data-gareId = " . $row['id'] . " data-gareNum= " . $row['num'] . ">" . $index . "</td>
+                                    <td id='trainName' data-gareNom = " . $row['nom'] . ">" . $row['nom'] . "</td>
+                                    <td id='trainCapacity' data-gareCapacite = " . $row['capacite'] . ">" . $row['capacite'] . "</td>
                                     <!-- btn edite delete -->
                                     <td class='d-flex align-items-center'>
                                     <div>
-                                        <button type='submit' class='btn btn-primary me-2 updateTrain'><i class='bi bi-pencil-square'></i></button>
-                                        <button type='submit' class='btn btn-danger deleteTrain'><i class='bi bi-trash'></i></button>
+                                        <button type='submit' class='btn btn-primary me-2 updateTrain' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick=updateTrain(" . $row['id'] . ")><i class='bi bi-pencil-square'></i></button>
+                                        <button type='submit' class='btn btn-danger deleteTrain' data-bs-toggle='modal' data-bs-target='#exampleModal' onclick=updateTrain(" . $row['id'] . ")><i class='bi bi-trash'></i></button>
                                     </div>
                                     </td>
                                 </tr>";
@@ -453,19 +472,20 @@ $result = $stmt->fetch();
                 <tbody>
 
                     <?php
+                    $data = Stations::readStations();
                     $count = 0;
-                    foreach ($data_stations as $row) {
+                    foreach ($data as $row) {
                         $count++;
                         echo '
-                        <tr>
+                        <tr id="station-' . $row['id'] . '">
                         <td>'  .  $count  .  '</td>
-                        <td>'  .  $row['nom']  .  '</td>
-                        <td>'  .  $row['city']  .  '</td>
+                        <td id="stationName" data-stationName=' . $row['nom'] . '>'  .  $row['nom']  .  '</td>
+                        <td id="cityName" data-stationCityId=' . $row['id_ville'] . '>'  .  $row['city']  .  '</td>
                         <!-- btn edite delete -->
                         <td class="d-flex align-items-center">
                             <div>
-                                <button type="submit" class="btn btn-primary me-2 updateStation"><i class="bi bi-pencil-square"></i></button>
-                                <button type="submit" class="btn btn-danger deleteStation"><i class="bi bi-trash"></i></button>
+                                <button type="submit" class="btn btn-primary me-2 updateStation" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateStations(' . $row['id'] . ')"><i class="bi bi-pencil-square"></i></button>
+                                <button type="submit" class="btn btn-danger deleteStation" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateStations(' . $row['id'] . ')"><i class="bi bi-trash"></i></button>
                             </div>
                         </td>
                     </tr>
@@ -479,9 +499,6 @@ $result = $stmt->fetch();
         </section>
     </div>
 
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
     <!-- Modal crud -->
     <form action="dashboard.php" method="post" class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -495,94 +512,127 @@ $result = $stmt->fetch();
                         <!--this input is used to stock the id -->
                         <input type="hidden" name="id" id="idInput">
                     </div>
+                    <div>
+                        <!--this input is used to stock the id -->
+                        <input type="hidden" name="functionToUse" id="funcId">
+                    </div>
                     <!-- <div> -->
                     <!--this input is used to stock the id_resirvation -->
                     <!-- <input type="hidden" name="id_reservation">
                     </div> -->
                     <div class="mb-3" id="numInput">
                         <label class="form-label">Nombre</label>
-                        <input type="text" class="form-control" name="num">
+                        <input type="text" class="form-control" name="num" id="trainNumberInput">
                     </div>
                     <div class="mb-3" id="nameInput">
                         <label class="form-label">Nom</label>
-                        <input type="text" class="form-control" name="nom" id="nameInput">
+                        <input type="text" class="form-control" name="nom" id="namesInput">
                     </div>
                     <div class="mb-3" id="capacityInput">
                         <label class="form-label">capacité</label>
-                        <input type="text" class="form-control" name="capacite">
+                        <input type="text" class="form-control" name="capacite" id="capacity">
                     </div>
 
                     <div class="mb-3 d-input">
                         <label class="form-label">Departure Date</label>
-                        <input type="datetime" class="form-control" name="departureDate" id="departureInput">
+                        <input type="datetime-local" class="form-control" name="departureDate" id="departureInput">
                     </div>
                     <div class="mb-3 a-input">
                         <label class="form-label">Arrival Date</label>
-                        <input type="datetime" class="form-control" name="arrivalDate" id="arrivalInput">
+                        <input type="datetime-local" class="form-control" name="arrivalDate" id="arrivalInput">
                     </div>
                     <div class="mb-3 dstation-select">
                         <label class="form-label">Departure Station</label>
-                        <select class="form-select" aria-label="Default select example" id="depStation">
+                        <select class="form-select" aria-label="Default select example" name="depStation" id="depStation">
                             <option selected>Open this select menu</option>
-                            <?php 
+                            <?php
                             $data = Stations::readStations();
-                                foreach($data AS $item){
-                                    echo '
-                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                            foreach ($data as $item) {
+                                echo '
+                                    <option value="' . $item['id'] . '">' . $item['nom'] . '</option>
                                     ';
-                                }
+                            }
                             ?>
                         </select>
+
                     </div>
                     <div class="mb-3 aStation-select">
                         <label class="form-label">Arrival Station</label>
-                        <select class="form-select" aria-label="Default select example" id="arrStation">
+                        <select class="form-select" aria-label="Default select example" name="arrStation" id="arrStation">
                             <option selected>Open this select menu</option>
 
-                            <?php 
+                            <?php
                             $data = Stations::readStations();
-                                foreach($data AS $item){
-                                    echo '
-                                    <option value="'.$item['id'].'">'.$item['nom'].'</option>
+                            foreach ($data as $item) {
+                                echo '
+                                    <option value="' . $item['id'] . '">' . $item['nom'] . '</option>
                                     ';
-                                }
+                            }
                             ?>
+                        </select>
+                    </div>
+                    <!-- train -->
+                    <div class="mb-3 train-list">
+                        <label class="form-label">Train</label>
+                        <select class="form-select" aria-label="Default select example" name="train">
+                            <option selected>Open this select menu</option>
+                            <?php
+                            $data_Train = $train_object->displaytrains();
+                            while ($row = $data_Train->fetch(PDO::FETCH_ASSOC)) {
+                                echo '
+                                    <option value="' . $row['id'] . '">' . $row['nom'] . '</option>
+                                ';
+                            }
 
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3 cities">
+                        <label class="form-label">Cities</label>
+                        <select class="form-select" aria-label="Default select example" name="id_ville" id="citiesBox">
+                            <option selected>Open this select menu</option>
+                            <?php
+                            $cities = new Ville();
+                            foreach ($cities->readData() as $city) : ?>
+                                <option value="<?= $city['id'] ?>"><?= $city['ville'] ?></option>
+                            <?php
+                            endforeach;
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3 trip-select">
+                        <label class="form-label">Trip</label>
+                        <select class="form-select" aria-label="Default select example">
+                            <option selected>Open this select menu</option>
+                            <?php
+                            foreach ($data_voyages->readData() as $item) : ?>
+                                <option value="<?= $item['id'] ?>"><?= $item['gare_depart'] ?> - <?= $item['gare_darrivee'] ?></option>
+                            <?php
+                            endforeach
+                            ?>
                         </select>
                     </div>
 
                     <div class="mb-3 users-select">
-                        <label class="form-label">Trip</label>
-                        <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                            <?php
-                                foreach ($data_voyages->readData() as $item):?>
-                                    <option value="<?=$item['id']?>"><?=$item['gare_depart']?> - <?=$item['gare_darrivee']?></option>
-                                <?php
-                                endforeach
-                                ?>
-                        </select>
-                    </div>
-                    <div class="mb-3 trip-select">
-                        <label class="form-label">Users</label> 
+                        <label class="form-label">Users</label>
                         <select class="form-select" aria-label="Default select example">
                             <option selected>Open this select menu</option>
                             <?php
-                                $users = Users::viewUser("all", true);
-                                // var_dump($users);
-                                // die();
-                                foreach ($users as $user):?>
-                                    <option value="<?=$user['id']?>"><?=$user['nom']?> <?=$user['prenom']?></option>
-                                <?php
-                                endforeach
-                                ?>
-                    
+                            $users = Users::viewUser("all", true);
+                            // var_dump($users);
+                            // die();
+                            foreach ($users as $user) : ?>
+                                <option value="<?= $user['id'] ?>"><?= $user['nom'] ?> <?= $user['prenom'] ?></option>
+                            <?php
+                            endforeach
+                            ?>
+
                         </select>
                     </div>
 
                     <div class="mb-3 price-input">
                         <label class="form-label">Price</label>
-                        <input type="number" step="0.1" class="form-control" name="arrivalDate" id="priceInput">
+                        <input type="number" step="0.1" class="form-control" name="price" id="priceInput">
                     </div>
                     <!-- <div class="mb-3">
                         <label class="form-label">departure date</label>
@@ -592,10 +642,6 @@ $result = $stmt->fetch();
                         <label class="form-label">arrival date</label>
                         <input type="datetime-local" class="form-control" name="date_arrivee">
                     </div> -->
-                    <div class="mb-3 form-check" id="checkInput">
-                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-danger" data-bs-dismiss="modal" name="delete" id="deleteBtn">delete</button>

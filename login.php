@@ -1,3 +1,9 @@
+<?php
+include(__DIR__ . '/includes/scripts.php');
+if (isset($_SESSION["user_id"])) {
+    header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,7 +85,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="firstName">First Name</label>
 
-                      <input name="firstname" type="text" id="firstName" class="form-control form-control-lg" id="firstnameu" required/>
+                      <input name="firstname" type="text" id="firstName" class="form-control form-control-lg" id="firstnameu" required />
 
 
                     </div>
@@ -90,7 +96,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Last Name</label>
 
-                      <input name="lastname" type="text" id="lastName" class="form-control form-control-lg" id="lastnameu" required/>
+                      <input name="lastname" type="text" id="lastName" class="form-control form-control-lg" id="lastnameu" required />
 
 
                     </div>
@@ -104,7 +110,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="emailAddress">Email</label>
 
-                      <input name="email" type="email" id="emailAddress" class="form-control form-control-lg" id="emailaddressu" required/>
+                      <input name="email" type="email" id="emailAddress" class="form-control form-control-lg" id="emailaddressu" required />
 
 
                     </div>
@@ -121,7 +127,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="firstName">Password</label>
 
-                      <input name="password" type="password" id="firstName" class="form-control form-control-lg" id="passwordu" required/>
+                      <input name="password" type="password" id="firstName" class="form-control form-control-lg" id="passwordu" required />
 
 
                     </div>
@@ -132,7 +138,7 @@
                     <div class="form-outline">
                       <label class="form-label" for="lastName">Retype Password</label>
 
-                      <input name="password_confirm" type="password" id="lastName" class="form-control form-control-lg" id="retypepasswordu" required/>
+                      <input name="password_confirm" type="password" id="lastName" class="form-control form-control-lg" id="retypepasswordu" required />
 
 
                     </div>
@@ -169,7 +175,7 @@
 
                 <div class="form-outline mb-4">
                   <label class="form-label" for="typeEmailX-2">Email</label>
-                  <input type="email" name="email" class="form-control form-control-lg" id="emailaddressi" required/>
+                  <input type="email" name="email" class="form-control form-control-lg" id="emailaddressi" required />
 
 
                 </div>
@@ -177,7 +183,7 @@
                 <div class="form-outline mb-4">
                   <label class="form-label" for="typePasswordX-2">Password</label>
 
-                  <input type="password" name="password" class="form-control form-control-lg" id="passwordi" required/>
+                  <input type="password" name="password" class="form-control form-control-lg" id="passwordi" required />
 
                 </div>
                 <div>

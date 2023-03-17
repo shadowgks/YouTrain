@@ -1,5 +1,6 @@
 <?php
 require_once('databaseClass.php');
+
 class Voyages extends DatabaseConnection
 {
     private $id;
@@ -71,12 +72,23 @@ class Voyages extends DatabaseConnection
         return $this->price;
     }
 
+    //set and get Train
+    function setTrain($train)
+    {
+        $this->id_train = $train;
+    }
+    function getTrain()
+    {
+        return $this->id_train;
+    }
+
+
     //Create
     function createData()
     {
         try {
-            $stm = $this->getConnect()->prepare("INSERT INTO `voyages`(`date_depart`, `date_darrivee`, `gare_depart`, `gare_darrivee`, `price`) VALUES (?,?,?)");
-            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price]);
+            $stm = $this->getConnect()->prepare("INSERT INTO `voyages`(`date_depart`, `date_darrivee`, `gare_depart`, `gare_darrivee`, `price`, `id_train`) VALUES (?,?,?,?,?,?)");
+            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price, $this->id_train]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -88,9 +100,11 @@ class Voyages extends DatabaseConnection
         try {
             $stm = $this->getConnect()->prepare("SELECT v.id,v.date_depart,v.date_darrivee,v.price,v.id_train
             ,g1.nom AS 'gare_depart',g2.nom AS 'gare_darrivee'
+            ,t.nom AS 'nom_train',t.id AS 'id_train'
             FROM voyages v
             join gares g1 on g1.id = v.gare_depart
-            join gares g2 on g2.id = v.gare_darrivee;");
+            join gares g2 on g2.id = v.gare_darrivee
+            join trains t on t.id = v.id_train;");
             $stm->execute();
             return $stm->fetchAll();
         } catch (Exception $e) {
@@ -102,8 +116,8 @@ class Voyages extends DatabaseConnection
     function updateData()
     {
         try {
-            $stm = $this->getConnect()->prepare("UPDATE voyages SET date_depart=?, date_darrivee=?, `gare_depart=?`, `gare_darrivee=?`, price=? WHERE id = ? ;");
-            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price, $this->id]);
+            $stm = $this->getConnect()->prepare("UPDATE voyages SET date_depart = ?, date_darrivee = ?, gare_depart = ?, gare_darrivee = ?, price = ?, id_train = ? WHERE id = ? ;");
+            $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee, $this->price, $this->id_train, $this->id]);
         } catch (Exception $e) {
             return $e->getMessage();
         }
@@ -131,7 +145,7 @@ class Voyages extends DatabaseConnection
             join gares g2 on g2.id=v.gare_darrivee
             join trains on v.id_train
             where v.date_depart >= ?
-            or    v.date_darrivee <= ?
+            and   v.date_darrivee <= ?
             and   v.gare_depart = ? and v.gare_darrivee = ?;");
             $stm->execute([$this->date_depart, $this->date_darrivee, $this->gare_depart, $this->gare_darrivee]);
             return $stm->fetchAll();
@@ -140,15 +154,29 @@ class Voyages extends DatabaseConnection
         }
     }
 
-    static public function splitDateTime($time)
+    function splitDateTime($time)
     {
         $hour = new DateTime($time);
         return $hour->format('H:i');
     }
 
-    static public function splitDate($date)
+    function splitDate($date)
     {
         $day = new DateTime($date);
         return $day->format('d M');
     }
+
+    //Count voyages
+    function countVoyageAvailable(){
+        try{
+            $stm = $this->getConnect()->prepare("SELECT count(*) AS countVoyages FROM voyages");
+            $stm->execute();
+            return $stm->fetch();
+        }catch (Exception $e){
+            return $e->getMessage();
+        }
+        
+    }
+
+
 }

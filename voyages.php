@@ -1,7 +1,7 @@
 <?php
 include(__DIR__ . '/includes/scripts.php');
 if (!isset($_SESSION["user_id"])) {
-    header('Location:login.php');
+    header('Location: login.php');
 }
 ?>
 <!DOCTYPE html>
@@ -19,14 +19,15 @@ if (!isset($_SESSION["user_id"])) {
     <link rel="stylesheet" href="assets/bootstrap-icons/bootstrap-icons.css" />
     <!-- End Bootstrap icon -->
 
-    <!-- Begin Style css -->
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <!-- End Style css -->
-
     <!-- BEGIN parsley css-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/doc/assets/docs.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/guillaumepotier/Parsley.js@2.9.2/src/parsley.css">
     <!-- END parsley css-->
+
+    <!-- Begin Style css -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <!-- End Style css -->
+
     <title>YouTrain</title>
 </head>
 
@@ -56,14 +57,42 @@ if (!isset($_SESSION["user_id"])) {
                         </li>
                         <li>
                             <!-- basket -->
-                            <a href="basket.php" class="position-relative nav-link text-white ">
+                            <!-- <a href="basket.php" class="position-relative nav-link text-white ">
                                 <i class="bi bi-bag-check-fill fs-4"></i>
                                 <span class="position-absolute end-0 top-0 text-white font-weight-bold w-50 rounded-circle" style="background-color: #6351ce;">0</span>
-                            </a>
+                            </a> -->
                         </li>
                         <li>
-                            <!-- sign in -->
-                            <a href="login.php" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></a>
+                            <!-- begin User -->
+                            <?php
+                            if (isset($_SESSION["user_id"])) {
+                                echo '
+                                    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center justify-content-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="uploads/' . $_SESSION["user_image"] . '" class="rounded-circle img-profile" alt="Portrait of a Woman" loading="lazy" />
+                                <span class="ps-2 text-white">' . $_SESSION["user_first"] . '</span>
+                            </a>
+
+                            <ul class="dropdown-menu py-2" aria-labelledby="navbarDropdownMenuLink">
+                                <!--<li>
+                                    <a class="dropdown-item" href="profile.html">My profile</a>
+                                </li>-->
+                                <li>
+                                    <a class="dropdown-item" href="?logout=true">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                                    ';
+                            } else {
+                                echo '
+                                    <!-- sign in -->
+                                    <a href="login.php" class="btn text-white px-4 ms-lg-3" style="background-color: #6351ce">Sign in <i class="bi bi-arrow-right-short"></i></a>
+                                    ';
+                            }
+                            ?>
+                            <!-- end User -->
                         </li>
                     </ul>
                 </div>
@@ -78,16 +107,6 @@ if (!isset($_SESSION["user_id"])) {
             <div class="card text-center">
                 <h3 class="m-0 p-4 text-white" style="background-color: #6351ce">MY TRIP</h3>
                 <?php
-
-                // var_dump($data);
-                // die;
-                if (isset($_POST['search_voyage'])) {
-                    $data_voyages->setDateDeparte($_POST['date_depart']);
-                    $data_voyages->setDateDarrivee($_POST['date_darrivee']);
-                    $data_voyages->setGareDepart($_POST['gare_depart']);
-                    $data_voyages->setGareDarrivee($_POST['gare_darrivee']);
-                    $data_voyages->searchData();
-                };
                 $data = $data_voyages->searchData();
                 $count = 0;
                 if (!$data) {
@@ -109,17 +128,17 @@ if (!isset($_SESSION["user_id"])) {
                             <div class="col d-md-flex">
                                 <!-- date -->
                                 <div class="text-start">
-                                    <h4>' . Voyages::splitDate($item['date_depart']) . '</h4>
+                                    <h4>' . $data_voyages->splitDate($item['date_depart']) . '</h4>
                                 </div>
                                 <hr class="d-block d-md-none" />
                                 <!-- time -->
                                 <div class="ms-md-5">
                                     <div class="text-start">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_depart']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_depart']) . '</span>
                                         <span>' . $item['gare_depart'] . '</span>
                                     </div>
                                     <div class="text-start">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_darrivee']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_darrivee']) . '</span>
                                         <span>' . $item['gare_darrivee'] . '</span>
                                     </div>
                                 </div>
@@ -140,11 +159,11 @@ if (!isset($_SESSION["user_id"])) {
                                 <!-- time -->
                                 <div class="">
                                     <div class="">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_depart']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_depart']) . '</span>
                                         <span>' . $item['gare_depart'] . '</span>
                                     </div>
                                     <div class="">
-                                        <span class="fw-bold" style="color: #6351ce">' . Voyages::splitDateTime($item['date_darrivee']) . '</span>
+                                        <span class="fw-bold" style="color: #6351ce">' . $data_voyages->splitDateTime($item['date_darrivee']) . '</span>
                                         <span>' . $item['gare_darrivee'] . '</span>
                                     </div>
                                 </div>
